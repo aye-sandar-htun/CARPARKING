@@ -13,6 +13,7 @@ public class CarParking {
 private int building_id;
 private String buildingName;
 private String floorName;
+private String slot;
 
 @Id
 @GeneratedValue(strategy=GenerationType.AUTO)
@@ -41,6 +42,15 @@ public String getFloorName() {
 
 public void setFloorName(String floorName) {
 	this.floorName = floorName;
+}
+
+@Column(name="slot")
+public String getSlot() {
+	return slot;
+}
+
+public void setSlot(String slot) {
+	this.slot = slot;
 }
 
 }

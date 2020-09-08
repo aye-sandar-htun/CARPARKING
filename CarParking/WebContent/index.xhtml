@@ -17,11 +17,35 @@
 <h:form>
 
     <h:outputText value="Building name: "/>  
-    <p:inputText value="#{carParkingBean.carCtl.buildingName}"/>
+    <p:inputText value=""/>
     <h:outputText value="Number of floor: "/>  
-    <p:inputText value="#{carParkingBean.carCtl.floorName}"/>
+    <p:inputText value=" "/>
     
-  <p:commandButton value="ADD" actionListener="#{carParkingBean.persistInformation()}" styleClass="ui-priority-primary" />  
+  <p:commandButton value="ADD" actionListener="#{carParkingBean.floorList()}" styleClass="ui-priority-primary" />  
+</h:form>
+
+<!-- drop down -->
+<h:form>  
+<p:growl id="msgs" showDetail="true" />  
+<p:panel header="Creating slots" style="margin-bottom:10px;">  
+<h:panelGrid columns="2" cellpadding="5">  
+
+<p:outputLabel for="floor" value="Floor : " />  
+<p:selectOneMenu id="floor" value="#{carParkingBean.floorName}" style="width:150px">  
+<p:ajax listener="#{carParkingBean.onFloorChange}" />  
+<f:selectItem itemLabel="Select floor" itemValue="" noSelectionOption="true" />  
+<f:selectItems value="#{carParkingBean.floors}" />  
+</p:selectOneMenu>  
+
+<p:outputLabel  for="slot" value="Number of slot: " />     
+<p:inputText value=""/>
+
+</h:panelGrid>
+<p:separator />  
+<p:commandButton value="Submit" update="msgs" actionListener="#{carParkingBean.persistInformation()}" icon="ui-icon-check" />  
+</p:panel>  
+</h:form>  
+</p:panel>
 </h:form>
 
 </h:body>
