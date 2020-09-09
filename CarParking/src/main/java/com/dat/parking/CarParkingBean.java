@@ -79,37 +79,37 @@ public CarParkingService getCarParkingService() {
 	}
 
 		
-//method CRUD
+//add floorlist to dropdown
 	public String floorList() {
+		System.out.println("floorlist");
 		floors=new LinkedList();
 		int count=Integer.parseInt(carCtl.getFloorName());
 		for(int i=1;i<=count;i++) {
-			floors.add("floor"+i);}
+			floors.add("Floor"+i);}
 		return "index";
 	}
-	String selectedFloor;
 	
+	String selectedFloor;
 	public void onFloorChange() {  
-		System.out.println("FloorChange");
 		System.out.println("Selected floor:"+floorName);
 		if(floorName !=null && !floorName.equals("")) { 
 			selectedFloor = floorName; 
-			 System.out.println("Selected floor:"+selectedFloor);
 		}  
 	}
 	
+	//method CRUD
 	public String persistInformation() {
 		String bName=carCtl.getBuildingName();
-         int count=Integer.parseInt(carCtl.getFloorName());
-		for(int i=1;i<=count;i++) {
-			carCtl.setBuildingName(bName);
-			carCtl.setFloorName("Floor"+Integer.toString(i));
-			//carParkingService.persistInformation(this.carCtl);
-			floors.add("floor"+i);
-		}
 		
+		  int slotcount=Integer.parseInt(carCtl.getSlot());
+		  for(int i=1;i<=slotcount;i++) {
+			  carCtl.setBuildingName(bName);
+		      carCtl.setFloorName(selectedFloor);
+		      carCtl.setSlot("Slot"+i);
+		      carParkingService.persistInformation(this.carCtl); 
+		      }
+		 
 		System.out.println("successful");
-		System.out.println("Lists"+floors);
 
 		return "index";
 	}

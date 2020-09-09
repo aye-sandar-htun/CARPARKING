@@ -17,9 +17,9 @@
 <h:form>
 
     <h:outputText value="Building name: "/>  
-    <p:inputText value=""/>
+    <p:inputText value="#{carParkingBean.carCtl.buildingName}"/>
     <h:outputText value="Number of floor: "/>  
-    <p:inputText value=" "/>
+    <p:inputText value="#{carParkingBean.carCtl.floorName}"/>
     
   <p:commandButton value="ADD" actionListener="#{carParkingBean.floorList()}" styleClass="ui-priority-primary" />  
 </h:form>
@@ -37,16 +37,14 @@
 <f:selectItems value="#{carParkingBean.floors}" />  
 </p:selectOneMenu>  
 
-<p:outputLabel  for="slot" value="Number of slot: " />     
-<p:inputText value=""/>
+<p:outputLabel value="Number of slot: " />     
+<p:inputText value="#{carParkingBean.carCtl.slot}"/>
 
 </h:panelGrid>
 <p:separator />  
 <p:commandButton value="Submit" update="msgs" actionListener="#{carParkingBean.persistInformation()}" icon="ui-icon-check" />  
 </p:panel>  
 </h:form>  
-</p:panel>
-</h:form>
 
 </h:body>
 </html>
