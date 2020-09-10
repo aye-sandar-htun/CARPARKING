@@ -1,5 +1,8 @@
 package com.dat.parking.service;
 
+import java.util.List;
+import java.util.Set;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +24,21 @@ public class CarParkingServiceImpl implements CarParkingService{
 		carParkingDao.persistInformation(carParking);
 		
 	}
+	
+	@Transactional
+	@Override
+	public List buildingList() {
+		// TODO Auto-generated method stub
+		return carParkingDao.buildingList();
+	}
+	@Transactional
+	@Override
+	public List floorLists(String buildingName) {
+		// TODO Auto-generated method stub
+		return carParkingDao.floorLists(buildingName);
+	}
 
+
+
+	
 }

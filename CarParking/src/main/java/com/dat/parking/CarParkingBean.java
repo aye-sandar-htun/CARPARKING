@@ -1,10 +1,14 @@
 package com.dat.parking;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -24,6 +28,7 @@ public class CarParkingBean implements Serializable{
     private List<String> floors;
     @ManagedProperty(value="#{carParkingService}")
     CarParkingService carParkingService;
+    
     
 //Getters and Setters
     public String getSlot() {
@@ -114,7 +119,24 @@ public CarParkingService getCarParkingService() {
 		return "index";
 	}
 
-	
-	
-	
+	//building view
+	List b;
+	 public List buildingList(){
+		  b=carParkingService.buildingList();
+		 for(int i=0;i<b.size();i++) {
+			 floorLists((String) b.get(i));
+		 }
+		return b;
+		 
+	 }
+   
+	 //floor view
+		 
+	 public List floorLists(String buildingName) {
+		 List floor=carParkingService.floorLists(buildingName);
+		
+		 System.out.println(buildingName+floor);
+		 return floor;
+	 }
+
 }
