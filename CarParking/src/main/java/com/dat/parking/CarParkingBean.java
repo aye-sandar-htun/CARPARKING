@@ -10,9 +10,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import com.dat.parking.model.CarParking;
 import com.dat.parking.service.CarParkingService;
@@ -89,10 +91,17 @@ public CarParkingService getCarParkingService() {
 		System.out.println("floorlist");
 		floors=new LinkedList();
 		int count=Integer.parseInt(carCtl.getFloorName());
+		if(count>7) {
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(null, new FacesMessage("More than 7floors are not allowed!"));
+		}
+		else {
 		for(int i=1;i<=count;i++) {
 			floors.add("Floor"+i);}
+		}
 		return "index";
 	}
+	
 	
 	String selectedFloor;
 	public void onFloorChange() {  
@@ -100,6 +109,7 @@ public CarParkingService getCarParkingService() {
 		if(floorName !=null && !floorName.equals("")) { 
 			selectedFloor = floorName; 
 		}  
+	
 	}
 	
 	//method CRUD
@@ -107,13 +117,20 @@ public CarParkingService getCarParkingService() {
 		String bName=carCtl.getBuildingName();
 		
 		  int slotcount=Integer.parseInt(carCtl.getSlot());
+		  if(selectedFloor==null || selectedFloor.equals("")) {
+			  FacesContext context = FacesContext.getCurrentInstance();
+				context.addMessage(null, new FacesMessage("Please select a floor."));
+		  }
+		  else {
 		  for(int i=1;i<=slotcount;i++) {
 			  carCtl.setBuildingName(bName);
 		      carCtl.setFloorName(selectedFloor);
 		      carCtl.setSlot("Slot"+i);
 		      carParkingService.persistInformation(this.carCtl); 
+		      FacesContext context = FacesContext.getCurrentInstance();
+			 context.addMessage(null, new FacesMessage("Successfully added for "+selectedFloor+"."));
 		      }
-		 
+		  }
 		System.out.println("successful");
 
 		return "index";

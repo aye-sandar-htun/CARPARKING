@@ -1,0 +1,14 @@
+/* index file */
+h1{
+	font-family:Arial;
+}
+#div{
+	width:60%;
+	margin: 0 auto;
+}
+#panel{
+    margin-bottom:10px;
+}
+.panelGridCenter{
+	margin: 0 auto;
+}
