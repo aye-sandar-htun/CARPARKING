@@ -12,3 +12,13 @@ h1{
 .panelGridCenter{
 	margin: 0 auto;
 }
+#table{
+	margin-left:30px;
+}
+#buildingname {
+	color:blue;
+	font-size:25px;
+}
+#floorname{
+	float:right;
+}

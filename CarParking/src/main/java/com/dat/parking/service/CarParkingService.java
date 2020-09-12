@@ -9,5 +9,6 @@ public interface CarParkingService {
 	 void persistInformation(CarParking carParking);
 	 public List buildingList();
 	 public List floorLists(String buildingName);
+	 public List slotLists(String floorName,String buildingName);
 
 }

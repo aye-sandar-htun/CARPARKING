@@ -11,28 +11,37 @@
 
 <h:head>
 <title>Car Parking</title>
+<link rel="stylesheet" href="resources/css/style.css" type="text/css"/>
 </h:head>
 <h:body>
-<h1>View</h1>
-
-<table>
-
+<table id="table">
    <ui:repeat var="b" value="${carParkingBean.buildingList()}">
     <tr>
-    <td>
-	   <h:outputText value="#{b}"/>
+	  <td id="buildingname"><h:outputText value="#{b}"/></td> 
+	   <td><h:outputText/></td>
+	    
+	</tr>
 	
-	</td>
-		<ui:repeat var="f" value="${carParkingBean.floorLists(b)}">
-	
-	<td>
-    	<p:commandButton value="#{f}" actionListener="#{carPakingBean.buttonAction()}" styleClass="ui-priority-primary"/>	
-   <br></br>
-   </td>
-    </ui:repeat>
-     </tr>
+	    	<ui:repeat var="f" value="${carParkingBean.floorLists(b)}">
+	           <tr>
+    	       <td id="floorname"> <h:outputText value="#{f}"/></td>	
+               <td><h:outputText/></td>
+               </tr>
+               <tr>
+   		            <td><h:outputText/></td>
+                 	<td><ui:repeat var="s" value="${carParkingBean.slotLists(f,b)}">
+                 	<p:commandButton styleClass="slot" value="#{s}"/>	
+   	              </ui:repeat>
+   	             
+   	              </td>
+   	              
+               </tr>
+                
+           </ui:repeat>
+ 
     </ui:repeat>
    
+
 </table>
 </h:body>
 </html>

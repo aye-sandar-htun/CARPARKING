@@ -37,6 +37,12 @@ public class CarParkingServiceImpl implements CarParkingService{
 		// TODO Auto-generated method stub
 		return carParkingDao.floorLists(buildingName);
 	}
+	@Transactional
+	@Override
+	public List slotLists(String floorName,String buildingName) {
+		// TODO Auto-generated method stub
+		return carParkingDao.slotLists(floorName,buildingName);
+	}
 
 
 

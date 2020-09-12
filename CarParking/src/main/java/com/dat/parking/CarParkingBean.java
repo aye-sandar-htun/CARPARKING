@@ -88,7 +88,6 @@ public CarParkingService getCarParkingService() {
 		
 //add floorlist to dropdown
 	public String floorList() {
-		System.out.println("floorlist");
 		floors=new LinkedList();
 		int count=Integer.parseInt(carCtl.getFloorName());
 		if(count>7) {
@@ -151,9 +150,16 @@ public CarParkingService getCarParkingService() {
 		 
 	 public List floorLists(String buildingName) {
 		 List floor=carParkingService.floorLists(buildingName);
-		
-		 System.out.println(buildingName+floor);
+		 for(int i=0;i<floor.size();i++) {
+			 slotLists((String)floor.get(i),buildingName);
+			
+		 }
 		 return floor;
+	 }
+	 //slot view
+	 public List slotLists(String floorName,String buildingName) {
+		List slot=carParkingService.slotLists(floorName,buildingName);
+		 return slot;
 	 }
 
 }

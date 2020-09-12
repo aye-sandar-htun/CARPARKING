@@ -38,8 +38,17 @@ public class CarParkingDaoImpl implements CarParkingDao{
 		Query query=session.createQuery(hql);
 		query.setParameter("buildingName", buildingName);
 		List floorList= new LinkedList(new LinkedHashSet(query.list()));
-		
 		return floorList;
+	}
+	@Override
+	public List slotLists(String floorName,String buildingName) {
+		// TODO Auto-generated method stub
+		Session session=this.sessionFactory.getCurrentSession();
+		String hql="select slot from CarParking where floorName=:floorName AND buildingName=:buildingName";
+		Query query=session.createQuery(hql);
+		query.setParameter("floorName", floorName).setParameter("buildingName", buildingName);
+		List slotList= query.list();	
+		return slotList;
 	}
 	
 	
