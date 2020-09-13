@@ -63,6 +63,16 @@ public class CarParkingDaoImpl implements CarParkingDao{
 		
 
 	}
+	@Override
+	public void deleteFloor(String buildingName, String floorName) {
+		// TODO Auto-generated method stub
+		 session=this.sessionFactory.getCurrentSession();
+		 String hql="delete from CarParking where buildingName=:buildingName AND floorName=:floorName";
+	     Query query=session.createQuery(hql);
+	     query.setParameter("buildingName",buildingName).setParameter("floorName", floorName);
+	     query.executeUpdate();
+		
+	}
 	
 	
 	

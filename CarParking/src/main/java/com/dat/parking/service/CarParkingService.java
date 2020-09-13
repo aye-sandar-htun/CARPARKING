@@ -11,5 +11,6 @@ public interface CarParkingService {
 	 public List floorLists(String buildingName);
 	 public List slotLists(String floorName,String buildingName);
 	 void deleteBuilding(String buildingName);
+	 void deleteFloor(String buildingName,String floorName);
 
 }

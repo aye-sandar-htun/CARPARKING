@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<title>Car Parking</title>
+<link rel="stylesheet" href="resources/css/style.css" type="text/css"/>
+</h:head>
+<h:body>
+
+<h:form>
+<p:growl id="msgs" showDetail="true" />  
+<p:panel id="panel" header="Delete Floor">  
+<h:panelGrid columns="2" cellpadding="5">  
+
+<p:outputLabel for="building" value="Building Name :" />
+<p:selectOneMenu id="building" value="#{carParkingBean.buildingName}" style="width:70%">  
+<p:ajax listener="#{carParkingBean.onBuildingChange}" update="floor"/> 
+<f:selectItem itemLabel="Select building" itemValue="" noSelectionOption="true" />  
+<f:selectItems value="#{carParkingBean.buildingLists()}"/>  
+</p:selectOneMenu>
+
+<p:outputLabel for="floor" value="Floor Name :"/>
+<p:selectOneMenu id="floor" value="#{carParkingBean.floorName}" style="width:70%">  
+<p:ajax listener="#{carParkingBean.onFloorChange}" /> 
+<f:selectItem itemLabel="Select floor" itemValue="" noSelectionOption="true" />  
+<f:selectItems value="#{carParkingBean.floor}"/>  
+</p:selectOneMenu>
+
+<p:outputLabel/> 
+<p:commandButton style="float:right;" value="Delete" icon="ui-icon-check" styleClass="ui-priority-primary">
+<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+</p:commandButton>  
+</h:panelGrid>
+</p:panel>
+<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">  
+<p:commandButton value="Yes" actionListener="#{carParkingBean.deleteFloor(buildingName,floorName)}" update="building floor" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
+<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />  
+</p:confirmDialog> 
+</h:form>
+
+</h:body>
+</html>
