@@ -27,9 +27,9 @@ public class CarParkingServiceImpl implements CarParkingService{
 	
 	@Transactional
 	@Override
-	public List buildingList() {
+	public List buildingLists() {
 		// TODO Auto-generated method stub
-		return carParkingDao.buildingList();
+		return carParkingDao.buildingLists();
 	}
 	@Transactional
 	@Override
@@ -42,6 +42,12 @@ public class CarParkingServiceImpl implements CarParkingService{
 	public List slotLists(String floorName,String buildingName) {
 		// TODO Auto-generated method stub
 		return carParkingDao.slotLists(floorName,buildingName);
+	}
+	@Transactional
+	@Override
+	public void deleteBuilding(String buildingName) {
+		// TODO Auto-generated method stub
+		carParkingDao.deleteBuilding(buildingName);
 	}
 
 

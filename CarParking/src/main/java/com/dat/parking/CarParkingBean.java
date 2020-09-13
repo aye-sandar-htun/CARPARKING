@@ -28,13 +28,23 @@ public class CarParkingBean implements Serializable{
 	
     public CarParking carCtl=new CarParking();
     private List<String> floors;
+    private List<String> buildings;
     @ManagedProperty(value="#{carParkingService}")
     CarParkingService carParkingService;
     
     
 //Getters and Setters
+    
     public String getSlot() {
 		return slot;
+	}
+
+	public List<String> getBuildings() {
+		return buildings;
+	}
+
+	public void setBuildings(List<String> buildings) {
+		this.buildings = buildings;
 	}
 
 	public void setSlot(String slot) {
@@ -102,32 +112,33 @@ public CarParkingService getCarParkingService() {
 	}
 	
 	
-	String selectedFloor;
+	String selected;
 	public void onFloorChange() {  
 		System.out.println("Selected floor:"+floorName);
 		if(floorName !=null && !floorName.equals("")) { 
-			selectedFloor = floorName; 
+			selected = floorName; 
 		}  
 	
 	}
+	
 	
 	//method CRUD
 	public String persistInformation() {
 		String bName=carCtl.getBuildingName();
 		
 		  int slotcount=Integer.parseInt(carCtl.getSlot());
-		  if(selectedFloor==null || selectedFloor.equals("")) {
+		  if(selected==null || selected.equals("")) {
 			  FacesContext context = FacesContext.getCurrentInstance();
 				context.addMessage(null, new FacesMessage("Please select a floor."));
 		  }
 		  else {
 		  for(int i=1;i<=slotcount;i++) {
 			  carCtl.setBuildingName(bName);
-		      carCtl.setFloorName(selectedFloor);
+		      carCtl.setFloorName(selected);
 		      carCtl.setSlot("Slot"+i);
 		      carParkingService.persistInformation(this.carCtl); 
 		      FacesContext context = FacesContext.getCurrentInstance();
-			 context.addMessage(null, new FacesMessage("Successfully added for "+selectedFloor+"."));
+			 context.addMessage(null, new FacesMessage("Successfully added for "+selected+"."));
 		      }
 		  }
 		System.out.println("successful");
@@ -136,16 +147,17 @@ public CarParkingService getCarParkingService() {
 	}
 
 	//building view
-	List b;
-	 public List buildingList(){
-		  b=carParkingService.buildingList();
-		 for(int i=0;i<b.size();i++) {
-			 floorLists((String) b.get(i));
+	
+	 public List buildingLists(){
+		 buildings=carParkingService.buildingLists();
+		 for(int i=0;i<buildings.size();i++) {
+			 floorLists((String) buildings.get(i));
 		 }
-		return b;
+		return buildings;
 		 
 	 }
-   
+	
+	
 	 //floor view
 		 
 	 public List floorLists(String buildingName) {
@@ -161,5 +173,18 @@ public CarParkingService getCarParkingService() {
 		List slot=carParkingService.slotLists(floorName,buildingName);
 		 return slot;
 	 }
-
+	 
+	//get buiding name to delete
+		public void onBuildingChange() {  
+			if(buildingName !=null && !buildingName.equals("")) { 
+				selected = buildingName; 
+			}  
+		}
+//delete building
+	 public void deleteBuilding(String buildingName) {
+		 carParkingService.deleteBuilding(selected);
+		  FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(null, new FacesMessage("Successfully deleted."));
+		 System.out.println("deleted successfully");
+	 }
 }
