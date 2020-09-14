@@ -12,5 +12,6 @@ public interface CarParkingDao {
 	 public List slotLists(String floorName,String buildingName);
 	 void deleteBuilding(String buildingName);
 	 void deleteFloor(String buildingName,String floorName);
+	 void deleteSlot(String buildingName,String floorName,String slot);
     
 	 }

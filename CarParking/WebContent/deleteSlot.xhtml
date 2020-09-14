@@ -18,7 +18,7 @@
 <div id="div">
 <h:form>
 <p:growl id="msgs" showDetail="true" />  
-<p:panel id="panel" header="Delete Floor">  
+<p:panel id="panel" header="Delete Slot">  
 <h:panelGrid columns="2" cellpadding="5">  
 
 <p:outputLabel for="building" value="Building Name :" />
@@ -30,9 +30,16 @@
 
 <p:outputLabel for="floor" value="Floor Name :"/>
 <p:selectOneMenu id="floor" value="#{carParkingBean.floorName}" style="width:80%">  
-<p:ajax listener="#{carParkingBean.onFloorChange}" /> 
+<p:ajax listener="#{carParkingBean.onFloorChange}" update="slot"/> 
 <f:selectItem itemLabel="Select floor" itemValue="" noSelectionOption="true" />  
 <f:selectItems value="#{carParkingBean.floor}"/>  
+</p:selectOneMenu>
+
+<p:outputLabel for="slot" value="Slot Name :"/>
+<p:selectOneMenu id="slot" value="#{carParkingBean.slot}" style="width:80%">  
+<p:ajax listener="#{carParkingBean.onSlotChange}" /> 
+<f:selectItem itemLabel="Select Slot" itemValue="" noSelectionOption="true" />  
+<f:selectItems value="#{carParkingBean.selectedSlots}"/>  
 </p:selectOneMenu>
 
 <p:outputLabel/> 
@@ -42,13 +49,12 @@
 </h:panelGrid>
 </p:panel>
 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">  
-<p:commandButton value="Yes" actionListener="#{carParkingBean.deleteFloor(buildingName,floorName)}" update="building floor" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
+<p:commandButton value="Yes" actionListener="#{carParkingBean.deleteSlot(buildingName,floorName,slot)}" update="building floor" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />  
 </p:confirmDialog> 
 </h:form>
 <br></br>
 <p:button href="index.xhtml" style="float:right;" value="Back" type="button" styleClass="ui-priority-primary" />  
 </div>
-
 </h:body>
 </html>

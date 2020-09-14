@@ -27,11 +27,11 @@ public class CarParkingBean implements Serializable{
 	public String slot;
 	
     public CarParking carCtl=new CarParking();
-    private List<String> floors;
-    private List<String>floor;
+    private List<String> floors=new LinkedList();
+    private List<String>floor=new LinkedList();
     private String selectedBuilding;
     private String selectedFloor;
-    private String selectedSlot;
+    private List selectedSlots=new LinkedList();
     private List<String> buildings;
     @ManagedProperty(value="#{carParkingService}")
     CarParkingService carParkingService;
@@ -59,12 +59,13 @@ public class CarParkingBean implements Serializable{
 		this.selectedFloor = selectedFloor;
 	}
 
-	public String getSelectedSlot() {
-		return selectedSlot;
+
+	public List getSelectedSlots() {
+		return selectedSlots;
 	}
 
-	public void setSelectedSlot(String selectedSlot) {
-		this.selectedSlot = selectedSlot;
+	public void setSelectedSlots(List selectedSlots) {
+		this.selectedSlots = selectedSlots;
 	}
 
 	public List<String> getFloor() {
@@ -148,12 +149,7 @@ public CarParkingService getCarParkingService() {
 	}
 	
 	
-	public void onFloorChange() {  
-		if(floorName !=null && !floorName.equals("")) { 
-			selectedFloor= floorName; 
-		}  
-	
-	}
+
 	
 	
 	//method CRUD
@@ -171,9 +167,10 @@ public CarParkingService getCarParkingService() {
 		      carCtl.setFloorName(selectedFloor);
 		      carCtl.setSlot("Slot"+i);
 		      carParkingService.persistInformation(this.carCtl); 
-		      FacesContext context = FacesContext.getCurrentInstance();
-			 context.addMessage(null, new FacesMessage("Successfully added for "+selectedFloor+"."));
+		     
 		      }
+		  FacesContext context = FacesContext.getCurrentInstance();
+			 context.addMessage(null, new FacesMessage("Successfully added for "+selectedFloor+"."));
 		  }
 
 		return "index";
@@ -203,11 +200,13 @@ public CarParkingService getCarParkingService() {
 	 }
 	 //slot view
 	 public List slotLists(String floorName,String buildingName) {
-		List slot=carParkingService.slotLists(floorName,buildingName);
-		 return slot;
+		
+		 selectedSlots=carParkingService.slotLists(floorName,buildingName);
+         System.out.println("   For "+floorName+"    selected slot are "+selectedSlots);
+		 return selectedSlots;
 	 }
 	 
-	//get buiding name to delete
+	//get buidingName,floorName and Slot to delete
 		public void onBuildingChange() {  
 			if(buildingName !=null && !buildingName.equals("")) { 
 				selectedBuilding = buildingName; 
@@ -215,6 +214,21 @@ public CarParkingService getCarParkingService() {
 
 			}
 		
+		}
+		public void onFloorChange() {  
+			if(floorName !=null && !floorName.equals("")) { 
+				selectedFloor= floorName; 
+				System.out.println("      Selected :"+selectedFloor+selectedBuilding);
+				slotLists(selectedFloor,selectedBuilding);
+			}  
+		
+		}
+		String selectedslot;
+		public void onSlotChange() {
+			if(slot!=null && !slot.equals("")) {
+				selectedslot=slot;
+				System.out.println("     selected slot"+slot);
+			}
 		}
 //delete building
 	 public void deleteBuilding(String buildingName) {
@@ -231,5 +245,12 @@ public CarParkingService getCarParkingService() {
 		 context.addMessage(null, new FacesMessage("Successfully deleted."));
 		
 		 System.out.println("deleted successfully");
+	 }
+	 //delete slot
+	 public void deleteSlot(String buildingName,String floorName,String slot) {
+		 System.out.println("             Slots are "+selectedBuilding+selectedFloor+selectedslot);
+		 carParkingService.deleteSlot(selectedBuilding, selectedFloor, selectedslot);
+		 FacesContext context = FacesContext.getCurrentInstance();
+		 context.addMessage(null, new FacesMessage("Successfully deleted."));
 	 }
 }

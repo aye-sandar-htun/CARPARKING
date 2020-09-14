@@ -15,12 +15,13 @@
 </h:head>
 <h:body>
 
+<div id="div">
 <h:form>
 <p:growl id="msgs" showDetail="true" />  
 <p:panel id="panel" header="Delete Building">  
 <h:panelGrid columns="2" cellpadding="5">  
 <p:outputLabel for="building" value="Building Name :" />
-<p:selectOneMenu id="building" value="#{carParkingBean.buildingName}" style="width:70%">  
+<p:selectOneMenu id="building" value="#{carParkingBean.buildingName}" style="width:80%">  
 <p:ajax listener="#{carParkingBean.onBuildingChange}" /> 
 <f:selectItem itemLabel="Select Building" itemValue="" noSelectionOption="true" />  
 <f:selectItems value="#{carParkingBean.buildingLists()}"/>  
@@ -36,6 +37,9 @@
 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />  
 </p:confirmDialog> 
 </h:form>
+<br></br>
+<p:button href="index.xhtml" style="float:right;" value="Back" type="button" styleClass="ui-priority-primary" />  
 
+</div>
 </h:body>
 </html>

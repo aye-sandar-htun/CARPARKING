@@ -56,6 +56,12 @@ public class CarParkingServiceImpl implements CarParkingService{
 		carParkingDao.deleteFloor(buildingName, floorName);
 		
 	}
+	@Transactional
+	@Override
+	public void deleteSlot(String buildingName, String floorName, String slot) {
+		// TODO Auto-generated method stub
+		carParkingDao.deleteSlot(buildingName, floorName, slot);
+	}
 
 
 
