@@ -15,22 +15,22 @@
 </h:head>
 <h:body>
 
-<div id="div">
-<h:form>
+ <div id="div">
+<h:form id="f">
 <p:growl id="msgs" showDetail="true" />  
 <p:panel id="panel" header="Delete Slot">  
 <h:panelGrid columns="2" cellpadding="5">  
 
 <p:outputLabel for="building" value="Building Name :" />
 <p:selectOneMenu id="building" value="#{carParkingBean.buildingName}" style="width:80%">  
-<p:ajax listener="#{carParkingBean.onBuildingChange}" update="floor"/> 
+<p:ajax listener="#{carParkingBean.onBuildingChange}"/> 
 <f:selectItem itemLabel="Select building" itemValue="" noSelectionOption="true" />  
 <f:selectItems value="#{carParkingBean.buildingLists()}"/>  
 </p:selectOneMenu>
 
 <p:outputLabel for="floor" value="Floor Name :"/>
 <p:selectOneMenu id="floor" value="#{carParkingBean.floorName}" style="width:80%">  
-<p:ajax listener="#{carParkingBean.onFloorChange}" update="slot"/> 
+<p:ajax listener="#{carParkingBean.onFloorChange}"/> 
 <f:selectItem itemLabel="Select floor" itemValue="" noSelectionOption="true" />  
 <f:selectItems value="#{carParkingBean.floor}"/>  
 </p:selectOneMenu>
@@ -42,19 +42,19 @@
 <f:selectItems value="#{carParkingBean.selectedSlots}"/>  
 </p:selectOneMenu>
 
-<p:outputLabel/> 
-<p:commandButton style="float:right;" value="Delete" icon="ui-icon-check" styleClass="ui-priority-primary">
-<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
-</p:commandButton>  
 </h:panelGrid>
 </p:panel>
+
+<p:outputLabel/> 
+<p:commandButton style="float:right;" value="Delete"  icon="ui-icon-check" styleClass="ui-priority-primary">
+<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+</p:commandButton>  
+
 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">  
-<p:commandButton value="Yes" actionListener="#{carParkingBean.deleteSlot(buildingName,floorName,slot)}" update="building floor" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
+<p:commandButton value="Yes" actionListener="#{carParkingBean.deleteSlot(buildingName,floorName,slot)}" update="building floor slot" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />  
 </p:confirmDialog> 
 </h:form>
-<br></br>
-<p:button href="index.xhtml" style="float:right;" value="Back" type="button" styleClass="ui-priority-primary" />  
-</div>
+</div> 
 </h:body>
 </html>
