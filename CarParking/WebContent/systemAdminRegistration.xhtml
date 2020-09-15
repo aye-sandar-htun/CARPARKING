@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<title>Car Parking</title>
+<link rel="stylesheet" href="resources/css/style.css" type="text/css"/>
+</h:head>
+<h:body>
+<center>
+<h1>Welcome Admin Register Page</h1>
+ 		 <h:form>
+
+<p:panel header="Add New Admin" style="width: 500px;">
+	<p:messages/>
+    <h:panelGrid columns="2">
+      <p:outputLabel value="Admin Name:"/>
+      <p:inputText id="name" value="#{systemAdminAccountBean.accountCtl.name}" label="name" required="true" validatorMessage="Insert only characters for name."> 
+       <f:validateRegex pattern="[a-zA-Z ]+"/>
+       </p:inputText> 
+       
+             <p:outputLabel value="Email"/>
+      <p:inputText id="email" value="#{systemAdminAccountBean.accountCtl.email}" label="email" required="true" validatorMessage="Insert only characters for name."> 
+       <f:validateRegex pattern="[a-zA-Z ]+"/>
+       </p:inputText> 
+       
+           <p:outputLabel value="Contact Number"/>
+      <p:inputText id="contactNumber" value="#{systemAdminAccountBean.accountCtl.contactNumber}" label="contactNumber" required="true" validatorMessage="Insert only characters for name."> 
+       <f:validateRegex pattern="[a-zA-Z ]+"/>
+       </p:inputText> 
+       
+       <p:outputLabel value="Password:"/>
+      <p:inputText id="password" value="#{systemAdminAccountBean.accountCtl.password}" label="password" required="true" validatorMessage="You can insert  integer and characters for password."> 
+       <f:validateRegex pattern="[a-zA-Z ]+"/>
+        <f:validateLength maximum="20" />
+       </p:inputText> 
+         <p:outputLabel value="Confirm Password:"/>
+      <p:inputText id="confirmPassword" label="confirmPassword" required="true" validatorMessage="You can insert  integer and characters for password."> 
+       <f:validateRegex pattern="[a-zA-Z ]+"/>
+        <f:validateLength maximum="20" />
+       </p:inputText> 
+        <br/>  <br/>  
+     <div  margin="100px">
+    
+  <p:commandButton style="width:55%;float:right;" value="Register" oncomplete="" actionListener="#{systemAdminAccountBean.persistInformation()}" styleClass="ui-priority-primary" />  
+      
+  
+     
+    
+      
+    
+    </div>
+    
+ </h:panelGrid>
+  </p:panel>
+    </h:form> 
+   </center> 
+
+   
+</h:body>
+</html>

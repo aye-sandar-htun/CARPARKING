@@ -31,6 +31,9 @@ http://www.springframework.org/schema/context/spring-context-3.2.xsd http://www.
 			<list>
 				<value>com.dat.parking.model.CarParking
 				</value>
+				<value>com.dat.parking.model.SystemAdminAccount
+				</value>
+				
 			</list>
 		</property>
 		<property name="hibernateProperties">

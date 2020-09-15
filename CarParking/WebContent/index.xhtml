@@ -11,69 +11,23 @@
 
 <h:head>
 <title>Car Parking</title>
-<link rel="stylesheet" href="resources/css/style.css" type="text/css"/>
 </h:head>
+
 <h:body>
-<center><h1>Create Parking</h1></center>
-
-<!-- adding building and floors -->
-<div id="div">
-<h:form id="form1">  
-<p:growl id="msgs" showDetail="true" />  
-<p:panel id="panel">  
-<h:panelGrid columns="2" cellpadding="5">
-    <h:outputText value="Building name: "/>  
-    <p:inputText style="width:70%;" value="#{carParkingBean.carCtl.buildingName}" label="buildingName" required="true" validatorMessage="Insert only characters for building name.">
-     <f:validateRegex pattern="[a-zA-Z ]+"/>
-     </p:inputText>
-    <h:outputText value="Number of floor: "/>  
-    <p:inputText style="width:70%;" value="#{carParkingBean.carCtl.floorName}"/>   
-    <h:outputText/>
-  <p:commandButton style="width:55%;float:right;" value="ADD" update="form1 form2" oncomplete="" actionListener="#{carParkingBean.floorList()}" styleClass="ui-priority-primary" />  
+<div style="float:right;">
+  
+<h:panelGrid columns="2">  
+<a href="systemAdminLogin.xhtml">Admin Registration</a>
+<a href="systemAdminLogin.xhtml">Admin Login</a>
 </h:panelGrid>
-</p:panel>
-</h:form>
+
+
+</div>
+     <p:graphicImage name="/img/c.png" width="auto" height="auto" style="margin:20px"></p:graphicImage>
+     
+<div align="center">
+     <h:outputText  value="Save Time and Get Better Satisfaction With Online Car Parking System" ></h:outputText>
 </div>
 
-<!-- drop down -->
-<div id="div">
-<h:form id="form2">  
-<p:growl id="msgs" showDetail="true" />  
-<p:panel id="panel" header="Creating slots">  
-<h:panelGrid columns="2" cellpadding="5">  
-<h:outputLabel/> 
-<h:outputLabel style="font-size:13px;color:gray">*Enter the number of slot for each floor.</h:outputLabel>
-<p:outputLabel for="floor" value="Floor : " />  
-<p:selectOneMenu id="floor" value="#{carParkingBean.floorName}" style="width:70%">  
-<p:ajax listener="#{carParkingBean.onFloorChange}" /> 
-<f:selectItem itemLabel="Select floor" itemValue="" noSelectionOption="true" />  
-<f:selectItems value="#{carParkingBean.floors}" />  
-</p:selectOneMenu>  
-<p:outputLabel value="Number of slot: " />     
-<p:inputText style="width:70%" value="#{carParkingBean.carCtl.slot}"/>
-</h:panelGrid>
-<p:separator />  
-<p:commandButton style="float:right;" value="Submit" update="form2" actionListener="#{carParkingBean.persistInformation()}" icon="ui-icon-check" styleClass="ui-priority-primary"  />  
-</p:panel>  
-</h:form> 
-</div>
-<br></br>
-<br></br>
-<br></br>
-
-
-
-<!-- Editing button -->
-<div>
-<p:panel header="Edit">  
-<h:panelGrid style="margin: 0 auto;" columns="3" cellpadding="5"> 
-<p:button value="Delete Building" href="deleteBuilding.xhtml" styleClass="ui-priority-primary"  />  
-<p:button value="Delete Floor" href="deleteFloor.xhtml" styleClass="ui-priority-primary"  />  
-<p:button value="Delete Slot" href="deleteSlot.xhtml" styleClass="ui-priority-primary"  />  
-</h:panelGrid>
-</p:panel>
-</div>
-
-<a href="view.xhtml">View</a>
 </h:body>
 </html>
