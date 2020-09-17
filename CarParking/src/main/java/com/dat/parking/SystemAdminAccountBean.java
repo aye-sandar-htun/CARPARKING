@@ -70,6 +70,8 @@ public class SystemAdminAccountBean implements Serializable{
 	  
 	//method CRUD
 	public String persistInformation() {
+		System.out.println("Password "+accountCtl.getPassword());
+				
 		systemAdminAccountService.persistInformation(this.accountCtl);
 		System.out.println("persist method success");
 		

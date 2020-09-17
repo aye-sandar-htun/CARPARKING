@@ -137,7 +137,7 @@ public CarParkingService getCarParkingService() {
 		
 //add floorlist to dropdown
 	public String floorList() {
-		
+		System.out.println("floorlist");
 		int count=Integer.parseInt(carCtl.getFloorName());
 		if(count>7) {
 			FacesContext context = FacesContext.getCurrentInstance();
@@ -204,7 +204,6 @@ public CarParkingService getCarParkingService() {
 	 public List slotLists(String floorName,String buildingName) {
 		
 		 selectedSlots=carParkingService.slotLists(floorName,buildingName);
-         System.out.println("   For "+floorName+"    selected slot are "+selectedSlots);
 		 return selectedSlots;
 	 }
 	 
@@ -220,7 +219,6 @@ public CarParkingService getCarParkingService() {
 		public void onFloorChange() {  
 			if(floorName !=null && !floorName.equals("")) { 
 				selectedFloor= floorName; 
-				System.out.println("      Selected :"+selectedFloor+selectedBuilding);
 				slotLists(selectedFloor,selectedBuilding);
 			}  
 		
@@ -229,7 +227,6 @@ public CarParkingService getCarParkingService() {
 		public void onSlotChange() {
 			if(slot!=null && !slot.equals("")) {
 				selectedslot=slot;
-				System.out.println("     selected slot"+slot);
 			}
 		}
 //delete building
@@ -245,15 +242,14 @@ public CarParkingService getCarParkingService() {
 		 carParkingService.deleteFloor(selectedBuilding, selectedFloor);
 		 FacesContext context = FacesContext.getCurrentInstance();
 		 context.addMessage(null, new FacesMessage("Successfully deleted."));
-		
-		 System.out.println("deleted successfully");
-	 }
+			 }
 	 //delete slot
 	 public void deleteSlot(String buildingName,String floorName,String slot) {
-		 System.out.println("             Slots are "+selectedBuilding+selectedFloor+selectedslot);
 		 carParkingService.deleteSlot(selectedBuilding, selectedFloor, selectedslot);
 		 FacesContext context = FacesContext.getCurrentInstance();
 		 context.addMessage(null, new FacesMessage("Successfully deleted."));
 	 }
+	 
+	
 	
 }

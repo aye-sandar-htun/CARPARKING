@@ -2,30 +2,32 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-    <html  xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
-	xmlns:p="http://primefaces.org/ui">  
-    <h:head>  
-    <title>TabView</title>  
-    </h:head>  
-    <h:body>  
-<h:form>
- 
-    <p:tabView  dynamic="true">
-    
-       <p:ajax event="tabChange" listener="#{carParkingBean.onTabChange}" />
-       
-    <p:tab id="tab0" title="About us"></p:tab>
-    <p:tab id="tab1" title="Add Building">
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<title>Car Parking</title>
+<link rel="stylesheet" href="resources/css/style.css" type="text/css"/>
+</h:head>
+<h:body>
+<p:tabView>
+  
+<p:tab title="Add Building">
+        <ui:include src="addParkingSlot.xhtml"></ui:include> 
     </p:tab>
-    <p:tab id="tab2" title="View slot">
+  <p:tab title="View Slot">
+        <ui:include src="view.xhtml"></ui:include> 
     </p:tab>
-    </p:tabView>
- 
-   
-    </h:form>  
-    </h:body>  
-    </html>  
+    <p:tab title="History">
+        <ui:include src="carHistory.xhtml"></ui:include> 
+    </p:tab>
+     <p:tab title="Setting">
+        <ui:include src="carHistory.xhtml"></ui:include> 
+    </p:tab>
+</p:tabView>
+</h:body>
+</html>

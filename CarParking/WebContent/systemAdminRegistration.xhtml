@@ -15,10 +15,9 @@
 </h:head>
 <h:body>
 <center>
-<h1>Welcome Admin Register Page</h1>
  		 <h:form>
 
-<p:panel header="Add New Admin" style="width: 500px;">
+<p:panel header="Add Information" style="width: 500px;">
 	<p:messages/>
     <h:panelGrid columns="2">
       <p:outputLabel value="Admin Name:"/>
@@ -36,7 +35,14 @@
        <f:validateRegex pattern="[a-zA-Z ]+"/>
        </p:inputText> 
        
-       <p:outputLabel value="Password:"/>
+       
+        <p:outputLabel for="password" value="Password:"/>
+       <p:password id="password" value="#{systemAdminAccountBean.accountCtl.password}" feedback="false" match="repeated_password" />
+       
+       <p:outputLabel for="repeated_password" value="Confirm Password:"/>
+       <p:password id="repeated_password" value="#{systemAdminAccountBean.accountCtl.password}" feedback="false" required="true"/>
+    
+       <!-- <p:outputLabel value="Password:"/>
       <p:inputText id="password" value="#{systemAdminAccountBean.accountCtl.password}" label="password" required="true" validatorMessage="You can insert  integer and characters for password."> 
        <f:validateRegex pattern="[a-zA-Z ]+"/>
         <f:validateLength maximum="20" />
@@ -46,7 +52,7 @@
        <f:validateRegex pattern="[a-zA-Z ]+"/>
         <f:validateLength maximum="20" />
        </p:inputText> 
-        <br/>  <br/>  
+        <br/>  <br/>   -->
      <div  margin="100px">
     
   <p:commandButton style="width:55%;float:right;" value="Register" oncomplete="" actionListener="#{systemAdminAccountBean.persistInformation()}" styleClass="ui-priority-primary" />  
