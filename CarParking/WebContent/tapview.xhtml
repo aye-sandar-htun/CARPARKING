@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html  xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">  
+    <h:head>  
+    <title>TabView</title>  
+    </h:head>  
+    <h:body>  
+<h:form>
+ <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+ 
+    <h3 style="margin-top:0">Basic</h3>
+    <p:tabView>
+        <p:tab title="Add Building">
+        
+      
+           
+           <h:form id="form1">  
+<p:growl id="msgs" showDetail="true" />  
+<p:panel id="panel">  
+<h:panelGrid columns="2" cellpadding="5">
+    <h:outputText value="Building name: "/>  
+    <p:inputText style="width:70%;" value="#{carParkingBean.carCtl.buildingName}" label="buildingName" required="true" validatorMessage="Insert only characters for building name.">
+     <f:validateRegex pattern="[a-zA-Z ]+"/>
+     </p:inputText>
+    <h:outputText value="Number of floor: "/>  
+    <p:inputText style="width:70%;" value="#{carParkingBean.carCtl.floorName}"/>   
+    <h:outputText/>
+  <p:commandButton style="width:55%;float:right;" value="ADD" update="form1 form2" oncomplete="" actionListener="#{carParkingBean.floorList()}" styleClass="ui-priority-primary" />  
+
+
+
+<!-- drop down -->
+
+<h:form id="form2">  
+<p:growl id="msgs" showDetail="true" />  
+<p:panel id="panel" header="Creating slots">  
+<h:panelGrid columns="2" cellpadding="5">  
+<h:outputLabel/> 
+<h:outputLabel style="font-size:13px;color:gray">*Enter the number of slot for each floor.</h:outputLabel>
+<p:outputLabel for="floor" value="Floor : " />  
+<p:selectOneMenu id="floor" value="#{carParkingBean.floorName}" style="width:70%">  
+<p:ajax listener="#{carParkingBean.onFloorChange}" /> 
+<f:selectItem itemLabel="Select floor" itemValue="" noSelectionOption="true" />  
+<f:selectItems value="#{carParkingBean.floors}" />  
+</p:selectOneMenu>  
+<p:outputLabel value="Number of slot: " />     
+<p:inputText style="width:70%" value="#{carParkingBean.carCtl.slot}"/>
+</h:panelGrid>
+<p:separator />  
+<p:commandButton style="float:right;" value="Submit" update="form2" actionListener="#{carParkingBean.persistInformation()}" icon="ui-icon-check" styleClass="ui-priority-primary"  />  
+</p:panel>  
+</h:form> 
+
+</h:panelGrid>
+</p:panel>
+</h:form>
+
+<br></br>
+<br></br>
+<br></br>
+
+
+
+<!-- Editing button -->
+<div>
+<p:panel header="Edit">  
+<h:panelGrid style="margin: 0 auto;" columns="3" cellpadding="5"> 
+<p:button value="Delete Building" href="deleteBuilding.xhtml" styleClass="ui-priority-primary"  />  
+<p:button value="Delete Floor" href="deleteFloor.xhtml" styleClass="ui-priority-primary"  />  
+<p:button value="Delete Slot" href="deleteSlot.xhtml" styleClass="ui-priority-primary"  />  
+</h:panelGrid>
+</p:panel>
+</div>
+        
+           
+           
+           
+        </p:tab>
+        
+        
+<p:tab title="View Slot">
+       <table id="table">
+   			<ui:repeat var="b" value="${carParkingBean.buildingLists()}">
+   				 <tr>
+	 					 <td id="buildingname"><h:outputText value="#{b}"/></td> 
+	  					 <td><h:outputText/></td>
+	    
+				</tr>
+	
+	    	<ui:repeat var="f" value="${carParkingBean.floorLists(b)}">
+	           <tr>
+    	      		 <td id="floorname"> <h:outputText value="#{f}"/></td>	
+               		 <td><h:outputText/></td>
+               </tr>
+               <tr>
+   		            <td><h:outputText/></td>
+                 	<td>
+                 		<ui:repeat var="s" value="${carParkingBean.slotLists(f,b)}">
+                 		<p:commandButton styleClass="slot" value="#{s}"/>	
+   	             		 </ui:repeat>
+   	             
+   	              </td>
+   	              
+               </tr>
+                
+           </ui:repeat>
+ 
+    </ui:repeat>
+   
+
+  </table>
+
+</p:tab>
+
+
+<p:tab title="History">
+           		
+ <div>
+<h:form>
+ 
+<p:panel id="panel">  
+<h:panelGrid columns="4" cellpadding="7">  
+
+<p:selectOneMenu id="building" value="#{carParkingHistoryBean.building}" style="width:80%">  
+<p:ajax listener="#{carParkingHistoryBean.onBuildingChange}"/> 
+<f:selectItem itemLabel="Select building" itemValue="" noSelectionOption="true" />  
+<f:selectItems value="#{carParkingBean.buildingLists()}"/>  
+</p:selectOneMenu>
+
+<p:selectOneMenu id="floor" value="#{carParkingHistoryBean.floor}" style="width:80%">  
+<p:ajax listener="#{carParkingHistoryBean.onFloorChange}"/> 
+<f:selectItem itemLabel="Select floor" itemValue="" noSelectionOption="true" />  
+<f:selectItems value="#{carParkingBean.floor}"/>  
+</p:selectOneMenu>
+
+<p:selectOneMenu id="date" value="#{carParkingHistoryBean.date}" style="width:80%">  
+<p:ajax listener="#{carParkingHistoryBean.onDateChange}"/> 
+<f:selectItem itemLabel="Select Date" itemValue="" noSelectionOption="true" />  
+<f:selectItems value="#{carParkingHistoryBean.dateList()}"/>  
+</p:selectOneMenu>
+
+<p:commandButton value="Search" actionListener="#{carParkingHistoryBean.searchHistory()}"  update="form1" icon="ui-icon-check" styleClass="ui-priority-primary"  />  
+
+</h:panelGrid>
+</p:panel>
+
+<h:form enctype="multipart/form-data" id="form1">
+			<p:growl id="growl" sticky="false" life="3000" />
+			 <p:dataTable id="dt" var="t" rows="15" rowKey="row" value="#{carParkingHistoryBean.searchHistory()}">  
+            <p:column headerText="Id">  
+                <h:outputText value="#{t.id}"/>  
+            </p:column>  
+            <p:column headerText="Car Number">  
+                <h:outputText value="#{t.carNumber}" />  
+            </p:column>  
+            <p:column headerText="Slot">  
+                <h:outputText value="#{t.slot}" />  
+  
+            </p:column>  
+  
+            <p:column headerText="Floor">  
+                <h:outputText value="#{t.floor}" />  
+            </p:column>  
+            <p:column headerText="Building">  
+                <h:outputText value="#{t.building}" />    
+            </p:column> 
+             <p:column headerText="Date">  
+                <h:outputText value="#{t.date}">
+                <f:convertDateTime pattern="yyyy/MM/dd" />
+                </h:outputText>
+            </p:column>
+             <p:column headerText="Entry Time">  
+                <h:outputText value="#{t.entryTime}" />  
+            </p:column> 
+               <p:column headerText="Exit Time">  
+                <h:outputText value="#{t.exitTime}" />  
+            </p:column> 
+             <p:column headerText="Submitted User">  
+                <h:outputText value="#{t.submittedUser}" />  
+            </p:column> 
+            <p:column headerText="Actions"> 
+               
+	   		    
+   			 <p:growl showDetail="true" />
+     
+    		<p:commandButton value="Clear" update="form1" styleClass="ui-priority-primary">
+       		 <p:confirm header="Confirmation" message="Are you sure?" icon="pi pi-exclamation-triangle" />
+    		</p:commandButton>
+    </p:column>
+    </p:dataTable>
+    </h:form>
+   
+	</h:form>
+</div>			
+
+</p:tab>
+          <p:tab title="Setting">
+            <h:panelGrid columns="2" cellpadding="10">
+                <p:graphicImage name="/img/c.jpg" width="100px" height="100px" />
+                <h:outputText value="After a break of more than 15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family.
+                    Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate." />
+            </h:panelGrid>
+        </p:tab>
+    </p:tabView>
+ 
+   
+    </h:form>  
+    </h:body>  
+    </html>  
