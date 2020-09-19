@@ -8,4 +8,5 @@ public interface SystemAdminAccountService {
 	void persistInformation(SystemAdminAccount systemAdminAccount);
 	public List checkAccount(String name,String password);
 
+	public List adminList(String name);
 }

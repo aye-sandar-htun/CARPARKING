@@ -65,5 +65,8 @@ public class CarParkingServiceImpl implements CarParkingService{
 
 
 
+	 public List buildingList(String bName) {
+		 return this.carParkingDao.buildingList(bName);
+	 }
 	
 }
