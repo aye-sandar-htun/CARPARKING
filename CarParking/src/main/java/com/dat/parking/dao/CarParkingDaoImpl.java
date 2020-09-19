@@ -1,15 +1,11 @@
 package com.dat.parking.dao;
 
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -20,6 +16,9 @@ public class CarParkingDaoImpl implements CarParkingDao{
 	@Autowired
 	private SessionFactory sessionFactory;
 	Session session;
+	
+	
+	
 	@Override
 	public void persistInformation(CarParking carParking) {
 		// TODO Auto-generated method stub
@@ -81,6 +80,17 @@ public class CarParkingDaoImpl implements CarParkingDao{
 	     Query query=session.createQuery(hql);
 	     query.setParameter("buildingName",buildingName).setParameter("floorName", floorName).setParameter("slot", slot);
 	     query.executeUpdate();
+	}
+	
+	
+	
+	public List buildingList(String buildingName) {
+		session=this.sessionFactory.getCurrentSession();
+		String sql="select buildingName from CarParking where buildingName=:buildingName";
+		Query q=session.createQuery(sql);
+		q.setParameter("buildingName", buildingName);
+		List result=q.list();
+		return result;
 	}
 	
 	

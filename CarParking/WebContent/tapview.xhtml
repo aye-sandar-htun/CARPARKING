@@ -15,13 +15,15 @@
 <h:form>
  <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
  
-    <h3 style="margin-top:0">Basic</h3>
+    <h3 style="margin-top:0" align="center">Car Parking System</h3>
+    
     <p:tabView>
-        <p:tab title="Add Building">
+   
+   <p:tab title="Add Building">
         
       
            
-           <h:form id="form1">  
+           <h:form>  
 <p:growl id="msgs" showDetail="true" />  
 <p:panel id="panel">  
 <h:panelGrid columns="2" cellpadding="5">
@@ -32,16 +34,18 @@
     <h:outputText value="Number of floor: "/>  
     <p:inputText style="width:70%;" value="#{carParkingBean.carCtl.floorName}"/>   
     <h:outputText/>
-  <p:commandButton style="width:55%;float:right;" value="ADD" update="form1 form2" oncomplete="" actionListener="#{carParkingBean.floorList()}" styleClass="ui-priority-primary" />  
+  <p:commandButton style="width:55%;float:right;" value="ADD" update="panel" oncomplete="" actionListener="#{carParkingBean.floorList()}" styleClass="ui-priority-primary" />  
 
 
 
 <!-- drop down -->
 
-<h:form id="form2">  
-<p:growl id="msgs" showDetail="true" />  
-<p:panel id="panel" header="Creating slots">  
-<h:panelGrid columns="2" cellpadding="5">  
+  
+
+
+<h:panelGrid  columns="2" cellpadding="5">  
+<h:outputLabel/> 
+<h4 align="center">ADD Slot</h4>
 <h:outputLabel/> 
 <h:outputLabel style="font-size:13px;color:gray">*Enter the number of slot for each floor.</h:outputLabel>
 <p:outputLabel for="floor" value="Floor : " />  
@@ -54,9 +58,9 @@
 <p:inputText style="width:70%" value="#{carParkingBean.carCtl.slot}"/>
 </h:panelGrid>
 <p:separator />  
-<p:commandButton style="float:right;" value="Submit" update="form2" actionListener="#{carParkingBean.persistInformation()}" icon="ui-icon-check" styleClass="ui-priority-primary"  />  
-</p:panel>  
-</h:form> 
+<p:commandButton style="float:right;" value="Submit" update="panel" actionListener="#{carParkingBean.persistInformation()}" icon="ui-icon-check" styleClass="ui-priority-primary"  />  
+ 
+
 
 </h:panelGrid>
 </p:panel>
@@ -82,10 +86,13 @@
            
            
            
+       
         </p:tab>
         
+        <p:tab  title="View Slot"> 
         
-<p:tab title="View Slot">
+
+	
        <table id="table">
    			<ui:repeat var="b" value="${carParkingBean.buildingLists()}">
    				 <tr>
@@ -118,14 +125,16 @@
   </table>
 
 </p:tab>
+ 
+        
+        <p:tab title="History">
+        
 
-
-<p:tab title="History">
            		
  <div>
 <h:form>
  
-<p:panel id="panel">  
+<p:panel>  
 <h:panelGrid columns="4" cellpadding="7">  
 
 <p:selectOneMenu id="building" value="#{carParkingHistoryBean.building}" style="width:80%">  
@@ -146,12 +155,12 @@
 <f:selectItems value="#{carParkingHistoryBean.dateList()}"/>  
 </p:selectOneMenu>
 
-<p:commandButton value="Search" actionListener="#{carParkingHistoryBean.searchHistory()}"  update="form1" icon="ui-icon-check" styleClass="ui-priority-primary"  />  
+<p:commandButton value="Search" actionListener="#{carParkingHistoryBean.searchHistory()}"  update="form3" icon="ui-icon-check" styleClass="ui-priority-primary"  />  
 
 </h:panelGrid>
 </p:panel>
 
-<h:form enctype="multipart/form-data" id="form1">
+<h:form enctype="multipart/form-data" id="form3">
 			<p:growl id="growl" sticky="false" life="3000" />
 			 <p:dataTable id="dt" var="t" rows="15" rowKey="row" value="#{carParkingHistoryBean.searchHistory()}">  
             <p:column headerText="Id">  
@@ -190,7 +199,7 @@
 	   		    
    			 <p:growl showDetail="true" />
      
-    		<p:commandButton value="Clear" update="form1" styleClass="ui-priority-primary">
+    		<p:commandButton value="Clear" update="form3" styleClass="ui-priority-primary">
        		 <p:confirm header="Confirmation" message="Are you sure?" icon="pi pi-exclamation-triangle" />
     		</p:commandButton>
     </p:column>
@@ -201,16 +210,13 @@
 </div>			
 
 </p:tab>
+
           <p:tab title="Setting">
-            <h:panelGrid columns="2" cellpadding="10">
-                <p:graphicImage name="/img/c.jpg" width="100px" height="100px" />
-                <h:outputText value="After a break of more than 15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family.
-                    Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate." />
-            </h:panelGrid>
+            
         </p:tab>
     </p:tabView>
- 
+ </h:form>
    
-    </h:form>  
+ 
     </h:body>  
     </html>  

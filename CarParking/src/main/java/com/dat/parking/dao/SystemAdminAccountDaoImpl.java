@@ -33,5 +33,14 @@ public class SystemAdminAccountDaoImpl implements SystemAdminAccountDao{
 			return id;
 	}
 	
+	
+	public List adminList(String name) {
+		session=this.sessionFactory.getCurrentSession();
+		String sql="select id from SystemAdminAccount where name=:name";
+		Query q=session.createQuery(sql);
+		q.setParameter("name", name);
+		List id=q.list();
+		return id;
+	}
 
 }

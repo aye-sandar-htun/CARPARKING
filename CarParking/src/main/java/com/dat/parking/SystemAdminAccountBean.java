@@ -70,13 +70,25 @@ public class SystemAdminAccountBean implements Serializable{
 	  
 	//method CRUD
 	public String persistInformation() {
+		List l=systemAdminAccountService.adminList(accountCtl.getName());
+		if(l.isEmpty()) {
 		System.out.println("Password "+accountCtl.getPassword());
 				
 		systemAdminAccountService.persistInformation(this.accountCtl);
 		System.out.println("persist method success");
 		
-		return"index";
+		return"systemAdminLogin";
 	}
+		else {
+			
+			 FacesContext context = FacesContext.getCurrentInstance();
+			 context.addMessage(null, new FacesMessage("Exiting User name Change and Try again!"));
+			 System.out.print("Exiting user");
+			return "systemAdminRegistration";
+		}
+		}
+	
+	//SystemAdminLogin
 	public String checkAccount() {
 		 List id=systemAdminAccountService.checkAccount(accountCtl.getName(),accountCtl.getPassword());
 		if(id.isEmpty()) {
@@ -91,9 +103,11 @@ public class SystemAdminAccountBean implements Serializable{
 		 FacesContext context = FacesContext.getCurrentInstance();
 		 context.addMessage(null, new FacesMessage("Login success."));
 		
-		return "systemAdminHomePage";
+		return "tapview";
 		}
 		
 	}
+	
+	
 	
 }

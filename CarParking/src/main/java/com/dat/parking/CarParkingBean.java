@@ -137,7 +137,10 @@ public CarParkingService getCarParkingService() {
 		
 //add floorlist to dropdown
 	public String floorList() {
+		
 		System.out.println("floorlist");
+		
+		
 		int count=Integer.parseInt(carCtl.getFloorName());
 		if(count>7) {
 			FacesContext context = FacesContext.getCurrentInstance();

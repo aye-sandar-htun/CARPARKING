@@ -29,5 +29,9 @@ public class SystemAdminAccountServiceImpl implements SystemAdminAccountService{
 	}
 	
 	
-
+	@Transactional
+	@Override
+	public List adminList(String name) {
+		return systemAdminAccountDao.adminList(name);
+	}
 }
