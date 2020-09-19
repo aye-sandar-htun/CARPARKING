@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<title>Car Parking</title>
+</h:head>
+<h:body>
+<center><h2>Add Car Parking</h2></center>
+ <p:outputLabel value="Admin Name : "/><p:outputLabel value="#{userAdminAccountBean.accountCtl.name}"/><br></br>
+ <p:outputLabel value="Building : "/><p:outputLabel id="b" value="#{carParkingHistoryBean.historyCtl.building}"/>
+<h:form> 
+<p:panel> 
+<h:panelGrid columns="2" cellpadding="7">
+
+<p:outputLabel value="Car Number : "/>
+<p:inputText value="#{carParkingHistoryBean.historyCtl.carNumber}"/>
+        
+         <p:outputLabel for="floor" value="Choose Floor : "/>
+         <p:selectOneMenu id="floor" value="#{carParkingHistoryBean.selectedFloor}" style="width:80%">  
+        <p:ajax listener="#{carParkingHistoryBean.onSelectedFloorChange}" process="@this" update="slot"/> 
+        <f:selectItem itemLabel="Select Floor" itemValue="" noSelectionOption="true" />  
+        <f:selectItems value="#{carParkingHistoryBean.floorLists()}"/>  
+        </p:selectOneMenu>
+ 
+</h:panelGrid>
+</p:panel>
+</h:form>
+<br></br>
+<center>
+<h:form id="slot">
+  <ui:repeat var="s" value="${carParkingHistoryBean.slotLists()}">
+                 	<p:commandButton value="#{s}" actionListener="#{carParkingHistoryBean.selectedSlot(s)}" icon="ui-icon-check" styleClass="ui-priority-primary" />	
+   	              </ui:repeat>
+ </h:form>  
+ 	</center>           
+</h:body>
+</html>

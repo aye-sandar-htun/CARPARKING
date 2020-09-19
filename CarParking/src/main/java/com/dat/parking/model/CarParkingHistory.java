@@ -1,6 +1,7 @@
 package com.dat.parking.model;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -19,8 +20,8 @@ private String slot;
 private String floor;
 private String building;
 private Date date;
-private Time entryTime;
-private Time exitTime;
+private Timestamp  entryTime;
+private Timestamp  exitTime;
 private String submittedUser;
 
 
@@ -79,20 +80,20 @@ public void setDate(Date date) {
 }
 
 @Column(name="entry_time")
-public Time getEntryTime() {
+public Timestamp  getEntryTime() {
 	return entryTime;
 }
 
-public void setEntryTime(Time entryTime) {
+public void setEntryTime(Timestamp  entryTime) {
 	this.entryTime = entryTime;
 }
 
 @Column(name="exit_time")
-public Time getExitTime() {
+public Timestamp  getExitTime() {
 	return exitTime;
 }
 
-public void setExitTime(Time exitTime) {
+public void setExitTime(Timestamp  exitTime) {
 	this.exitTime = exitTime;
 }
 

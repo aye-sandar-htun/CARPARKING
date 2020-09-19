@@ -28,10 +28,11 @@
     <h:outputText value="Number of floor: "/>  
     <p:inputText style="width:70%;" value="#{carParkingBean.carCtl.floorName}"/>   
     <h:outputText/>
-  <p:commandButton style="width:55%;float:right;" value="ADD" update="form1 form2" oncomplete="" actionListener="#{carParkingBean.floorList()}" styleClass="ui-priority-primary" />  
 </h:panelGrid>
 </p:panel>
 </h:form>
+
+  <p:commandButton style="width:55%;float:right;" value="ADD" update="form1 form2" oncomplete="" actionListener="#{carParkingBean.floorList()}" styleClass="ui-priority-primary" />  
 
 
 <!-- drop down -->
@@ -44,7 +45,7 @@
 <h:outputLabel style="font-size:13px;color:gray">*Enter the number of slot for each floor.</h:outputLabel>
 <p:outputLabel for="floor" value="Floor : " />  
 <p:selectOneMenu id="floor" value="#{carParkingBean.floorName}" style="width:70%">  
-<p:ajax listener="#{carParkingBean.onFloorChange}" /> 
+<p:ajax listener="#{carParkingBean.onFloorChange}" process="@this"/> 
 <f:selectItem itemLabel="Select floor" itemValue="" noSelectionOption="true" />  
 <f:selectItems value="#{carParkingBean.floors}" />  
 </p:selectOneMenu>  

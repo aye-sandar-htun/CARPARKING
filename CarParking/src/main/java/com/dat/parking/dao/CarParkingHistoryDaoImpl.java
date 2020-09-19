@@ -70,4 +70,24 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 		List historyList= query.list();
 		return historyList;
 	}
+	@Override
+	public List floorLists(String buildingName) {
+		// TODO Auto-generated method stub
+		 session=this.sessionFactory.getCurrentSession();
+			String hql="select floorName from CarParking where buildingName=:buildingName";
+			Query query=session.createQuery(hql);
+			query.setParameter("buildingName", buildingName);
+			List floorList= new LinkedList(new LinkedHashSet(query.list()));
+			return floorList;
+	}
+	@Override
+	public List slotLists(String floorName, String buildingName) {
+		// TODO Auto-generated method stub
+		session=this.sessionFactory.getCurrentSession();
+		String hql="select slot from CarParking where floorName=:floorName AND buildingName=:buildingName";
+		Query query=session.createQuery(hql);
+		query.setParameter("floorName", floorName).setParameter("buildingName", buildingName);
+		List slotList= query.list();	
+		return slotList;
+	}
 }

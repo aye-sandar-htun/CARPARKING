@@ -192,7 +192,7 @@ public CarParkingService getCarParkingService() {
 	
 	 //floor view
 	 public List floorLists(String buildingName) {
-         
+         System.out.println("     building"+buildingName);
 			  floor=carParkingService.floorLists(buildingName); 
 			  for(int i=0;i<floor.size();i++) { 
 				  slotLists((String)floor.get(i),buildingName);

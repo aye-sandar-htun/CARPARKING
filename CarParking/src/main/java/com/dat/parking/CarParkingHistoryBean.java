@@ -2,16 +2,25 @@ package com.dat.parking;
 
 import java.io.Serializable;
 import java.sql.Time;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.transaction.Transactional;
 
 import com.dat.parking.model.CarParkingHistory;
+import com.dat.parking.model.UserAdminAccount;
 import com.dat.parking.service.CarParkingHistoryService;
 
 
@@ -21,6 +30,7 @@ public class CarParkingHistoryBean implements Serializable{
 	 @ManagedProperty(value="#{carParkingHistoryService}")
 	 CarParkingHistoryService carParkingHistoryService;
 	  public CarParkingHistory historyCtl=new CarParkingHistory();
+	  UserAdminAccount accountCtl=new UserAdminAccount();
 	  
 	  
 	private String carNumber;
@@ -28,14 +38,17 @@ public class CarParkingHistoryBean implements Serializable{
 	private String floor;
 	private String building;
 	private Date date;
-	private Time entryTime;
-	private Time exitTime;
+	private Timestamp  entryTime;
+	private Timestamp  exitTime;
 	private String submittedUser;
 	
 	private String selectedBuilding;
 	private String selectedFloor;
+	private String selectedSlot;
 	private Date selectedDate;
     private List dateList=new LinkedList();
+	private List floorList=new LinkedList();
+	private List slotList=new LinkedList();
 	
 	public CarParkingHistoryService getCarParkingHistoryService() {
 		return carParkingHistoryService;
@@ -80,16 +93,16 @@ public class CarParkingHistoryBean implements Serializable{
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public Time getEntryTime() {
+	public Timestamp  getEntryTime() {
 		return entryTime;
 	}
-	public void setEntryTime(Time entryTime) {
+	public void setEntryTime(Timestamp  entryTime) {
 		this.entryTime = entryTime;
 	}
-	public Time getExitTime() {
+	public Timestamp  getExitTime() {
 		return exitTime;
 	}
-	public void setExitTime(Time exitTime) {
+	public void setExitTime(Timestamp  exitTime) {
 		this.exitTime = exitTime;
 	}
 	public String getSubmittedUser() {
@@ -127,14 +140,60 @@ public class CarParkingHistoryBean implements Serializable{
 	public void setSelectedDate(Date selectedDate) {
 		this.selectedDate = selectedDate;
 	}
+	
+	
+	public List getFloorList() {
+		return floorList;
+	}
+	public void setFloorList(List floorList) {
+		this.floorList = floorList;
+	}
+	
+	public List getSlotList() {
+		return slotList;
+	}
+	public void setSlotList(List slotList) {
+		this.slotList = slotList;
+	}
+	
+	
 	//method CRUD
-	public String persistInformation() {
-		carParkingHistoryService.persistInformation(this.historyCtl);
-		System.out.println("persist method success");
+	//add data to database 
+	
+	public UserAdminAccount getAccountCtl() {
+		return accountCtl;
+	}
+	public void setAccountCtl(UserAdminAccount accountCtl) {
+		this.accountCtl = accountCtl;
+	}
+	public String getSelectedSlot() {
+		return selectedSlot;
+	}
+	public void setSelectedSlot(String selectedSlot) {
+		this.selectedSlot = selectedSlot;
+	}
+	
+
+	public String persistInformation(){
+		System.out.println("    car Number  : "+historyCtl.getCarNumber());
+		historyCtl.setFloor(selectedFloor);
+		historyCtl.setSlot(selectedSlot);
 		
+		Date date = new Date();  
+        Timestamp ts=new Timestamp(date.getTime());  
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");  
+        System.out.println(formatter.format(ts));                     
+		  historyCtl.setEntryTime( ts);   
+		   historyCtl.setDate(new Date());
+		   System.out.println("    submitted user in car history "+accountCtl.getName());
+		   historyCtl.setSubmittedUser(accountCtl.getName());
+		   
+		carParkingHistoryService.persistInformation(this.historyCtl);
+
 		return"index";
 	}
 	
+	//Search history 
 	public List<CarParkingHistory> carHistory(){
 		return this.carParkingHistoryService.carHistory();
 	} 
@@ -142,33 +201,42 @@ public class CarParkingHistoryBean implements Serializable{
 	public void onBuildingChange() {  
 		if(building!=null && !building.equals("")) { 
 			selectedBuilding = building; 
-
 		}
 		else {
+
 		selectedBuilding=null;
 		}
 	}
+	
+	
 	public void onFloorChange() {  
-		if(floor !=null && !floor.equals("")) { 
-			selectedFloor= floor; 
+		selectedFloor=historyCtl.getFloor();
+		
+		if(selectedFloor!=null) { 
+			 
 		}  
 		else {
+
 			selectedFloor=null;
 		}
 	
 	}
+	
+	
+	
 	public void onDateChange() {
 		
 			selectedDate=date;
-			System.out.println("  selected date"+selectedDate);
+			System.out.println("  selected Date "+selectedDate);
 		
 	}
 	public List dateList() {
 		dateList=carParkingHistoryService.dateList();
+	
+	    
 		return dateList;
 	}
 
-	//search History
 	 public List searchHistory() {
 		 System.out.println("    History Search"+selectedBuilding+selectedFloor+selectedDate);
           if(selectedBuilding==null && selectedFloor==null && selectedDate==null) {
@@ -188,5 +256,35 @@ public class CarParkingHistoryBean implements Serializable{
           }
 		 
 	 }
+	 
+	 //floorlist in dropdown
+	
+	 public List floorLists() {
+		 floorList=carParkingHistoryService.floorLists(historyCtl.getBuilding());
+		return floorList;
+		 
+	 }
+	 
+	 public void onSelectedFloorChange() {
+		 if(selectedFloor!=null) {
+		 }
+		 else {
+
+		 }
+	 }
+	 
+	public List slotLists() {
+
+		slotList=carParkingHistoryService.slotLists(selectedFloor, historyCtl.getBuilding());
+		return slotList;
+		
+	}
+	public void selectedSlot(String slot) {
+		selectedSlot=slot;
+		persistInformation();
+		   
+		  
+	}
+	
 	
 }

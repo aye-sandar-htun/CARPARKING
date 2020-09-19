@@ -74,7 +74,8 @@ public class SystemAdminAccountBean implements Serializable{
 				
 		systemAdminAccountService.persistInformation(this.accountCtl);
 		System.out.println("persist method success");
-		
+		 FacesContext context = FacesContext.getCurrentInstance();
+		 context.addMessage(null, new FacesMessage("Successfully Registered!"));
 		return"index";
 	}
 	public String checkAccount() {

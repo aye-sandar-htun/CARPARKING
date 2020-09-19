@@ -35,6 +35,8 @@ http://www.springframework.org/schema/context/spring-context-3.2.xsd http://www.
 				</value>
 				<value>com.dat.parking.model.CarParkingHistory
 				</value>
+				<value>com.dat.parking.model.UserAdminAccount
+				</value>
 				
 			</list>
 		</property>

@@ -33,6 +33,7 @@
 </p:selectOneMenu>
 
 <p:selectOneMenu id="date" value="#{carParkingHistoryBean.date}" style="width:80%">  
+
 <p:ajax listener="#{carParkingHistoryBean.onDateChange}"/> 
 <f:selectItem itemLabel="Select Date" itemValue="" noSelectionOption="true" />  
 <f:selectItems value="#{carParkingHistoryBean.dateList()}"/>  

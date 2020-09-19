@@ -11,4 +11,8 @@ public interface CarParkingHistoryDao {
       public List<CarParkingHistory> searchByFloor(String floor);
       public List<CarParkingHistory> searchByBuilding(String building);
       public List<CarParkingHistory> searchByBuildingFloor(String building,String floor);
+ 	 public List floorLists(String buildingName);
+	 public List slotLists(String floorName,String buildingName);
+
+
 }

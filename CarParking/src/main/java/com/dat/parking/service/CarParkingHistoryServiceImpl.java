@@ -51,5 +51,17 @@ public class CarParkingHistoryServiceImpl implements CarParkingHistoryService{
 		// TODO Auto-generated method stub
 		return carParkingHistoryDao.searchByBuildingFloor(building, floor);
 	}
+	@Transactional
+	@Override
+	public List floorLists(String buildingName) {
+		// TODO Auto-generated method stub
+		return carParkingHistoryDao.floorLists(buildingName);
+	}
+	@Transactional
+	@Override
+	public List slotLists(String floorName, String buildingName) {
+		// TODO Auto-generated method stub
+		return carParkingHistoryDao.slotLists(floorName, buildingName);
+	}
 
 }

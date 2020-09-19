@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<title>Car Parking</title>
+</h:head>
+<h:body>
+<h:form id="login" >
+    <p:panel header="Admin Login" style="width: 500px;">
+	<p:messages/>
+    <h:panelGrid columns="2">
+      <p:outputLabel value="Name:"/>
+      <p:inputText id="userName" value="#{userAdminAccountBean.accountCtl.name}" label="userName" required="true" validatorMessage="Insert only characters for name."> 
+       <f:validateRegex pattern="[a-zA-Z ]+"/>
+       </p:inputText> 
+       
+    
+       <p:outputLabel value="Password:"/>
+      <p:inputText id="password" value="#{userAdminAccountBean.accountCtl.password}" label="password" required="true" validatorMessage="You can insert  integer and characters for password."> 
+       <f:validateRegex pattern="[a-zA-Z ]+"/>
+        <f:validateLength maximum="20" />
+       </p:inputText> 
+         
+      <p:outputLabel value="Rank"></p:outputLabel>
+      <p:selectOneMenu id="rank" value="#{userAdminAccountBean.rank}" style="width:80%">  
+        <p:ajax listener="#{userAdminAccountBean.onRankChange}"/> 
+        <f:selectItem itemLabel="Select Rank" itemValue="" noSelectionOption="true" />  
+        <f:selectItems value="#{userAdminAccountBean.userRank}"/> 
+        </p:selectOneMenu>
+         
+        <p:outputLabel value="Building"></p:outputLabel>
+        <p:selectOneMenu id="building" value="#{carParkingHistoryBean.historyCtl.building}" style="width:80%">  
+        <p:ajax listener="#{carParkingHistoryBean.onBuildingChange}"/> 
+        <f:selectItem itemLabel="Select building" itemValue="" noSelectionOption="true" />  
+        <f:selectItems value="#{carParkingBean.buildingLists()}"/>  
+        </p:selectOneMenu>
+        <br/>  <br/> 
+     <div  margin="100px">
+     
+  <p:commandButton style="width:55%;float:right;" value="Login" oncomplete="" actionListener="#{userAdminAccountBean.checkAccount()}" styleClass="ui-priority-primary" />  
+      
+    </div>
+    
+     <a href="addCarParking.xhtml">Add Car</a>
+      
+       </h:panelGrid>
+       </p:panel>
+        
+       </h:form> 
+</h:body>
+</html>
