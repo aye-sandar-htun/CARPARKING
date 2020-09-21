@@ -3,6 +3,7 @@ package com.dat.parking.dao;
 import java.util.List;
 
 import com.dat.parking.model.SystemAdminAccount;
+import com.dat.parking.model.UserAdminAccount;
 
 public interface SystemAdminAccountDao {
 	void persistInformation(SystemAdminAccount systemAdminAccount);
@@ -10,6 +11,8 @@ public interface SystemAdminAccountDao {
 	
 	
 	public List adminList(String name);
+	public List<SystemAdminAccount> getAdminProfileInformation(String name);
+
 }
 
 

@@ -32,7 +32,7 @@ public class UserAdminAccountBean implements Serializable{
 	   private String rank;
 	   private List<String> floors=new LinkedList();
 	   private List<String> slots=new LinkedList();
-	   
+	   private List<UserAdminAccount> userAdminInformation;
 	   
 	   @PostConstruct
 		public void init() {  
@@ -42,6 +42,18 @@ public class UserAdminAccountBean implements Serializable{
 		}
 	    
 	
+
+		public List<UserAdminAccount> getUserAdminInformation() {
+		return userAdminInformation;
+	}
+
+
+
+	public void setUserAdminInformation(List<UserAdminAccount> userAdminInformation) {
+		this.userAdminInformation = userAdminInformation;
+	}
+
+
 
 		public List<String> getUserRank() {
 			return userRank;
@@ -155,19 +167,20 @@ public class UserAdminAccountBean implements Serializable{
 				 return "userAdminLogin";
 			}
 			else {
+				
 			System.out.println("Login success");
 			 FacesContext context = FacesContext.getCurrentInstance();
 			 context.addMessage(null, new FacesMessage("Login success."));
-			// String url = "userAdminHomePage"; // Your URL here
-			// FacesContext context1 = FacesContext.getCurrentInstance();
 
-			// context1.getExternalContext().redirect(url);
+			 userAdminInformation= getUserProfileInformation(accountCtl.getName());
+			 System.out.println(userAdminInformation);
 			 if(rank.equals("Entry")) {
-				 return "addCarParking";
+				 return "entryUserAdminHomePage";
 			 }
 			 else {
-				 return "view";
+				 return "exitUserAdminHomePage";
 			 }
+
 			
 			}
 			
@@ -185,5 +198,9 @@ public class UserAdminAccountBean implements Serializable{
 			}
 			}
 		
-		
+		//User Admin Profile
+		public List<UserAdminAccount> getUserProfileInformation(String name){
+			userAdminAccountService.getUserProfileInformation(name);
+			return userAdminAccountService.getUserProfileInformation(name);
+		}
 }

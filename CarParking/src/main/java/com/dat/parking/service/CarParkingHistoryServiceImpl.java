@@ -1,5 +1,6 @@
 package com.dat.parking.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -62,6 +63,12 @@ public class CarParkingHistoryServiceImpl implements CarParkingHistoryService{
 	public List slotLists(String floorName, String buildingName) {
 		// TODO Auto-generated method stub
 		return carParkingHistoryDao.slotLists(floorName, buildingName);
+	}
+	@Transactional
+	@Override
+	public List<CarParkingHistory> showCurrent(Date date) {
+		// TODO Auto-generated method stub
+		return carParkingHistoryDao.showCurrent(date);
 	}
 
 	

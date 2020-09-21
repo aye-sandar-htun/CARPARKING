@@ -34,4 +34,10 @@ public class SystemAdminAccountServiceImpl implements SystemAdminAccountService{
 	public List adminList(String name) {
 		return systemAdminAccountDao.adminList(name);
 	}
+	@Transactional
+	@Override
+	public List<SystemAdminAccount> getAdminProfileInformation(String name) {
+		// TODO Auto-generated method stub
+		return systemAdminAccountDao.getAdminProfileInformation(name);
+	}
 }

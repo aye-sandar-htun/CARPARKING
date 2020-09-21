@@ -1,5 +1,6 @@
 package com.dat.parking.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.dat.parking.model.CarParkingHistory;
@@ -13,6 +14,7 @@ public interface CarParkingHistoryService {
     public List<CarParkingHistory> searchByBuildingFloor(String building,String floor);
 	 public List floorLists(String buildingName);
 	 public List slotLists(String floorName,String buildingName);
+	 public List<CarParkingHistory> showCurrent(Date date);
 
 
 	 public List checkFreeSlot(String slot,String floorName,String buildingName);

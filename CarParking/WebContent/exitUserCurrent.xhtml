@@ -10,15 +10,15 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-<title>Car Parking</title>
+<title>Current</title>
 <link rel="stylesheet" href="resources/css/style.css" type="text/css"/>
 </h:head>
-<h:body>
-<a href="addParkingSlot.xhtml">Add Parking </a>
-<a href="view.xhtml">View</a>
-<a href="carHistory.xhtml">History</a>
-<a href="systemAdminProfile.xhtml">Admin Profile</a>
-<br></br>
-<a style="float:right;" href="index.xhtml">Back</a>	
-</h:body>
+<body>
+<h:form>
+<p:outputLabel value="Car Number : "/>
+<p:inputText value="#{carParkingHistoryBean.historyCtl.carNumber}"/>
+            <p:commandButton value="Search" action="#{carParkingHistoryBean.selectedSlot(s)}" icon="ui-icon-check" styleClass="ui-priority-primary" />	
+
+</h:form>
+</body>
 </html>

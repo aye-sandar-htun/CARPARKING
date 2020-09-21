@@ -294,7 +294,12 @@ public class CarParkingHistoryBean implements Serializable{
 		   
 		  
 	}
-	
+	//show Current for entry user admin
+	public List showCurrent(){
+		Date date=new Date();
+		return carParkingHistoryService.showCurrent(date);
+		
+	}
 	
 	
 	

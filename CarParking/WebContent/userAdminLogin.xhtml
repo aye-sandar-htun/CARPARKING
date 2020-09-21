@@ -13,8 +13,9 @@
 <title>Car Parking</title>
 </h:head>
 <h:body>
+<center>
 <h:form id="login" >
-    <p:panel header="Admin Login" style="width: 500px;">
+    <p:panel header="User Admin Login" style="width: 500px;">
 	<p:messages/>
     <h:panelGrid columns="2">
       <p:outputLabel value="Name:"/>
@@ -48,12 +49,16 @@
   <p:commandButton style="width:55%;float:right;" value="Login" oncomplete="" action="#{userAdminAccountBean.checkAccount()}" styleClass="ui-priority-primary" />  
       
     </div>
-    
-     <a href="userAdminRegistration.xhtml">Registration</a>
+
       
        </h:panelGrid>
        </p:panel>
         
        </h:form> 
+       
+         <a href="userAdminRegistration.xhtml">Registration</a>
+    
+     
+   </center>  
 </h:body>
 </html>
