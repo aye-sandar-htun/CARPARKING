@@ -90,4 +90,18 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 		List slotList= query.list();	
 		return slotList;
 	}
+	
+	
+	
+	
+	 public List checkFreeSlot(String slot,String floor,String building) {
+		 session=this.sessionFactory.getCurrentSession();
+		 String sql="select id from CarParkingHistory where slot=:slot and floor=:floor and building=:building";
+		 		
+		 Query q=session.createQuery(sql);
+		 q.setParameter("slot", slot).setParameter("floor",floor).setParameter("building",building);
+		 List s=q.list();
+		 return s;
+	 }
+	
 }

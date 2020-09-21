@@ -14,5 +14,7 @@ public interface CarParkingHistoryDao {
  	 public List floorLists(String buildingName);
 	 public List slotLists(String floorName,String buildingName);
 
+	 
+	 public List checkFreeSlot(String slot,String floorName,String buildingName);
 
 }

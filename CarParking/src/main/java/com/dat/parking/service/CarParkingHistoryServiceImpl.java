@@ -64,4 +64,11 @@ public class CarParkingHistoryServiceImpl implements CarParkingHistoryService{
 		return carParkingHistoryDao.slotLists(floorName, buildingName);
 	}
 
+	
+	
+	@Transactional
+	@Override
+	 public List checkFreeSlot(String slot,String floorName,String buildingName) {
+		return carParkingHistoryDao.checkFreeSlot(slot,floorName,buildingName);
+	}
 }
