@@ -14,26 +14,17 @@
 </h:head>
 <h:body>
 <center><h2>Add Car Parking</h2></center>
-<<<<<<< HEAD
- <p:outputLabel value="Admin Name : "/><p:outputLabel id="name" value="#{userAdminAccountBean.accountCtl.name}"/><br></br>
- <p:outputLabel value="Building : "/><p:outputLabel id="b" value="#{carParkingHistoryBean.historyCtl.building}"/>
-=======
-
->>>>>>> branch 'master' of https://github.com/aye-sandar-htun/CARPARKING.git
+ 
 <h:form> 
 <p:panel> 
 <h:panelGrid columns="2" cellpadding="7">
 
-<<<<<<< HEAD
- <p:outputLabel value="Car Number : "/><p:inputText value="#{carParkingHistoryBean.historyCtl.carNumber}"/>
 
-=======
 <p:outputLabel value="Admin Name : "/><p:outputLabel value="#{userAdminAccountBean.accountCtl.name}"/>
  <p:outputLabel value="Building : "/><p:outputLabel id="b" value="#{carParkingHistoryBean.historyCtl.building}"/>
 
 <p:outputLabel value="Car Number : "/>
 <p:inputText value="#{carParkingHistoryBean.historyCtl.carNumber}"/>
->>>>>>> branch 'master' of https://github.com/aye-sandar-htun/CARPARKING.git
         
          <p:outputLabel for="floor" value="Choose Floor : "/>
          <p:selectOneMenu id="floor" value="#{carParkingHistoryBean.selectedFloor}" style="width:80%">  
@@ -44,27 +35,15 @@
  
 </h:panelGrid>
 </p:panel>
-
-<<<<<<< HEAD
-<center>
-<h:form id="slot">
-=======
 <br></br>
 
 <p:panel id="slot">
->>>>>>> branch 'master' of https://github.com/aye-sandar-htun/CARPARKING.git
   <ui:repeat var="s" value="${carParkingHistoryBean.slotLists()}">
                  	<p:commandButton value="#{s}" action="#{carParkingHistoryBean.selectedSlot(s)}" icon="ui-icon-check" styleClass="ui-priority-primary" />	
    	              </ui:repeat>
-<<<<<<< HEAD
+   	              </p:panel>
  </h:form>  
- 	</center> 
-</h:form>
-
-          
-=======
- </p:panel>  
- </h:form>	         
->>>>>>> branch 'master' of https://github.com/aye-sandar-htun/CARPARKING.git
+ <br></br>
+<a style="float:right;" href="entryUserAdminHomePage.xhtml">Back</a>	         
 </h:body>
 </html>

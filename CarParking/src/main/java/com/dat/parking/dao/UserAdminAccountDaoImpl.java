@@ -35,7 +35,6 @@ public class UserAdminAccountDaoImpl implements UserAdminAccountDao{
 			return id;
 	}
 
-<<<<<<< HEAD
 	@Override
 	public List<UserAdminAccount> getUserProfileInformation(String name) {
 		// TODO Auto-generated method stub
@@ -47,7 +46,6 @@ public class UserAdminAccountDaoImpl implements UserAdminAccountDao{
 		return userInformaion;
 	}
 
-=======
 	public List adminList(String name) {
 		session=this.sessionFactory.getCurrentSession();
 		String sql="select id from UserAdminAccount where name=:name";
@@ -56,6 +54,5 @@ public class UserAdminAccountDaoImpl implements UserAdminAccountDao{
 		List id=q.list();
 		return id;
 	}
->>>>>>> branch 'master' of https://github.com/aye-sandar-htun/CARPARKING.git
 
 }
