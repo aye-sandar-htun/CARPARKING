@@ -1,6 +1,5 @@
 package com.dat.parking.model;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
 

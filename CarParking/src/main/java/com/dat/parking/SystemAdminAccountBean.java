@@ -76,14 +76,14 @@ public class SystemAdminAccountBean implements Serializable{
 				
 		systemAdminAccountService.persistInformation(this.accountCtl);
 		System.out.println("persist method success");
-<<<<<<< HEAD
+
 		 FacesContext context = FacesContext.getCurrentInstance();
 		 context.addMessage(null, new FacesMessage("Successfully Registered!"));
-		return"index";
-=======
+		
+
 		
 		return"systemAdminLogin";
->>>>>>> branch 'master' of https://github.com/aye-sandar-htun/CARPARKING.git
+
 	}
 		else {
 			

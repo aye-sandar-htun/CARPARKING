@@ -190,7 +190,7 @@ public class CarParkingHistoryBean implements Serializable{
 		   
 		carParkingHistoryService.persistInformation(this.historyCtl);
 
-		return"index";
+		return"carHistory";
 	}
 	
 	//Search history 

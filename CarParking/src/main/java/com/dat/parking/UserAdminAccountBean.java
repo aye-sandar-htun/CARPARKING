@@ -126,15 +126,25 @@ public class UserAdminAccountBean implements Serializable{
 
 		//method CRUD
 		public String persistInformation() {
+		
+			List l=userAdminAccountService.adminList(accountCtl.getName());
+			if(l.isEmpty()) {
 			System.out.println("Password "+accountCtl.getPassword());					
 			userAdminAccountService.persistInformation(this.accountCtl);
 			System.out.println("persist method success");
 			 FacesContext context = FacesContext.getCurrentInstance();
 			 context.addMessage(null, new FacesMessage("Successfully Registered!"));
-			return "index";
+			return "userAdminLogin";
+		}
+			else {
+				 FacesContext context = FacesContext.getCurrentInstance();
+				 context.addMessage(null, new FacesMessage("Exiting User name Change and Try again!"));
+				 System.out.print("Exiting user");
+				return "userAdminRegistration";
+			}	
 		}
 		
-		public void checkAccount() throws IOException {
+		public String checkAccount() throws IOException {
 			System.out.println(" account cl name "+accountCtl.getName());
 			 List id=userAdminAccountService.checkAccount(accountCtl.getName(),accountCtl.getPassword());
 			if(id.isEmpty()) {
@@ -142,15 +152,23 @@ public class UserAdminAccountBean implements Serializable{
 				 FacesContext context = FacesContext.getCurrentInstance();
 				 context.addMessage(null, new FacesMessage("Wrong username or password.Try again!"));
 
+				 return "userAdminLogin";
 			}
 			else {
 			System.out.println("Login success");
 			 FacesContext context = FacesContext.getCurrentInstance();
 			 context.addMessage(null, new FacesMessage("Login success."));
-			 String url = "userAdminHomePage"; // Your URL here
-			 FacesContext context1 = FacesContext.getCurrentInstance();
+			// String url = "userAdminHomePage"; // Your URL here
+			// FacesContext context1 = FacesContext.getCurrentInstance();
 
-			 context1.getExternalContext().redirect(url);
+			// context1.getExternalContext().redirect(url);
+			 if(rank.equals("Entry")) {
+				 return "addCarParking";
+			 }
+			 else {
+				 return "view";
+			 }
+			
 			}
 			
 		}

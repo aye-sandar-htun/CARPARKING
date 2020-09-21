@@ -27,4 +27,10 @@ public class UserAdminAccountServiceImpl implements UserAdminAccountService{
 		return userAdminAccountDao.checkAccount(name, password);
 	}
 	
+	@Transactional
+	@Override
+	public List adminList(String name) {
+		return userAdminAccountDao.adminList(name);
+	}
+	
 }

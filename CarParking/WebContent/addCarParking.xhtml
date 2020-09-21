@@ -14,11 +14,13 @@
 </h:head>
 <h:body>
 <center><h2>Add Car Parking</h2></center>
- <p:outputLabel value="Admin Name : "/><p:outputLabel value="#{userAdminAccountBean.accountCtl.name}"/><br></br>
- <p:outputLabel value="Building : "/><p:outputLabel id="b" value="#{carParkingHistoryBean.historyCtl.building}"/>
+
 <h:form> 
 <p:panel> 
 <h:panelGrid columns="2" cellpadding="7">
+
+<p:outputLabel value="Admin Name : "/><p:outputLabel value="#{userAdminAccountBean.accountCtl.name}"/>
+ <p:outputLabel value="Building : "/><p:outputLabel id="b" value="#{carParkingHistoryBean.historyCtl.building}"/>
 
 <p:outputLabel value="Car Number : "/>
 <p:inputText value="#{carParkingHistoryBean.historyCtl.carNumber}"/>
@@ -32,14 +34,14 @@
  
 </h:panelGrid>
 </p:panel>
-</h:form>
+
 <br></br>
-<center>
-<h:form id="slot">
+
+<p:panel id="slot">
   <ui:repeat var="s" value="${carParkingHistoryBean.slotLists()}">
-                 	<p:commandButton value="#{s}" actionListener="#{carParkingHistoryBean.selectedSlot(s)}" icon="ui-icon-check" styleClass="ui-priority-primary" />	
+                 	<p:commandButton value="#{s}" action="#{carParkingHistoryBean.selectedSlot(s)}" icon="ui-icon-check" styleClass="ui-priority-primary" />	
    	              </ui:repeat>
- </h:form>  
- 	</center>           
+ </p:panel>  
+ </h:form>	         
 </h:body>
 </html>

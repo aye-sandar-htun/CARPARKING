@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<title>Car Parking</title>
+<link rel="stylesheet" href="resources/css/style.css" type="text/css"/>
+</h:head>
+<body>
+<h:form id="f">
+ 
+<p:panel id="panel">  
+<h:panelGrid columns="3" cellpadding="7">  
+<p:column headerText="Car Number"/>  
+<p:outputText value="#{carParkingBean.carNumberList()}" />  
+<p:commandButton value="Search" actionListener="#{carParkingHistoryBean.searchCarNumber()}" update="form1" icon="ui-icon-check" styleClass="ui-priority-primary"  />  
+</h:panelGrid>
+</p:panel>
+</h:form>
+
+<h:form enctype="multipart/form-data" id="form1">
+			<p:growl id="growl" sticky="false" life="3000" />
+			 <p:dataTable id="dt" var="t" rows="15" rowKey="row" value="#{carParkingHistoryBean.searchCarNumber()}">  
+            <p:column headerText="Id">  
+                <h:outputText value="#{t.id}"/>  
+            </p:column>  
+            <p:column headerText="Car Number">  
+                <h:outputText value="#{t.carNumber}" />  
+            </p:column>  
+            <p:column headerText="Slot">  
+                <h:outputText value="#{t.slot}" />  
+  
+            </p:column>  
+  
+            <p:column headerText="Floor">  
+                <h:outputText value="#{t.floor}" />  
+            </p:column>  
+            <p:column headerText="Building">  
+                <h:outputText value="#{t.building}" />    
+            </p:column> 
+             <p:column headerText="Date">  
+                <h:outputText value="#{t.date}">
+                <f:convertDateTime pattern="yyyy/MM/dd" />
+                </h:outputText>
+            </p:column>
+             <p:column headerText="Entry Time">  
+                <h:outputText value="#{t.entryTime}" />  
+            </p:column> 
+             
+             <p:column headerText="Submitted User">  
+                <h:outputText value="#{t.submittedUser}" />  
+            </p:column> 
+            <p:column headerText="Actions"> 
+               
+	   		    
+   			 <p:growl showDetail="true" />
+     
+    		<p:commandButton value="Clear" update="form1" styleClass="ui-priority-primary">
+       		 <p:confirm header="Confirmation" message="Are you sure?" icon="pi pi-exclamation-triangle" />
+    		</p:commandButton>
+    </p:column>
+    </p:dataTable>
+    </h:form>
+
+
+
+</body>
+</html>
