@@ -91,7 +91,7 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 		List slotList= query.list();	
 		return slotList;
 	}
-<<<<<<< HEAD
+
 	
 	
 	
@@ -106,7 +106,7 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 		 return s;
 	 }
 	
-=======
+
 	@Override
 	public List<CarParkingHistory> showCurrent(Date date) {
 		// TODO Auto-generated method stub
@@ -117,5 +117,4 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 		List todayList= query.list();	
 		return todayList;
 	}
->>>>>>> branch 'master' of https://github.com/aye-sandar-htun/CARPARKING.git
 }

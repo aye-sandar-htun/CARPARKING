@@ -12,12 +12,24 @@
 <h:head>
 <title>Car Parking</title>
 <link rel="stylesheet" href="resources/css/style.css" type="text/css"/>
+<style>
+body{
+	background-image:url(#{request.contextPath}/resources/img/c10.jpg);
+	height:100vh;
+	background-size:100% 100%; 
+}
+</style>
+<link rel="stylesheet" href="resources/css/style.css" type="text/css"/>
+
 </h:head>
 <h:body>
 <center>
- 		 <h:form>
+ <h:outputText  value="&emsp;&ensp;&emsp;&ensp;Car Parking System" style="font-weight:bold;font-family:Arial;
+	color:rgb(0, 0, 0); font-size:35px;" ></h:outputText>
+	
+ 		 <h:form styleClass="form">
 
-<p:panel header="Add Information" style="width: 500px;">
+<p:panel header="Add System Admin Information" style="width: 500px;">
 	<p:messages/>
     <h:panelGrid columns="2">
       <p:outputLabel value="Admin Name:"/>
@@ -59,7 +71,7 @@
         <br/>  <br/>   -->
      <div  margin="100px">
     
-  <p:commandButton style="width:55%;float:right;" value="Register" oncomplete="" action="#{systemAdminAccountBean.persistInformation()}"  styleClass="ui-priority-primary" />  
+  <p:commandButton style="width:55%;float:center;" value="Register" oncomplete="" action="#{systemAdminAccountBean.persistInformation()}"  styleClass="ui-priority-primary" />  
       
   
      
