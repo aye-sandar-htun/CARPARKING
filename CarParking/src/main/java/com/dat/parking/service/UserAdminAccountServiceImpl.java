@@ -33,4 +33,10 @@ public class UserAdminAccountServiceImpl implements UserAdminAccountService{
 		return userAdminAccountDao.getUserProfileInformation(name);
 	}
 	
+	@Transactional
+	@Override
+	public List adminList(String name) {
+		return userAdminAccountDao.adminList(name);
+	}
+	
 }

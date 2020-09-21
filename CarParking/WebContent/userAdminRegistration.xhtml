@@ -40,10 +40,13 @@
        </p:inputText> 
        
        <p:outputLabel for="password" value="Password:"/>
-       <p:password id="password" value="#{userAdminAccountBean.accountCtl.password}" feedback="false" match="repeated_password" />
-       
+       <p:password id="password" value="#{userAdminAccountBean.accountCtl.password}" feedback="false" match="repeated_password" >
+        <f:validateLength minimum="8" />
+        </p:password>
        <p:outputLabel for="repeated_password" value="Confirm Password:"/>
-       <p:password id="repeated_password" value="#{userAdminAccountBean.accountCtl.password}" feedback="false" required="true"/>
+       <p:password id="repeated_password" value="#{userAdminAccountBean.accountCtl.password}" feedback="false" required="true">
+        <f:validateLength minimum="8" />
+        </p:password>
  
         <br/>  <br/>  
     

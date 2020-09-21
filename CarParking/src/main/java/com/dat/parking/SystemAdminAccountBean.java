@@ -88,9 +88,18 @@ public class SystemAdminAccountBean implements Serializable{
 
 		 FacesContext context = FacesContext.getCurrentInstance();
 		 context.addMessage(null, new FacesMessage("Successfully Registered!"));
+<<<<<<< HEAD
 		return"index";
+=======
+		
+>>>>>>> branch 'master' of https://github.com/aye-sandar-htun/CARPARKING.git
 
 		
+<<<<<<< HEAD
+=======
+		return"systemAdminLogin";
+
+>>>>>>> branch 'master' of https://github.com/aye-sandar-htun/CARPARKING.git
 	}
 		else {
 			

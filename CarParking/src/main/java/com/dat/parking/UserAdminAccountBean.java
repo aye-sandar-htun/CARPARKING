@@ -138,12 +138,22 @@ public class UserAdminAccountBean implements Serializable{
 
 		//method CRUD
 		public String persistInformation() {
+		
+			List l=userAdminAccountService.adminList(accountCtl.getName());
+			if(l.isEmpty()) {
 			System.out.println("Password "+accountCtl.getPassword());					
 			userAdminAccountService.persistInformation(this.accountCtl);
 			System.out.println("persist method success");
 			 FacesContext context = FacesContext.getCurrentInstance();
 			 context.addMessage(null, new FacesMessage("Successfully Registered!"));
-			return "index";
+			return "userAdminLogin";
+		}
+			else {
+				 FacesContext context = FacesContext.getCurrentInstance();
+				 context.addMessage(null, new FacesMessage("Exiting User name Change and Try again!"));
+				 System.out.print("Exiting user");
+				return "userAdminRegistration";
+			}	
 		}
 		
 		public String checkAccount() throws IOException {
@@ -155,15 +165,30 @@ public class UserAdminAccountBean implements Serializable{
 				 context.addMessage(null, new FacesMessage("Wrong username or password.Try again!"));
 				 return "addCarParking";
 
+				 return "userAdminLogin";
 			}
 			else {
 				
 			System.out.println("Login success");
 			 FacesContext context = FacesContext.getCurrentInstance();
 			 context.addMessage(null, new FacesMessage("Login success."));
+<<<<<<< HEAD
 			 userAdminInformation= getUserProfileInformation(accountCtl.getName());
 			 System.out.println(userAdminInformation);
 		     return "userAdminLogin";
+=======
+			// String url = "userAdminHomePage"; // Your URL here
+			// FacesContext context1 = FacesContext.getCurrentInstance();
+
+			// context1.getExternalContext().redirect(url);
+			 if(rank.equals("Entry")) {
+				 return "addCarParking";
+			 }
+			 else {
+				 return "view";
+			 }
+			
+>>>>>>> branch 'master' of https://github.com/aye-sandar-htun/CARPARKING.git
 			}
 			
 			
