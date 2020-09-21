@@ -26,5 +26,11 @@ public class UserAdminAccountServiceImpl implements UserAdminAccountService{
 		// TODO Auto-generated method stub
 		return userAdminAccountDao.checkAccount(name, password);
 	}
+	@Transactional
+	@Override
+	public List<UserAdminAccount> getUserProfileInformation(String name) {
+		// TODO Auto-generated method stub
+		return userAdminAccountDao.getUserProfileInformation(name);
+	}
 	
 }

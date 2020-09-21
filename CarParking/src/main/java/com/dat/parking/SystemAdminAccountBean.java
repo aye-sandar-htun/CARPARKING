@@ -13,6 +13,7 @@ import javax.faces.context.FacesContext;
 import org.primefaces.event.TabChangeEvent;
 
 import com.dat.parking.model.SystemAdminAccount;
+import com.dat.parking.model.UserAdminAccount;
 import com.dat.parking.service.SystemAdminAccountService;
 
 @ManagedBean
@@ -26,7 +27,7 @@ public class SystemAdminAccountBean implements Serializable{
 	  private String email;
 	  private String contactNumber;
 	  private String password;
-	  
+	  private List<SystemAdminAccount> adminInformation;
 	  //getters and setters
 	  
 	  
@@ -34,6 +35,14 @@ public class SystemAdminAccountBean implements Serializable{
 		return systemAdminAccountService;
 	}
 	
+	public List<SystemAdminAccount> getAdminInformation() {
+		return adminInformation;
+	}
+
+	public void setAdminInformation(List<SystemAdminAccount> adminInformation) {
+		this.adminInformation = adminInformation;
+	}
+
 	public SystemAdminAccount getAccountCtl() {
 		return accountCtl;
 	}
@@ -76,14 +85,12 @@ public class SystemAdminAccountBean implements Serializable{
 				
 		systemAdminAccountService.persistInformation(this.accountCtl);
 		System.out.println("persist method success");
-<<<<<<< HEAD
+
 		 FacesContext context = FacesContext.getCurrentInstance();
 		 context.addMessage(null, new FacesMessage("Successfully Registered!"));
 		return"index";
-=======
+
 		
-		return"systemAdminLogin";
->>>>>>> branch 'master' of https://github.com/aye-sandar-htun/CARPARKING.git
 	}
 		else {
 			
@@ -108,13 +115,16 @@ public class SystemAdminAccountBean implements Serializable{
 		System.out.println("Login success");
 		 FacesContext context = FacesContext.getCurrentInstance();
 		 context.addMessage(null, new FacesMessage("Login success."));
-		
+		 adminInformation= getAdminProfileInformation(accountCtl.getName());
 		return "tapview";
 		}
 		
 		
 	}
-	
+	//System Admin Profile
+	public List<SystemAdminAccount> getAdminProfileInformation(String name){
+		return systemAdminAccountService.getAdminProfileInformation(name);
+	}
 	
 	
 	

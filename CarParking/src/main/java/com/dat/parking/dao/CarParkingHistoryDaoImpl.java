@@ -1,5 +1,6 @@
 package com.dat.parking.dao;
 
+import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -89,5 +90,15 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 		query.setParameter("floorName", floorName).setParameter("buildingName", buildingName);
 		List slotList= query.list();	
 		return slotList;
+	}
+	@Override
+	public List<CarParkingHistory> showCurrent(Date date) {
+		// TODO Auto-generated method stub
+		session=this.sessionFactory.getCurrentSession();
+		String hql="from CarParkingHistory where date=:date";
+		Query query=session.createQuery(hql);
+		query.setParameter("date", date);
+		List todayList= query.list();	
+		return todayList;
 	}
 }

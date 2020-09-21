@@ -42,5 +42,15 @@ public class SystemAdminAccountDaoImpl implements SystemAdminAccountDao{
 		List id=q.list();
 		return id;
 	}
+	@Override
+	public List<SystemAdminAccount> getAdminProfileInformation(String name) {
+		// TODO Auto-generated method stub
+		Session session=this.sessionFactory.getCurrentSession();
+		String hql="from SystemAdminAccount where name=:name";
+		Query query=session.createQuery(hql);
+		query.setParameter("name", name);
+		List userInformaion=query.list();
+		return userInformaion;
+	}
 
 }

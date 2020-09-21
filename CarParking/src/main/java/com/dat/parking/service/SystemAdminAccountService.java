@@ -9,4 +9,6 @@ public interface SystemAdminAccountService {
 	public List checkAccount(String name,String password);
 
 	public List adminList(String name);
+	public List<SystemAdminAccount> getAdminProfileInformation(String name);
+
 }

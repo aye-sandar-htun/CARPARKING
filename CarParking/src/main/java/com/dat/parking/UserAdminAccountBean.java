@@ -32,7 +32,7 @@ public class UserAdminAccountBean implements Serializable{
 	   private String rank;
 	   private List<String> floors=new LinkedList();
 	   private List<String> slots=new LinkedList();
-	   
+	   private List<UserAdminAccount> userAdminInformation;
 	   
 	   @PostConstruct
 		public void init() {  
@@ -42,6 +42,18 @@ public class UserAdminAccountBean implements Serializable{
 		}
 	    
 	
+
+		public List<UserAdminAccount> getUserAdminInformation() {
+		return userAdminInformation;
+	}
+
+
+
+	public void setUserAdminInformation(List<UserAdminAccount> userAdminInformation) {
+		this.userAdminInformation = userAdminInformation;
+	}
+
+
 
 		public List<String> getUserRank() {
 			return userRank;
@@ -134,24 +146,26 @@ public class UserAdminAccountBean implements Serializable{
 			return "index";
 		}
 		
-		public void checkAccount() throws IOException {
+		public String checkAccount() throws IOException {
 			System.out.println(" account cl name "+accountCtl.getName());
 			 List id=userAdminAccountService.checkAccount(accountCtl.getName(),accountCtl.getPassword());
 			if(id.isEmpty()) {
 				System.out.println("Login fail");
 				 FacesContext context = FacesContext.getCurrentInstance();
 				 context.addMessage(null, new FacesMessage("Wrong username or password.Try again!"));
+				 return "addCarParking";
 
 			}
 			else {
+				
 			System.out.println("Login success");
 			 FacesContext context = FacesContext.getCurrentInstance();
 			 context.addMessage(null, new FacesMessage("Login success."));
-			 String url = "userAdminHomePage"; // Your URL here
-			 FacesContext context1 = FacesContext.getCurrentInstance();
-
-			 context1.getExternalContext().redirect(url);
+			 userAdminInformation= getUserProfileInformation(accountCtl.getName());
+			 System.out.println(userAdminInformation);
+		     return "userAdminLogin";
 			}
+			
 			
 		}
 	//choose rank
@@ -167,5 +181,9 @@ public class UserAdminAccountBean implements Serializable{
 			}
 			}
 		
-		
+		//User Admin Profile
+		public List<UserAdminAccount> getUserProfileInformation(String name){
+			userAdminAccountService.getUserProfileInformation(name);
+			return userAdminAccountService.getUserProfileInformation(name);
+		}
 }
