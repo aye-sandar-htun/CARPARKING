@@ -175,6 +175,10 @@ public class CarParkingHistoryBean implements Serializable{
 	
 
 	public String persistInformation(){
+		
+		List t=carParkingHistoryService.checkFreeSlot(historyCtl.getSlot(), historyCtl.getFloor(), historyCtl.getBuilding());
+		if(t.isEmpty()) {
+		
 		System.out.println("    car Number  : "+historyCtl.getCarNumber());
 		historyCtl.setFloor(selectedFloor);
 		historyCtl.setSlot(selectedSlot);
@@ -192,6 +196,11 @@ public class CarParkingHistoryBean implements Serializable{
 
 		return"carHistory";
 	}
+		else {
+			System.out.print("Exiting car in the slot");
+			return "addCarParking";
+		}
+		}
 	
 	//Search history 
 	public List<CarParkingHistory> carHistory(){
@@ -291,6 +300,7 @@ public class CarParkingHistoryBean implements Serializable{
 		return carParkingHistoryService.showCurrent(today);
 		
 	}
+<<<<<<< HEAD
 	//search carNumber from exit user admin
 	public List searchByCarNumber() {
 		System.out.println("    Car Number in search "+historyCtl.getCarNumber());
@@ -302,4 +312,9 @@ public class CarParkingHistoryBean implements Serializable{
 		return carParkingHistoryService.searchByCarNumber(today,historyCtl.getCarNumber());
 		}
 	}
+=======
+	
+	
+	
+>>>>>>> branch 'master' of https://github.com/aye-sandar-htun/CARPARKING.git
 }

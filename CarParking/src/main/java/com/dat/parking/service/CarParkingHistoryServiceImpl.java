@@ -77,4 +77,11 @@ public class CarParkingHistoryServiceImpl implements CarParkingHistoryService{
 		return carParkingHistoryDao.searchByCarNumber(date,carNumber);
 	}
 
+	
+	
+	@Transactional
+	@Override
+	 public List checkFreeSlot(String slot,String floorName,String buildingName) {
+		return carParkingHistoryDao.checkFreeSlot(slot,floorName,buildingName);
+	}
 }

@@ -18,4 +18,5 @@ public interface CarParkingHistoryService {
      public List<CarParkingHistory> searchByCarNumber(Date date,String carNumber);
 
 
+	 public List checkFreeSlot(String slot,String floorName,String buildingName);
 }

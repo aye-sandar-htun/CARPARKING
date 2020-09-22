@@ -10,12 +10,25 @@
 	xmlns:p="http://primefaces.org/ui">  
     <h:head>  
     <title>TabView</title>  
-    </h:head>  
-    <h:body>  
+  <style>
+body{
+	background-image:url(#{request.contextPath}/resources/img/c10.jpg);
+	height:100vh;
+	background-size:100% 100%; 
+}
+</style>
+<link rel="stylesheet" href="resources/css/style.css" type="text/css"/>
+</h:head>
+<h:body>
+<center>
+ <h:outputText  value="&emsp;&ensp;&emsp;&ensp;Car Parking System" style="font-weight:bold;font-family:Arial;
+	color:rgb(0, 0, 0); font-size:35px;" ></h:outputText>
+</center>
 <h:form>
+
+     
  <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
  
-    <h3 style="margin-top:0" align="center">Car Parking System</h3>
     
     <p:tabView>
    
@@ -34,11 +47,11 @@
     <h:outputText value="Number of floor: "/>  
     <p:inputText style="width:70%;" value="#{carParkingBean.carCtl.floorName}"/>   
     <h:outputText/>
-  <p:commandButton style="width:55%;float:right;" value="ADD" update="panel" oncomplete="" actionListener="#{carParkingBean.floorList()}" styleClass="ui-priority-primary" />  
+  <p:commandButton style="width:55%;float:center;" value="ADD" update="panel" oncomplete="" actionListener="#{carParkingBean.floorList()}" styleClass="ui-priority-primary" />  
 
 
 
-<!-- drop down -->
+drop down
 
   
 
@@ -63,7 +76,8 @@
 
 
 </h:panelGrid>
-</p:panel>
+</p:panel> 
+
 </h:form>
 
 <br></br>
@@ -110,7 +124,7 @@
    		            <td><h:outputText/></td>
                  	<td>
                  		<ui:repeat var="s" value="${carParkingBean.slotLists(f,b)}">
-                 		<p:commandButton styleClass="slot" value="#{s}"/>	
+                 		<p:commandButton style="width:100px;height:50px;margin:3px" value="#{s}"/>	
    	             		 </ui:repeat>
    	             
    	              </td>
