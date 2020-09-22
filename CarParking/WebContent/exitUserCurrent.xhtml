@@ -17,8 +17,51 @@
 <h:form>
 <p:outputLabel value="Car Number : "/>
 <p:inputText value="#{carParkingHistoryBean.historyCtl.carNumber}"/>
-            <p:commandButton value="Search" action="#{carParkingHistoryBean.selectedSlot(s)}" icon="ui-icon-check" styleClass="ui-priority-primary" />	
-
+            <p:commandButton value="Search" action="#{carParkingHistoryBean.searchByCarNumber()}" update="form1" icon="ui-icon-check" styleClass="ui-priority-primary" />	
 </h:form>
+ <h:form enctype="multipart/form-data" id="form1">
+			<p:growl id="growl" sticky="false" life="3000" />
+			 <p:dataTable id="dt" var="t" rowKey="row" value="#{carParkingHistoryBean.searchByCarNumber()}">  
+            <p:column headerText="Id">  
+                <h:outputText value="#{t.id}"/>  
+            </p:column>  
+            <p:column headerText="Car Number">  
+                <h:outputText value="#{t.carNumber}" />  
+            </p:column>  
+            <p:column headerText="Slot">  
+                <h:outputText value="#{t.slot}" />  
+  
+            </p:column>  
+  
+            <p:column headerText="Floor">  
+                <h:outputText value="#{t.floor}" />  
+            </p:column>  
+            <p:column headerText="Building">  
+                <h:outputText value="#{t.building}" />    
+            </p:column> 
+             <p:column headerText="Date">  
+                <h:outputText value="#{t.date}">
+                <f:convertDateTime pattern="yyyy/MM/dd" />
+                </h:outputText>
+            </p:column>
+             <p:column headerText="Entry Time">  
+                <h:outputText value="#{t.entryTime}" />  
+            </p:column> 
+                
+             <p:column headerText="Submitted User">  
+                <h:outputText value="#{t.submittedUser}" />  
+            </p:column> 
+            <p:column headerText="Actions"> 
+               
+	   		    
+   			 <p:growl showDetail="true" />
+     
+    		<p:commandButton value="Clear" styleClass="ui-priority-primary">
+       		 <p:confirm header="Confirmation" message="Are you sure?" icon="pi pi-exclamation-triangle" />
+    		</p:commandButton>
+    </p:column>
+    </p:dataTable>
+    </h:form>
+
 </body>
 </html>

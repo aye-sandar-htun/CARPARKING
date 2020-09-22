@@ -286,10 +286,20 @@ public class CarParkingHistoryBean implements Serializable{
 		  
 	}
 	//show Current for entry user admin
+	Date today=new Date();
 	public List showCurrent(){
-		Date date=new Date();
-		return carParkingHistoryService.showCurrent(date);
+		return carParkingHistoryService.showCurrent(today);
 		
 	}
-	
+	//search carNumber from exit user admin
+	public List searchByCarNumber() {
+		System.out.println("    Car Number in search "+historyCtl.getCarNumber());
+		if(carNumber==null || carNumber=="") {
+			return carParkingHistoryService.showCurrent(today);
+		}
+		else {
+			
+		return carParkingHistoryService.searchByCarNumber(today,historyCtl.getCarNumber());
+		}
+	}
 }

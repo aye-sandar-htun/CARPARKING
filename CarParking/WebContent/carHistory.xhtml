@@ -75,7 +75,9 @@
                
             </p:column> 
                <p:column headerText="Exit Time">  
-                <h:outputText value="#{t.exitTime}" />  
+                <h:outputText value="#{t.exitTime}" >
+                  <f:convertDateTime dateStyle="full" pattern="h:mm a"/>
+                </h:outputText>
             </p:column> 
              <p:column headerText="Submitted User">  
                 <h:outputText value="#{t.submittedUser}" />  

@@ -15,6 +15,6 @@ public interface CarParkingHistoryDao {
  	 public List floorLists(String buildingName);
 	 public List slotLists(String floorName,String buildingName);
 	 public List<CarParkingHistory> showCurrent(Date date);
-
+     public List<CarParkingHistory> searchByCarNumber(Date date,String carNumber);
 
 }

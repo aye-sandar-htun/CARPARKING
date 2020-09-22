@@ -101,4 +101,14 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 		List todayList= query.list();	
 		return todayList;
 	}
+	@Override
+	public List<CarParkingHistory> searchByCarNumber(Date date,String carNumber) {
+		// TODO Auto-generated method stub
+		session=this.sessionFactory.getCurrentSession();
+		String hql="from CarParkingHistory where date=:date AND carNumber=:carNumber";
+		Query query=session.createQuery(hql);
+		query.setParameter("date", date).setParameter("carNumber", carNumber);
+		List todayList= query.list();	
+		return todayList;
+	}
 }

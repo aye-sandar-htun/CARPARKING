@@ -70,5 +70,11 @@ public class CarParkingHistoryServiceImpl implements CarParkingHistoryService{
 		// TODO Auto-generated method stub
 		return carParkingHistoryDao.showCurrent(date);
 	}
+	@Transactional
+	@Override
+	public List<CarParkingHistory> searchByCarNumber(Date date,String carNumber) {
+		// TODO Auto-generated method stub
+		return carParkingHistoryDao.searchByCarNumber(date,carNumber);
+	}
 
 }
