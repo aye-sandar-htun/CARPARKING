@@ -146,12 +146,14 @@ public class UserAdminAccountBean implements Serializable{
 			System.out.println("persist method success");
 			 FacesContext context = FacesContext.getCurrentInstance();
 			 context.addMessage(null, new FacesMessage("Successfully Registered!"));
+			 this.reset();
 			return "userAdminLogin";
 		}
 			else {
 				 FacesContext context = FacesContext.getCurrentInstance();
 				 context.addMessage(null, new FacesMessage("Exiting User name Change and Try again!"));
 				 System.out.print("Exiting user");
+				 this.reset();
 				return "userAdminRegistration";
 			}	
 		}
@@ -163,7 +165,8 @@ public class UserAdminAccountBean implements Serializable{
 				System.out.println("Login fail");
 				 FacesContext context = FacesContext.getCurrentInstance();
 				 context.addMessage(null, new FacesMessage("Wrong username or password.Try again!"));
-
+				 this.reset();
+				 
 				 return "userAdminLogin";
 			}
 			else {
@@ -175,9 +178,11 @@ public class UserAdminAccountBean implements Serializable{
 			 userAdminInformation= getUserProfileInformation(accountCtl.getName());
 			 System.out.println(userAdminInformation);
 			 if(rank.equals("Entry")) {
+				 this.reset();
 				 return "entryUserAdminHomePage";
 			 }
 			 else {
+				 this.reset();
 				 return "exitUserAdminHomePage";
 			 }
 
@@ -202,5 +207,15 @@ public class UserAdminAccountBean implements Serializable{
 		public List<UserAdminAccount> getUserProfileInformation(String name){
 			userAdminAccountService.getUserProfileInformation(name);
 			return userAdminAccountService.getUserProfileInformation(name);
+			
+		}
+		
+		//reset
+		public void reset() {
+			//this.accountCtl.setName("");
+			this.accountCtl.setEmail("");
+			this.accountCtl.setAddress("");
+			this.accountCtl.setContactNumber("");
+			this.accountCtl.setPassword("");
 		}
 }

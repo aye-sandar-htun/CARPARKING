@@ -300,7 +300,7 @@ public class CarParkingHistoryBean implements Serializable{
 		return carParkingHistoryService.showCurrent(today);
 		
 	}
-<<<<<<< HEAD
+
 	//search carNumber from exit user admin
 	public List searchByCarNumber() {
 		System.out.println("    Car Number in search "+historyCtl.getCarNumber());
@@ -312,9 +312,9 @@ public class CarParkingHistoryBean implements Serializable{
 		return carParkingHistoryService.searchByCarNumber(today,historyCtl.getCarNumber());
 		}
 	}
-=======
+
 	
 	
 	
->>>>>>> branch 'master' of https://github.com/aye-sandar-htun/CARPARKING.git
+
 }

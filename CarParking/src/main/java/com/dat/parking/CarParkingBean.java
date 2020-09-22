@@ -172,13 +172,16 @@ public CarParkingService getCarParkingService() {
 		      carCtl.setFloorName(selectedFloor);
 		      carCtl.setSlot("Slot"+i);
 		      carParkingService.persistInformation(this.carCtl); 
-		     
+		      this.reset();
+		    
 		      }
+		  
 		  FacesContext context = FacesContext.getCurrentInstance();
 			 context.addMessage(null, new FacesMessage("Successfully added for "+selectedFloor+"."));
 		  }
 
-		return "index";
+		  
+		return "tapview";
 	}
 
 	//building view
@@ -253,6 +256,15 @@ public CarParkingService getCarParkingService() {
 		 context.addMessage(null, new FacesMessage("Successfully deleted."));
 	 }
 	 
+	 //reset
+	 public void reset() {
+		 this.carCtl.setSlot("");
+	 }
+	 
+	 public void resets() {
+		 this.carCtl.setBuildingName("");
+		 this.carCtl.setFloorName("");
+	 }
 	
 	
 }

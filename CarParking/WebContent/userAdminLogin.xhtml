@@ -38,10 +38,10 @@ body{
        
     
        <p:outputLabel value="Password:"/>
-      <p:inputText id="password" value="#{userAdminAccountBean.accountCtl.password}" label="password" required="true" validatorMessage="You can insert  integer and characters for password."> 
+      <p:password id="password" value="#{userAdminAccountBean.accountCtl.password}" label="password" required="true" validatorMessage="You can insert  integer and characters for password."> 
        <f:validateRegex pattern="[a-zA-Z ]+"/>
         <f:validateLength maximum="20" />
-       </p:inputText> 
+       </p:password> 
          
       <p:outputLabel value="Rank"></p:outputLabel>
       <p:selectOneMenu id="rank" value="#{userAdminAccountBean.rank}" style="width:80%">  
