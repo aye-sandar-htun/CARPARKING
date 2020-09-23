@@ -25,7 +25,7 @@ public class SystemAdminAccountBean implements Serializable{
 	  
 	  private String name;
 	  private String email;
-	  private String contactNumber;
+	  private long contactNumber;
 	  private String password;
 	  private List<SystemAdminAccount> adminInformation;
 	  //getters and setters
@@ -64,10 +64,10 @@ public class SystemAdminAccountBean implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getContactNumber() {
+	public long getContactNumber() {
 		return contactNumber;
 	}
-	public void setContactNumber(String contactNumber) {
+	public void setContactNumber(long contactNumber) {
 		this.contactNumber = contactNumber;
 	}
 	public String getPassword() {
@@ -138,7 +138,7 @@ public class SystemAdminAccountBean implements Serializable{
 	public void reset() {
 		this.accountCtl.setName("");
 		this.accountCtl.setEmail("");
-		this.accountCtl.setContactNumber("");
+		this.accountCtl.setContactNumber(0);
 		this.accountCtl.setPassword("");
 		
 	}

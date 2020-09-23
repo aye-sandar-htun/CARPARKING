@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class UserAdminAccount {
 	private int id;
     private String name;
-    private String contactNumber;
+    private long contactNumber;
     private String email;
     private String address;
     private String password;
@@ -36,10 +36,10 @@ public class UserAdminAccount {
 	}
 	
 	@Column(name="contact_number")
-	public String getContactNumber() {
+	public long getContactNumber() {
 		return contactNumber;
 	}
-	public void setContactNumber(String contactNumber) {
+	public void setContactNumber(long contactNumber) {
 		this.contactNumber = contactNumber;
 	}
 	
