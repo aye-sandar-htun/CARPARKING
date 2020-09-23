@@ -14,11 +14,21 @@
 <link rel="stylesheet" href="resources/css/style.css" type="text/css"/>
 </h:head>
 <h:body>
-<a href="addParkingSlot.xhtml">Add Parking </a>
-<a href="view.xhtml">View</a>
-<a href="carHistory.xhtml">History</a>
-<a href="systemAdminProfile.xhtml">Admin Profile</a>
-<br></br>
-<a style="float:right;" href="index.xhtml">Back</a>	
+<center>
+<h:outputText  value="&emsp;&ensp;&emsp;&ensp;Car Parking System" style="font-weight:bold;font-family:Arial;
+	color:rgb(0, 0, 0); font-size:35px;" ></h:outputText></center>
+<p:tabView id="systemAdmin">
+		
+		<p:tab title="Add Building">
+			<ui:include src="addParkingSlot.xhtml" />
+		</p:tab>
+		<p:tab title="View">
+			<ui:include src="view.xhtml" />
+		</p:tab>
+		<p:tab title="History">
+			<ui:include src="carHistory.xhtml" />
+		</p:tab>
+		
+	</p:tabView>
 </h:body>
 </html>

@@ -13,9 +13,9 @@
 <title>Car Parking</title>
 <style>
 body{
-	background-image:url(#{request.contextPath}/resources/img/c10.jpg);
+	/* background-image:url(#{request.contextPath}/resources/img/c10.jpg);
 	height:100vh;
-	background-size:100% 100%; 
+	background-size:100% 100%;  */
 }
 </style>
 <link rel="stylesheet" href="resources/css/style.css" type="text/css"/>
@@ -23,8 +23,8 @@ body{
 <h:body>
 <center>
 
-      <h:outputText  value="&emsp;&ensp;&emsp;&ensp;Car Parking System" style="font-weight:bold;font-family:Arial;
-	color:rgb(0, 0, 0); font-size:35px;" ></h:outputText>
+     <!--  <h:outputText  value="&emsp;&ensp;&emsp;&ensp;Car Parking System" style="font-weight:bold;font-family:Arial;
+	color:rgb(0, 0, 0); font-size:35px;" ></h:outputText> -->
 	
  		<!-- <h2>Welcome System Admin Login </h2> -->
  		 <h:form styleClass="form">
@@ -36,12 +36,14 @@ body{
        <f:validateRegex pattern="[a-zA-Z ]+"/>
        </p:inputText> 
        
-    
-       <p:outputLabel value="Password:"/>
+    <h:outputLabel for="password" value="Password:" />
+            <p:password id="password" value="#{systemAdminAccountBean.accountCtl.password}" required="true" label="password" />
+       <!-- <p:outputLabel for="password" value="Password:"/>
       <p:inputText id="password" value="#{systemAdminAccountBean.accountCtl.password}" label="password" required="true" validatorMessage="You can insert  integer and characters for password."> 
        <f:validateRegex pattern="[a-zA-Z ]+"/>
         <f:validateLength maximum="20" />
-       </p:inputText> 
+       </p:inputText>  -->
+       
         <br/>  <br/>  
      <div  margin="100px">
      
@@ -56,7 +58,7 @@ body{
        </p:panel>
         
        </h:form> 
-     
+     <br></br>
 <a href="systemAdminRegistration.xhtml">Register here!</a>
        </center>   
  	</h:body>

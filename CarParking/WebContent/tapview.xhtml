@@ -9,21 +9,22 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui">  
     <h:head>  
-    <title>TabView</title>  
+    <title>Car Parking</title>  
   <style>
 body{
-	background-image:url(#{request.contextPath}/resources/img/c10.jpg);
+	/* background-image:url(#{request.contextPath}/resources/img/c10.jpg);
 	height:100vh;
-	background-size:100% 100%; 
+	background-size:100% 100%;  */
+	background-color:gray;
 }
 </style>
 <link rel="stylesheet" href="resources/css/style.css" type="text/css"/>
 </h:head>
 <h:body>
-<center>
+<!-- <center>
  <h:outputText  value="&emsp;&ensp;&emsp;&ensp;Car Parking System" style="font-weight:bold;font-family:Arial;
 	color:rgb(0, 0, 0); font-size:35px;" ></h:outputText>
-</center>
+</center> -->
 <h:form>
 
      
@@ -213,7 +214,7 @@ drop down
 	   		    
    			 <p:growl showDetail="true" />
      
-    		<p:commandButton value="Clear" update="form3" styleClass="ui-priority-primary">
+    		<p:commandButton value="Clear" styleClass="ui-priority-primary">
        		 <p:confirm header="Confirmation" message="Are you sure?" icon="pi pi-exclamation-triangle" />
     		</p:commandButton>
     </p:column>

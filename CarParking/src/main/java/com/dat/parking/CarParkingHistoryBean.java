@@ -49,7 +49,43 @@ public class CarParkingHistoryBean implements Serializable{
     private List dateList=new LinkedList();
 	private List floorList=new LinkedList();
 	private List slotList=new LinkedList();
+	private List<CarParkingHistory> historylist;
+	private List<CarParkingHistory> filteredRecords;
+	private List<CarParkingHistory> showCurrentList;
+	private List<CarParkingHistory> showFilteredCurrentList;
+
 	
+	
+	public List<CarParkingHistory> getShowCurrentList() {
+		return showCurrentList;
+	}
+	public void setShowCurrentList(List<CarParkingHistory> showCurrentList) {
+		this.showCurrentList = showCurrentList;
+	}
+	public List<CarParkingHistory> getShowFilteredCurrentList() {
+		return showFilteredCurrentList;
+	}
+	public void setShowFilteredCurrentList(List<CarParkingHistory> showFilteredCurrentList) {
+		this.showFilteredCurrentList = showFilteredCurrentList;
+	}
+	public List<CarParkingHistory> getHistorylist() {
+		return historylist;
+	}
+	public void setHistorylist(List<CarParkingHistory> historylist) {
+		this.historylist = historylist;
+	}
+	public List<CarParkingHistory> getFilteredRecords() {
+		return filteredRecords;
+	}
+	public void setFilteredRecords(List<CarParkingHistory> filteredRecords) {
+		this.filteredRecords = filteredRecords;
+	}
+	public Date getToday() {
+		return today;
+	}
+	public void setToday(Date today) {
+		this.today = today;
+	}
 	public CarParkingHistoryService getCarParkingHistoryService() {
 		return carParkingHistoryService;
 	}
@@ -203,13 +239,17 @@ public class CarParkingHistoryBean implements Serializable{
 		}
 	
 	//Search history 
-	public List<CarParkingHistory> carHistory(){
-		return this.carParkingHistoryService.carHistory();
-	} 
+	@PostConstruct
+    public void init() {
+        historylist = carParkingHistoryService.carHistory();
+        showCurrentList=carParkingHistoryService.showCurrent(today);
+    }
+	
 	
 	public void onBuildingChange() {  
 		if(building!=null && !building.equals("")) { 
 			selectedBuilding = building; 
+			searchHistory();
 		}
 		else {
 
@@ -219,15 +259,17 @@ public class CarParkingHistoryBean implements Serializable{
 	
 	
 	public void onFloorChange() {  
-		selectedFloor=historyCtl.getFloor();
-		
-		if(selectedFloor!=null) { 
-			 
-		}  
-		else {
+		 System.out.println("          selected floor "+selectedFloor);
 
-			selectedFloor=null;
-		}
+		
+			/*
+			 * if(selectedFloor!=null && !selectedFloor.equals("")) {
+			 * selectedFloor=historyCtl.getFloor();
+			 * 
+			 * } else {
+			 * 
+			 * selectedFloor=null; }
+			 */
 	
 	}
 	
@@ -297,10 +339,11 @@ public class CarParkingHistoryBean implements Serializable{
 	//show Current for entry user admin
 	Date today=new Date();
 	public List showCurrent(){
+		
 		return carParkingHistoryService.showCurrent(today);
 		
 	}
-<<<<<<< HEAD
+
 	//search carNumber from exit user admin
 	public List searchByCarNumber() {
 		System.out.println("    Car Number in search "+historyCtl.getCarNumber());
@@ -312,9 +355,5 @@ public class CarParkingHistoryBean implements Serializable{
 		return carParkingHistoryService.searchByCarNumber(today,historyCtl.getCarNumber());
 		}
 	}
-=======
-	
-	
-	
->>>>>>> branch 'master' of https://github.com/aye-sandar-htun/CARPARKING.git
+
 }

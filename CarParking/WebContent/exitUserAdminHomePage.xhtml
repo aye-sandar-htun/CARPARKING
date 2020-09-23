@@ -14,9 +14,19 @@
 <link rel="stylesheet" href="resources/css/style.css" type="text/css"/>
 </h:head>
 <body>
-<a href="exitUserCurrent.xhtml"></a>
-<a href="exitUserProfile.xhtml"></a>
-<br></br>
-<a style="float:right;" href="index.xhtml">Back</a>	
+<h:outputText  value="&emsp;&ensp;&emsp;&ensp;Car Parking System" style="font-weight:bold;font-family:Arial;
+	color:rgb(0, 0, 0); font-size:35px;" ></h:outputText>
+<p:tabView id="entryUserAdmin">
+		
+	
+		<p:tab title="Current">
+			<ui:include src="exitUserCurrent.xhtml" />
+		</p:tab>
+
+		<p:tab title="Profile">
+			<ui:include src="userAdminProfile.xhtml" />
+		</p:tab>
+		
+	</p:tabView>
 </body>
 </html>

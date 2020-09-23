@@ -172,7 +172,7 @@ public CarParkingService getCarParkingService() {
 		      carCtl.setFloorName(selectedFloor);
 		      carCtl.setSlot("Slot"+i);
 		      carParkingService.persistInformation(this.carCtl); 
-		     
+		     floors.remove(selectedFloor);
 		      }
 		  FacesContext context = FacesContext.getCurrentInstance();
 			 context.addMessage(null, new FacesMessage("Successfully added for "+selectedFloor+"."));

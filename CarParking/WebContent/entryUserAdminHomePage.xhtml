@@ -12,10 +12,21 @@
     <title>Entry User Admin</title>  
     </h:head>  
     <h:body> 
-    <a href="addCarParking.xhtml">Add Car Parking</a>
-    <a href="entryUserCurrent.xhtml">Current</a>
-    <a href="userAdminProfile.xhtml">Admin Profile</a>  
-    <br></br>
-<a style="float:right;" href="index.xhtml">Back</a>	
+    <h:outputText  value="&emsp;&ensp;&emsp;&ensp;Car Parking System" style="font-weight:bold;font-family:Arial;
+	color:rgb(0, 0, 0); font-size:35px;" ></h:outputText>
+   <p:tabView id="entryUserAdmin">
+		
+	
+		<p:tab title="Add Car Parking">
+			<ui:include src="addCarParking.xhtml" />
+		</p:tab>
+		<p:tab title="Current">
+			<ui:include src="entryUserCurrent.xhtml" />
+		</p:tab>
+		<p:tab title="Profile">
+			<ui:include src="userAdminProfile.xhtml" />
+		</p:tab>
+		
+	</p:tabView>
     </h:body>
     </html>

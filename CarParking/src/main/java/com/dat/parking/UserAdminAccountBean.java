@@ -160,7 +160,6 @@ public class UserAdminAccountBean implements Serializable{
 			System.out.println(" account cl name "+accountCtl.getName());
 			 List id=userAdminAccountService.checkAccount(accountCtl.getName(),accountCtl.getPassword());
 			if(id.isEmpty()) {
-				System.out.println("Login fail");
 				 FacesContext context = FacesContext.getCurrentInstance();
 				 context.addMessage(null, new FacesMessage("Wrong username or password.Try again!"));
 
@@ -168,12 +167,11 @@ public class UserAdminAccountBean implements Serializable{
 			}
 			else {
 				
-			System.out.println("Login success");
-			 FacesContext context = FacesContext.getCurrentInstance();
-			 context.addMessage(null, new FacesMessage("Login success."));
+				System.out.println("Login success");
+				 FacesContext context = FacesContext.getCurrentInstance();
+				 context.addMessage(null, new FacesMessage("Login success."));
 
-			 userAdminInformation= getUserProfileInformation(accountCtl.getName());
-			 System.out.println(userAdminInformation);
+			// userAdminInformation= getUserProfileInformation(accountCtl.getName());
 			 if(rank.equals("Entry")) {
 				 return "entryUserAdminHomePage";
 			 }

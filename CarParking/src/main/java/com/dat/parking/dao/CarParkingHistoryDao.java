@@ -15,12 +15,11 @@ public interface CarParkingHistoryDao {
  	 public List floorLists(String buildingName);
 	 public List slotLists(String floorName,String buildingName);
 	 public List<CarParkingHistory> showCurrent(Date date);
-<<<<<<< HEAD
+
      public List<CarParkingHistory> searchByCarNumber(Date date,String carNumber);
-=======
+
 
 	 
 	 public List checkFreeSlot(String slot,String floorName,String buildingName);
->>>>>>> branch 'master' of https://github.com/aye-sandar-htun/CARPARKING.git
 
 }

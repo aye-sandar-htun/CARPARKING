@@ -1,7 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -9,10 +6,7 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:head>
-<title>Car Parking</title>
-</h:head>
-<h:body>
+
 <center><h2>Add Car Parking</h2></center>
  
 <h:form> 
@@ -38,12 +32,12 @@
 <br></br>
 
 <p:panel id="slot">
+<center>
   <ui:repeat var="s" value="${carParkingHistoryBean.slotLists()}">
                  	<p:commandButton value="#{s}" action="#{carParkingHistoryBean.selectedSlot(s)}" icon="ui-icon-check" styleClass="ui-priority-primary" />	
    	              </ui:repeat>
+   	              </center>
    	              </p:panel>
  </h:form>  
- <br></br>
-<a style="float:right;" href="entryUserAdminHomePage.xhtml">Back</a>	         
-</h:body>
+          
 </html>

@@ -13,15 +13,15 @@ http://www.springframework.org/schema/context/spring-context-3.2.xsd http://www.
 
 	<context:component-scan base-package="com.dat.*" />
 	<tx:annotation-driven />
-
+	
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName"
 			value="org.postgresql.Driver" />
 		<property name="url"
-			value="jdbc:postgresql://localhost:5432/project" />
+			value="jdbc:postgresql://localhost:5432/carparking" />
 		<property name="username" value="postgres" />
-		<property name="password" value="win123" />
+		<property name="password" value="root" />
 	</bean>
 
 	<bean id="sessionFactory"
