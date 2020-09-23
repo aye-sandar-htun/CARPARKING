@@ -211,13 +211,15 @@ public class CarParkingHistoryBean implements Serializable{
 	
 
 	public String persistInformation(){
-		
+		historyCtl.setFloor(selectedFloor);
+		historyCtl.setSlot(selectedSlot);
 		List t=carParkingHistoryService.checkFreeSlot(historyCtl.getSlot(), historyCtl.getFloor(), historyCtl.getBuilding());
 		if(t.isEmpty()) {
 		
+			
 		System.out.println("    car Number  : "+historyCtl.getCarNumber());
-		historyCtl.setFloor(selectedFloor);
-		historyCtl.setSlot(selectedSlot);
+	//	historyCtl.setFloor(selectedFloor);
+	//	historyCtl.setSlot(selectedSlot);
 		
 		Date date = new Date();  
         Timestamp ts=new Timestamp(date.getTime());  
