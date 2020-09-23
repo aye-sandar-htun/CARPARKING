@@ -9,6 +9,7 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui">
 
+
 <h:head>
 <title>Car Parking</title>
 <link rel="stylesheet" href="resources/css/style.css" type="text/css"/>
@@ -42,9 +43,7 @@
 <p:commandButton value="Search" actionListener="#{carParkingHistoryBean.searchHistory()}" update="form1" icon="ui-icon-check" styleClass="ui-priority-primary"  />  
 
 </h:panelGrid>
-</p:panel>
-</h:form>
-</div>
+
 <h:form enctype="multipart/form-data" id="form1">
 			<p:growl id="growl" sticky="false" life="3000" />
 			 <p:dataTable id="dt" var="t" rows="15" rowKey="row" value="#{carParkingHistoryBean.searchHistory()}">  
@@ -87,12 +86,15 @@
 	   		    
    			 <p:growl showDetail="true" />
      
-    		<p:commandButton value="Clear" update="form1" styleClass="ui-priority-primary">
+    		<p:commandButton value="Clear"  styleClass="ui-priority-primary">
        		 <p:confirm header="Confirmation" message="Are you sure?" icon="pi pi-exclamation-triangle" />
     		</p:commandButton>
     </p:column>
     </p:dataTable>
     </h:form>
+    </p:panel>
+</h:form>
+</div>
    <br></br>
 <a style="float:right;" href="systemAdminHomePage.xhtml">Back</a>
 </h:body>
