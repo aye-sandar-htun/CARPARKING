@@ -13,9 +13,9 @@
 <title>Car Parking</title>
 <style>
 body{
-	background-image:url(#{request.contextPath}/resources/img/c10.jpg);
+	/* background-image:url(#{request.contextPath}/resources/img/c10.jpg);
 	height:100vh;
-	background-size:100% 100%; 
+	background-size:100% 100%;  */
 }
 </style>
 <link rel="stylesheet" href="resources/css/style.css" type="text/css"/>
@@ -27,7 +27,7 @@ body{
 	color:rgb(0, 0, 0); font-size:35px;" ></h:outputText>
 	
  	
-<h:form id="login" styleClass="form" >
+<h:form>
     <p:panel header="Welcome UserAdmin Login" style="width: 500px;">
 	<p:messages/>
     <h:panelGrid columns="2">
@@ -38,10 +38,15 @@ body{
        
     
        <p:outputLabel value="Password:"/>
+<<<<<<< HEAD
+       <p:password id="password" value="#{userAdminAccountBean.accountCtl.password}" required="true" label="password" />
+      
+=======
       <p:password id="password" value="#{userAdminAccountBean.accountCtl.password}" label="password" required="true" validatorMessage="You can insert  integer and characters for password."> 
        <f:validateRegex pattern="[a-zA-Z ]+"/>
         <f:validateLength maximum="20" />
        </p:password> 
+>>>>>>> branch 'master' of https://github.com/aye-sandar-htun/CARPARKING.git
          
       <p:outputLabel value="Rank"></p:outputLabel>
       <p:selectOneMenu id="rank" value="#{userAdminAccountBean.rank}" style="width:80%">  
