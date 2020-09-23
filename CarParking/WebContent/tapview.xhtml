@@ -52,7 +52,7 @@ body{
 
 
 
-drop down
+<!-- drop down -->
 
   
 
@@ -72,8 +72,9 @@ drop down
 <p:inputText style="width:70%" value="#{carParkingBean.carCtl.slot}"/>
 </h:panelGrid>
 <p:separator />  
-<p:commandButton style="float:right;" value="Submit" update="panel" actionListener="#{carParkingBean.persistInformation()}" icon="ui-icon-check" styleClass="ui-priority-primary"  />  
+<p:commandButton style="float:right;" value="Submit" update="panel" action="#{carParkingBean.persistInformation()}" icon="ui-icon-check" styleClass="ui-priority-primary"  />  
  
+
 
 
 </h:panelGrid>
@@ -214,7 +215,11 @@ drop down
 	   		    
    			 <p:growl showDetail="true" />
      
+<<<<<<< HEAD
     		<p:commandButton value="Clear" styleClass="ui-priority-primary">
+=======
+    		<p:commandButton value="Clear"  styleClass="ui-priority-primary">
+>>>>>>> branch 'master' of https://github.com/aye-sandar-htun/CARPARKING.git
        		 <p:confirm header="Confirmation" message="Are you sure?" icon="pi pi-exclamation-triangle" />
     		</p:commandButton>
     </p:column>

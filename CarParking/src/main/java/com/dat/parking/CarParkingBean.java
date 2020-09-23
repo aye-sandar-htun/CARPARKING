@@ -172,13 +172,20 @@ public CarParkingService getCarParkingService() {
 		      carCtl.setFloorName(selectedFloor);
 		      carCtl.setSlot("Slot"+i);
 		      carParkingService.persistInformation(this.carCtl); 
+<<<<<<< HEAD
 		     floors.remove(selectedFloor);
+=======
+		      this.reset();
+		    
+>>>>>>> branch 'master' of https://github.com/aye-sandar-htun/CARPARKING.git
 		      }
+		  
 		  FacesContext context = FacesContext.getCurrentInstance();
 			 context.addMessage(null, new FacesMessage("Successfully added for "+selectedFloor+"."));
 		  }
 
-		return "index";
+		  
+		return "tapview";
 	}
 
 	//building view
@@ -253,6 +260,15 @@ public CarParkingService getCarParkingService() {
 		 context.addMessage(null, new FacesMessage("Successfully deleted."));
 	 }
 	 
+	 //reset
+	 public void reset() {
+		 this.carCtl.setSlot("");
+	 }
+	 
+	 public void resets() {
+		 this.carCtl.setBuildingName("");
+		 this.carCtl.setFloorName("");
+	 }
 	
 	
 }

@@ -356,4 +356,11 @@ public class CarParkingHistoryBean implements Serializable{
 		}
 	}
 
+<<<<<<< HEAD
+=======
+	
+	
+	
+
+>>>>>>> branch 'master' of https://github.com/aye-sandar-htun/CARPARKING.git
 }

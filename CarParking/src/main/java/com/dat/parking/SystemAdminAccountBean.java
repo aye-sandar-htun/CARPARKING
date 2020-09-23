@@ -84,11 +84,12 @@ public class SystemAdminAccountBean implements Serializable{
 		System.out.println("Password "+accountCtl.getPassword());
 				
 		systemAdminAccountService.persistInformation(this.accountCtl);
+		this.reset();
 		System.out.println("persist method success");
 
 		 FacesContext context = FacesContext.getCurrentInstance();
 		 context.addMessage(null, new FacesMessage("Successfully Registered!"));
-		return"index";
+		return"systemAdminLogin";
 		
 
 		
@@ -99,6 +100,7 @@ public class SystemAdminAccountBean implements Serializable{
 			 FacesContext context = FacesContext.getCurrentInstance();
 			 context.addMessage(null, new FacesMessage("Exiting User name Change and Try again!"));
 			 System.out.print("Exiting user");
+			 this.reset();
 			return "systemAdminRegistration";
 		}
 		}
@@ -110,6 +112,7 @@ public class SystemAdminAccountBean implements Serializable{
 			System.out.println("Login fail");
 			 FacesContext context = FacesContext.getCurrentInstance();
 			 context.addMessage(null, new FacesMessage("Wrong username or password.Try again!"));
+			 this.reset();
 				return "systemAdminLogin";
 
 		}
@@ -118,7 +121,9 @@ public class SystemAdminAccountBean implements Serializable{
 		 FacesContext context = FacesContext.getCurrentInstance();
 		 context.addMessage(null, new FacesMessage("Login success."));
 		 adminInformation= getAdminProfileInformation(accountCtl.getName());
-		return "systemAdminHomePage";
+		//return "systemAdminHomePage";
+		 this.reset();
+		 return "tapview";
 		}
 		
 		
@@ -129,6 +134,14 @@ public class SystemAdminAccountBean implements Serializable{
 	}
 	
 	
+	//reset
+	public void reset() {
+		this.accountCtl.setName("");
+		this.accountCtl.setEmail("");
+		this.accountCtl.setContactNumber("");
+		this.accountCtl.setPassword("");
+		
+	}
 	
 	
 }
