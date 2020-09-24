@@ -172,12 +172,11 @@ public CarParkingService getCarParkingService() {
 		      carCtl.setFloorName(selectedFloor);
 		      carCtl.setSlot("Slot"+i);
 		      carParkingService.persistInformation(this.carCtl); 
-<<<<<<< HEAD
+
 		     floors.remove(selectedFloor);
-=======
+
 		      this.reset();
 		    
->>>>>>> branch 'master' of https://github.com/aye-sandar-htun/CARPARKING.git
 		      }
 		  
 		  FacesContext context = FacesContext.getCurrentInstance();

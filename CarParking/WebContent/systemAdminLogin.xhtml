@@ -36,25 +36,10 @@ body{
        <f:validateRegex pattern="[a-zA-Z ]+"/>
        </p:inputText> 
        
-<<<<<<< HEAD
+
     <h:outputLabel for="password" value="Password:" />
             <p:password id="password" value="#{systemAdminAccountBean.accountCtl.password}" required="true" label="password" />
-       <!-- <p:outputLabel for="password" value="Password:"/>
-      <p:inputText id="password" value="#{systemAdminAccountBean.accountCtl.password}" label="password" required="true" validatorMessage="You can insert  integer and characters for password."> 
-=======
-    
-       <p:outputLabel value="Password:"/>
-      <p:password id="password" value="#{systemAdminAccountBean.accountCtl.password}"  label="password" required="true" validatorMessage="You can insert  integer and characters for password."> 
->>>>>>> branch 'master' of https://github.com/aye-sandar-htun/CARPARKING.git
-       <f:validateRegex pattern="[a-zA-Z ]+"/>
-        <f:validateLength maximum="20" />
-<<<<<<< HEAD
-       </p:inputText>  -->
-       
-=======
-       </p:password> 
->>>>>>> branch 'master' of https://github.com/aye-sandar-htun/CARPARKING.git
-        <br/>  <br/>  
+      
      <div  margin="100px">
      
   <p:commandButton style="width:55%;float:center;" value="Login" oncomplete="" action="#{systemAdminAccountBean.checkAccount()}" icon="ui-icon-add" styleClass="ui-priority-primary" />  

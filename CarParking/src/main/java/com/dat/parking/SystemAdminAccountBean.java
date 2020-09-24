@@ -121,9 +121,9 @@ public class SystemAdminAccountBean implements Serializable{
 		 FacesContext context = FacesContext.getCurrentInstance();
 		 context.addMessage(null, new FacesMessage("Login success."));
 		 adminInformation= getAdminProfileInformation(accountCtl.getName());
-		//return "systemAdminHomePage";
 		 this.reset();
-		 return "tapview";
+		return "systemAdminHomePage";
+		 
 		}
 		
 		
