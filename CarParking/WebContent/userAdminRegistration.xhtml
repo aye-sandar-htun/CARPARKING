@@ -37,12 +37,14 @@ body{
        </p:inputText> 
         <p:outputLabel value="Contact Number"/>
       <p:inputText id="contactNumber" value="#{userAdminAccountBean.accountCtl.contactNumber}" label="contactNumber" required="true" > 
-       <f:validateRegex pattern="[a-zA-Z ]+"/>
+       <f:validateLength  minimum="8" maximum="11"/>
        </p:inputText> 
        
              <p:outputLabel value="Email"/>
-      <p:inputText id="email" value="#{userAdminAccountBean.accountCtl.email}" label="email" required="true" validatorMessage="Insert only characters for name."> 
-       <f:validateRegex pattern="[a-zA-Z ]+"/>
+      <p:inputText id="email" value="#{userAdminAccountBean.accountCtl.email}" label="email" required="true" requiredMessage="Please enter your email address."
+		validatorMessage="Invalid email format"> 
+        <f:validateRegex
+		pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
        </p:inputText> 
        
              <p:outputLabel value="Address"/>

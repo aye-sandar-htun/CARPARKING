@@ -18,8 +18,13 @@ http://www.springframework.org/schema/context/spring-context-3.2.xsd http://www.
 		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName"
 			value="org.postgresql.Driver" />
+<<<<<<< HEAD
 		<property name="url"
          value="jdbc:postgresql://localhost:5432/carparking" />
+=======
+		<property name="url"	value="jdbc:postgresql://localhost:5433/project" />
+
+>>>>>>> branch 'master' of https://github.com/aye-sandar-htun/CARPARKING.git
 		<property name="username" value="postgres" />
 		<property name="password" value="root" />
 	</bean>

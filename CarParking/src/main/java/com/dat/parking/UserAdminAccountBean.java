@@ -23,7 +23,7 @@ public class UserAdminAccountBean implements Serializable{
 	  public UserAdminAccount accountCtl=new UserAdminAccount();
 	  
 	 private String name;
-	    private String contactNumber;
+	    private long contactNumber;
 	    private String email;
 	    private String address;
 	    private String password;
@@ -67,10 +67,10 @@ public class UserAdminAccountBean implements Serializable{
 		public void setName(String name) {
 			this.name = name;
 		}
-		public String getContactNumber() {
+		public long getContactNumber() {
 			return contactNumber;
 		}
-		public void setContactNumber(String contactNumber) {
+		public void setContactNumber(long contactNumber) {
 			this.contactNumber = contactNumber;
 		}
 		public String getEmail() {
@@ -213,7 +213,7 @@ public class UserAdminAccountBean implements Serializable{
 			//this.accountCtl.setName("");
 			this.accountCtl.setEmail("");
 			this.accountCtl.setAddress("");
-			this.accountCtl.setContactNumber("");
+			this.accountCtl.setContactNumber(0);
 			this.accountCtl.setPassword("");
 		}
 }

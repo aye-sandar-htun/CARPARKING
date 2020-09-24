@@ -1,4 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
@@ -6,38 +9,93 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:form>
-    <p:dataTable var="h" value="#{carParkingHistoryBean.historylist}" widgetVar="history_record"
-                 emptyMessage="No cars found with given criteria" filteredValue="#{carParkingHistoryBean.filteredRecords}">
+
+<h:head>
+<title>Car Parking</title>
+<link rel="stylesheet" href="resources/css/style.css" type="text/css"/>
+</h:head>
+<h:body>
+<div>
+<h:form id="f">
  
-        <p:column filterBy="#{h.building}" headerText="Building Name" filterMatchMode="contains">
-            <h:outputText value="#{h.building}" />
-        </p:column>
-        <p:column filterBy="#{h.floor}" headerText="Floor Name" filterMatchMode="contains">
-            <h:outputText value="#{h.floor}" />
-        </p:column>
-        <p:column filterBy="#{h.slot}" headerText="Slot Name" filterMatchMode="contains">
-            <h:outputText value="#{h.slot}" />
-        </p:column>
-        <p:column filterBy="#{h.carNumber}" headerText="Car Number" filterMatchMode="contains">
-            <h:outputText value="#{h.carNumber}" />
-        </p:column>
-        <p:column filterBy="#{h.entryTime}" headerText="Entry Time" filterMatchMode="contains">
-            <h:outputText value="#{h.entryTime}">
-             <f:convertDateTime pattern="hh:mm:ss" />
-            </h:outputText>
-        </p:column>
-        <p:column filterBy="#{h.exitTime}" headerText="Exit Time" filterMatchMode="contains">
-            <h:outputText value="#{h.exitTime}">
-             <f:convertDateTime pattern="hh:mm:ss" />
-            </h:outputText>
-        </p:column>
-        <p:column filterBy="#{h.date}" headerText="Date" filterMatchMode="contains">
-            <h:outputText value="#{h.date}">
-                 <f:convertDateTime pattern="yyyy/MM/dd" />
-                 </h:outputText>
-        </p:column>
+<p:panel id="panel">  
+<h:panelGrid columns="4" cellpadding="7">  
+
+<p:selectOneMenu id="building" value="#{carParkingHistoryBean.building}" style="width:80%">  
+<p:ajax listener="#{carParkingHistoryBean.onBuildingChange}"/> 
+<f:selectItem itemLabel="Select building" itemValue="" noSelectionOption="true" />  
+<f:selectItems value="#{carParkingBean.buildingLists()}"/>  
+</p:selectOneMenu>
+
+<p:selectOneMenu id="floor" value="#{carParkingHistoryBean.floor}" style="width:80%">  
+<p:ajax listener="#{carParkingHistoryBean.onFloorChange}"/> 
+<f:selectItem itemLabel="Select floor" itemValue="" noSelectionOption="true" />  
+<f:selectItems value="#{carParkingBean.floor}"/>  
+</p:selectOneMenu>
+
+<p:selectOneMenu id="date" value="#{carParkingHistoryBean.date}" style="width:80%">  
+
+<p:ajax listener="#{carParkingHistoryBean.onDateChange}"/> 
+<f:selectItem itemLabel="Select Date" itemValue="" noSelectionOption="true" />  
+<f:selectItems value="#{carParkingHistoryBean.dateList()}"/>  
+</p:selectOneMenu>
+
+<p:commandButton value="Search" actionListener="#{carParkingHistoryBean.searchHistory()}" update="form1" icon="ui-icon-check" styleClass="ui-priority-primary"  />  
+
+</h:panelGrid>
+
+<h:form enctype="multipart/form-data" id="form1">
+			<p:growl id="growl" sticky="false" life="3000" />
+			 <p:dataTable id="dt" var="t" rows="15" rowKey="row" value="#{carParkingHistoryBean.searchHistory()}">  
+            <p:column headerText="Id">  
+                <h:outputText value="#{t.id}"/>  
+            </p:column>  
+            <p:column headerText="Car Number">  
+                <h:outputText value="#{t.carNumber}" />  
+            </p:column>  
+            <p:column headerText="Slot">  
+                <h:outputText value="#{t.slot}" />  
+  
+            </p:column>  
+  
+            <p:column headerText="Floor">  
+                <h:outputText value="#{t.floor}" />  
+            </p:column>  
+            <p:column headerText="Building">  
+                <h:outputText value="#{t.building}" />    
+            </p:column> 
+             <p:column headerText="Date">  
+                <h:outputText value="#{t.date}">
+                <f:convertDateTime pattern="yyyy/MM/dd" />
+                </h:outputText>
+            </p:column>
+             <p:column headerText="Entry Time">  
+                <h:outputText value="#{t.entryTime}" /> 
+               
+            </p:column> 
+               <p:column headerText="Exit Time">  
+                <h:outputText value="#{t.exitTime}" >
+                  <f:convertDateTime dateStyle="full" pattern="h:mm a"/>
+                </h:outputText>
+            </p:column> 
+             <p:column headerText="Submitted User">  
+                <h:outputText value="#{t.submittedUser}" />  
+            </p:column> 
+            <p:column headerText="Actions"> 
+               
+	   		    
+   			 <p:growl showDetail="true" />
+     
+    		<p:commandButton value="Clear"  styleClass="ui-priority-primary">
+       		 <p:confirm header="Confirmation" message="Are you sure?" icon="pi pi-exclamation-triangle" />
+    		</p:commandButton>
+    </p:column>
     </p:dataTable>
     </h:form>
-  
+    </p:panel>
+</h:form>
+</div>
+   <br></br>
+<a style="float:right;" href="systemAdminHomePage.xhtml">Back</a>
+</h:body>
 </html>

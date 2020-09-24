@@ -177,6 +177,10 @@ public CarParkingService getCarParkingService() {
 
 		      this.reset();
 		    
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/aye-sandar-htun/CARPARKING.git
 		      }
 		  
 		  FacesContext context = FacesContext.getCurrentInstance();

@@ -13,7 +13,7 @@ public class SystemAdminAccount {
 private int id;
 private String name;
 private String email;
-private String contactNumber;
+private long contactNumber;
 private String password;
 
 @Id
@@ -43,10 +43,10 @@ public void setEmail(String email) {
 }
 
 @Column(name="contact_number")
-public String getContactNumber() {
+public long getContactNumber() {
 	return contactNumber;
 }
-public void setContactNumber(String contactNumber) {
+public void setContactNumber(long contactNumber) {
 	this.contactNumber = contactNumber;
 }
 
