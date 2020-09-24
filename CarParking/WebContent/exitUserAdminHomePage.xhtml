@@ -17,10 +17,13 @@
 
 <h:outputText  value="&emsp;&ensp;&emsp;&ensp;Car Parking System" style="font-weight:bold;font-family:Arial;
 	color:rgb(0, 0, 0); font-size:35px;" ></h:outputText>
-<p:tabView id="entryUserAdmin">
+<p:tabView id="entryUserAdmin" dynamic="true">
+
 		
 	
+	
 		<p:tab title="Current">
+			<p:button href="exitUserAdminHomePage.xhtml" value="Refresh"/>
 			<ui:include src="exitUserCurrent.xhtml" />
 		</p:tab>
 

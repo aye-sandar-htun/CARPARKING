@@ -1,5 +1,6 @@
 package com.dat.parking.dao;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -127,4 +128,16 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 		List todayList= query.list();	
 		return todayList;
 	}
+	
+	
+	/*
+	 * public CarParkingHistory findById(int id) 
+	 * { 
+	 * return (CarParkingHistory)sessionFactory.getCurrentSession().get(CarParkingHistory.class,id); 
+	 * } 
+	 * public void deleteCarHistory(CarParkingHistory cars) {
+	 * sessionFactory.getCurrentSession().delete(cars); 
+	 * }
+	 */
+	
 }

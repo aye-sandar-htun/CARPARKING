@@ -8,10 +8,12 @@
 
 
 
-<h:form>
-    <p:dataTable var="h" value="#{carParkingHistoryBean.historylist}" widgetVar="history_record"
+<h:form >
+
+
+    <p:dataTable  var="h" value="#{carParkingHistoryBean.historylist}" widgetVar="history_record"
                  emptyMessage="No cars found with given criteria" filteredValue="#{carParkingHistoryBean.filteredRecords}">
- 
+
         <p:column filterBy="#{h.building}" headerText="Building" filterMatchMode="contains">
             <h:outputText value="#{h.building}" />
         </p:column>
@@ -33,7 +35,22 @@
         <p:column filterBy="#{h.date}" headerText="Date" filterMatchMode="contains">
             <h:outputText value="#{h.date}" />
         </p:column>
+        
+         <!--  <p:column headerText="Actions"> 
+        <p:commandButton value="Delete" action="#{carParkingHistoryBean.deleteCarHistory(h.id)}"  styleClass="ui-priority-primary">
+       		 <p:confirm header="Confirmation" message="Are you sure?" icon="pi pi-exclamation-triangle" />
+    		</p:commandButton>
+     <h:form>
+   			 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+  			 <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+     		 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+   			 </p:confirmDialog>      
+			</h:form>
+        
+          </p:column>  -->
+         
     </p:dataTable>
+  
     </h:form>
  
 </html>

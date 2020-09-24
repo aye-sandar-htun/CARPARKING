@@ -166,7 +166,8 @@ public class UserAdminAccountBean implements Serializable{
 				 context.addMessage(null, new FacesMessage("Wrong username or password.Try again!"));
 				 this.reset();
 				 
-				 return "userAdminLogin";
+				 //return "userAdminLogin";
+				 return"";
 			}
 			else {
 				
@@ -174,7 +175,7 @@ public class UserAdminAccountBean implements Serializable{
 				 FacesContext context = FacesContext.getCurrentInstance();
 				 context.addMessage(null, new FacesMessage("Login success."));
 
-			// userAdminInformation= getUserProfileInformation(accountCtl.getName());
+			 userAdminInformation= getUserProfileInformation(accountCtl.getName());
 			 if(rank.equals("Entry")) {
 				 this.reset();
 				 return "entryUserAdminHomePage";

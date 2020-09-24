@@ -6,9 +6,11 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui">
 
+<body>
 
 
     <h:form>
+    
                
     <p:dataTable var="h" value="#{carParkingHistoryBean.showCurrentList}" widgetVar="history_record"
                  emptyMessage="No cars found with given criteria" filteredValue="#{carParkingHistoryBean.showFilteredCurrentList}">
@@ -54,5 +56,5 @@
     </p:column>
     </p:dataTable>
     </h:form>
- 
+ </body>
 </html>

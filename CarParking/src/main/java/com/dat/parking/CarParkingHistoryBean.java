@@ -14,9 +14,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.transaction.Transactional;
 
 import com.dat.parking.model.CarParkingHistory;
@@ -358,5 +360,15 @@ public class CarParkingHistoryBean implements Serializable{
 		}
 	}
 
-
+	
+	/*
+	 * //SystemAdmin delete carHistory public void deleteCarHistory(int id) {
+	 * CarParkingHistory cars=carParkingHistoryService.findById(id);
+	 * getCarParkingHistoryService().deleteCarHistory(cars); FacesContext
+	 * context=FacesContext.getCurrentInstance(); context.addMessage(null, new
+	 * FacesMessage("Delete successfully"));
+	 * 
+	 * //return "carHistory"; }
+	 */
+	
 }
