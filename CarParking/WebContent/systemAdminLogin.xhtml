@@ -27,7 +27,7 @@ body{
 	color:rgb(0, 0, 0); font-size:35px;" ></h:outputText> -->
 	
  		<!-- <h2>Welcome System Admin Login </h2> -->
- 		 <h:form styleClass="form">
+ 		 <h:form>
     <p:panel id="panel" header="Welcome SystemAdmin Login" style="width:500px; height:190px;">
 	<p:messages/>
     <h:panelGrid columns="2">
@@ -39,13 +39,7 @@ body{
 
     <h:outputLabel for="password" value="Password:" />
             <p:password id="password" value="#{systemAdminAccountBean.accountCtl.password}" required="true" label="password" />
-<<<<<<< HEAD
-      
-=======
-     		
 
-        <br/>  <br/>  
->>>>>>> branch 'master' of https://github.com/aye-sandar-htun/CARPARKING.git
      <div  margin="100px">
      
   <p:commandButton style="width:55%;float:center;" value="Login" oncomplete="" action="#{systemAdminAccountBean.checkAccount()}" icon="ui-icon-add" styleClass="ui-priority-primary" />  
