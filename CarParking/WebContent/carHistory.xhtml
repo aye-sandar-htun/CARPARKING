@@ -27,16 +27,30 @@
             <h:outputText value="#{h.carNumber}" />
         </p:column>
         <p:column filterBy="#{h.entryTime}" headerText="Entry Time" filterMatchMode="contains">
-            <h:outputText value="#{h.entryTime}" />
+        
+            <h:outputText value="#{h.entryTime}">
+              <f:convertDateTime pattern="HH:mm:ss" />
+            
+            </h:outputText>
         </p:column>
         <p:column filterBy="#{h.exitTime}" headerText="Exit Time" filterMatchMode="contains">
-            <h:outputText value="#{h.exitTime}" />
+        
+            <h:outputText value="#{h.exitTime}">
+              <f:convertDateTime pattern="HH:mm:ss" />
+            </h:outputText>
         </p:column>
         <p:column filterBy="#{h.date}" headerText="Date" filterMatchMode="contains">
-            <h:outputText value="#{h.date}" />
+        
+            <h:outputText value="#{h.date}">
+                                 <f:convertDateTime pattern="yyyy/MM/dd" />
+            
+            </h:outputText>
+        </p:column>
+         <p:column filterBy="#{h.submittedUser}" headerText="Submitted User" filterMatchMode="contains">
+            <h:outputText value="#{h.submittedUser}" />
         </p:column>
         
-         <!--  <p:column headerText="Actions"> 
+          <p:column headerText="Actions"> 
         <p:commandButton value="Delete" action="#{carParkingHistoryBean.deleteCarHistory(h.id)}"  styleClass="ui-priority-primary">
        		 <p:confirm header="Confirmation" message="Are you sure?" icon="pi pi-exclamation-triangle" />
     		</p:commandButton>
@@ -47,7 +61,7 @@
    			 </p:confirmDialog>      
 			</h:form>
         
-          </p:column>  -->
+          </p:column> 
          
     </p:dataTable>
   

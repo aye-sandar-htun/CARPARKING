@@ -35,6 +35,7 @@ public class CarParkingBean implements Serializable{
     private String selectedFloor;
     private List selectedSlots=new LinkedList();
     private List<String> buildings;
+    private String status;
     @ManagedProperty(value="#{carParkingService}")
     CarParkingService carParkingService;
     
@@ -43,6 +44,22 @@ public class CarParkingBean implements Serializable{
     
     public String getSlot() {
 		return slot;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getSelectedslot() {
+		return selectedslot;
+	}
+
+	public void setSelectedslot(String selectedslot) {
+		this.selectedslot = selectedslot;
 	}
 
 	public String getSelectedBuilding() {
@@ -171,6 +188,7 @@ public CarParkingService getCarParkingService() {
 			  carCtl.setBuildingName(bName);
 		      carCtl.setFloorName(selectedFloor);
 		      carCtl.setSlot("Slot"+i);
+		      carCtl.setStatus("available");
 		      carParkingService.persistInformation(this.carCtl); 
 
 		     floors.remove(selectedFloor);
@@ -186,7 +204,7 @@ public CarParkingService getCarParkingService() {
 		  }
 
 		  
-		return "tapview";
+		return "systemAdminHomePagee";
 	}
 
 	//building view
@@ -270,6 +288,17 @@ public CarParkingService getCarParkingService() {
 		 this.carCtl.setBuildingName("");
 		 this.carCtl.setFloorName("");
 	 }
-	
-	
+	//button color
+	 public String toggleStatus(String b,String f,String s) {
+			System.out.println(" get status for "+b+" Floor "+f+" Slot "+s);
+
+			String status=carParkingService.getStatus(b, f, s);
+			System.out.println(" status  "+status);
+			if(status.equals("available")){
+				System.out.println("status is green");
+				return "green";
+			}
+			else {
+			return "red";}
+		}
 }

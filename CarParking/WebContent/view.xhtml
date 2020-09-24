@@ -23,7 +23,7 @@
                <tr>
    		            <td><h:outputText/></td>
                  	<td><ui:repeat var="s" value="${carParkingBean.slotLists(f,b)}">
-                 	<p:commandButton styleClass="slot" value="#{s}"/>	
+                 	<p:commandButton styleClass="slot" value="#{s}" style="background:#{carParkingBean.toggleStatus(b,f,s)}"/>	
    	              </ui:repeat>
    	             
    	              </td>

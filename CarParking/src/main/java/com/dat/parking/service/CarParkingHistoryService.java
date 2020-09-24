@@ -20,9 +20,13 @@ public interface CarParkingHistoryService {
 
 
 	 public List checkFreeSlot(String slot,String floorName,String buildingName);
+
 	 
-	/*
-	 * CarParkingHistory findById(int id);
-	 *  void deleteCarHistory(CarParkingHistory cars);
-	 */
+	
+	  CarParkingHistory findById(int id);
+	   void deleteCarHistory(CarParkingHistory cars);
+	 
+
+	    void addExitTime(String building,String floor,String slot,Timestamp exitTime);
+
 }

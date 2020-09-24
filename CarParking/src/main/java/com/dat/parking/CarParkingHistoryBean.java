@@ -24,6 +24,7 @@ import javax.transaction.Transactional;
 import com.dat.parking.model.CarParkingHistory;
 import com.dat.parking.model.UserAdminAccount;
 import com.dat.parking.service.CarParkingHistoryService;
+import com.dat.parking.service.CarParkingService;
 
 
 @ManagedBean
@@ -31,6 +32,9 @@ import com.dat.parking.service.CarParkingHistoryService;
 public class CarParkingHistoryBean implements Serializable{
 	 @ManagedProperty(value="#{carParkingHistoryService}")
 	 CarParkingHistoryService carParkingHistoryService;
+	 @ManagedProperty(value="#{carParkingService}")
+
+	 CarParkingService carParkingService;
 	  public CarParkingHistory historyCtl=new CarParkingHistory();
 	  UserAdminAccount accountCtl=new UserAdminAccount();
 	  
@@ -55,9 +59,21 @@ public class CarParkingHistoryBean implements Serializable{
 	private List<CarParkingHistory> filteredRecords;
 	private List<CarParkingHistory> showCurrentList;
 	private List<CarParkingHistory> showFilteredCurrentList;
+private String status;
 
 	
-	
+	public CarParkingService getCarParkingService() {
+	return carParkingService;
+}
+public void setCarParkingService(CarParkingService carParkingService) {
+	this.carParkingService = carParkingService;
+}
+	public String getStatus() {
+	return status;
+}
+public void setStatus(String status) {
+	this.status = status;
+}
 	public List<CarParkingHistory> getShowCurrentList() {
 		return showCurrentList;
 	}
@@ -215,28 +231,35 @@ public class CarParkingHistoryBean implements Serializable{
 	public String persistInformation(){
 		historyCtl.setFloor(selectedFloor);
 		historyCtl.setSlot(selectedSlot);
-		List t=carParkingHistoryService.checkFreeSlot(historyCtl.getSlot(), historyCtl.getFloor(), historyCtl.getBuilding());
-		if(t.isEmpty()) {
+		//List t=carParkingHistoryService.checkFreeSlot(historyCtl.getSlot(), historyCtl.getFloor(), historyCtl.getBuilding());
+		String status=carParkingService.getStatus(historyCtl.getBuilding(), historyCtl.getFloor(), historyCtl.getSlot());
+		System.out.println(" status  "+status);
+		if(status.equals("available")){
 		
+			 FacesContext context = FacesContext.getCurrentInstance();
+			 context.addMessage("addCarMsg", new FacesMessage(FacesMessage.SEVERITY_INFO,"Successfully Parked.","Successfully Parked."));
+			System.out.println("buidling :" +historyCtl.getBuilding()+"floor :"+selectedFloor+" slot"+selectedSlot);
 			
+			updateStatus();
 		System.out.println("    car Number  : "+historyCtl.getCarNumber());
-	//	historyCtl.setFloor(selectedFloor);
-	//	historyCtl.setSlot(selectedSlot);
+	
 		
 		Date date = new Date();  
         Timestamp ts=new Timestamp(date.getTime());  
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");  
         System.out.println(formatter.format(ts));                     
-		  historyCtl.setEntryTime( ts);   
+		  historyCtl.setEntryTime(ts);   
 		   historyCtl.setDate(new Date());
-		   System.out.println("    submitted user in car history "+accountCtl.getName());
-		   historyCtl.setSubmittedUser(accountCtl.getName());
+		   historyCtl.setSubmittedUser(submittedUser);
 		   
 		carParkingHistoryService.persistInformation(this.historyCtl);
-
+	   
 		return"carHistory";
 	}
 		else {
+			 FacesContext context = FacesContext.getCurrentInstance();
+			 context.addMessage("addCarMsg", new FacesMessage(FacesMessage.SEVERITY_WARN,"Exiting car in the slot","Exiting car in the slot"));
+			
 			System.out.print("Exiting car in the slot");
 			return "addCarParking";
 		}
@@ -253,7 +276,6 @@ public class CarParkingHistoryBean implements Serializable{
 	public void onBuildingChange() {  
 		if(building!=null && !building.equals("")) { 
 			selectedBuilding = building; 
-			searchHistory();
 		}
 		else {
 
@@ -292,25 +314,7 @@ public class CarParkingHistoryBean implements Serializable{
 		return dateList;
 	}
 
-	 public List searchHistory() {
-		 System.out.println("    History Search"+selectedBuilding+selectedFloor+selectedDate);
-          if(selectedBuilding==null && selectedFloor==null && selectedDate==null) {
-        	 return this.carParkingHistoryService.carHistory();
-          }
-          else if(selectedBuilding==null && selectedFloor!=null && selectedDate==null){
-        	  return this.carParkingHistoryService.searchByFloor(selectedFloor);
-          }
-          else if(selectedBuilding!=null && selectedFloor==null && selectedDate==null){
-        	  return this.carParkingHistoryService.searchByBuilding(selectedBuilding);
-          }
-          else if(selectedBuilding!=null && selectedFloor!=null && selectedDate==null) {
-        	  return this.carParkingHistoryService.searchByBuildingFloor(building, floor);
-          }
-          else {
-        	  return null;
-          }
-		 
-	 }
+	
 	 
 	 //floorlist in dropdown
 	
@@ -334,7 +338,8 @@ public class CarParkingHistoryBean implements Serializable{
 		return slotList;
 		
 	}
-	public void selectedSlot(String slot) {
+	public void selectedSlot(String name,String slot) {
+		submittedUser=name;
 		selectedSlot=slot;
 		persistInformation();
 		   
@@ -348,27 +353,48 @@ public class CarParkingHistoryBean implements Serializable{
 		
 	}
 
-	//search carNumber from exit user admin
-	public List searchByCarNumber() {
-		System.out.println("    Car Number in search "+historyCtl.getCarNumber());
-		if(carNumber==null || carNumber=="") {
-			return carParkingHistoryService.showCurrent(today);
-		}
-		else {
-			
-		return carParkingHistoryService.searchByCarNumber(today,historyCtl.getCarNumber());
-		}
+	
+
+public void updateStatus() {
+	 carParkingService.updateStatus(historyCtl.getBuilding(), selectedFloor, selectedSlot);
+	 
+}
+//clear slot
+public void clearSlot(String f,String s) {
+	Date date = new Date();  
+    Timestamp ts=new Timestamp(date.getTime());  
+    carParkingHistoryService.addExitTime(historyCtl.getBuilding(), f, s, ts);
+    carParkingService.updateStatusAvailable(historyCtl.getBuilding(), f, s);
+	System.out.println(" clear slot Buidling "+historyCtl.getBuilding()+" Floor "+f+" Slot "+s);
+}
+
+public String toggleStatus(String f,String s) {
+	System.out.println(" get status for "+historyCtl.getBuilding()+" Floor "+f+" Slot "+s);
+
+	String status=carParkingService.getStatus(historyCtl.getBuilding(), f, s);
+	System.out.println(" status  "+status);
+	if(status.equals("available")){
+		System.out.println("status is green");
+		return "green";
 	}
 
 	
-	/*
-	 * //SystemAdmin delete carHistory public void deleteCarHistory(int id) {
-	 * CarParkingHistory cars=carParkingHistoryService.findById(id);
-	 * getCarParkingHistoryService().deleteCarHistory(cars); FacesContext
-	 * context=FacesContext.getCurrentInstance(); context.addMessage(null, new
-	 * FacesMessage("Delete successfully"));
-	 * 
-	 * //return "carHistory"; }
-	 */
 	
+	else {
+	return "red";}
+}
+
+
+
+
+  //SystemAdmin deletecarHistory 
+	public void deleteCarHistory(int id) {
+  CarParkingHistory cars=carParkingHistoryService.findById(id);
+  getCarParkingHistoryService().deleteCarHistory(cars); 
+  FacesContext context=FacesContext.getCurrentInstance();
+  context.addMessage(null, new FacesMessage("Delete successfully"));
+  
+  }
+ 
+
 }

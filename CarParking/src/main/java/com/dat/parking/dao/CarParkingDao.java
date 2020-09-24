@@ -15,5 +15,7 @@ public interface CarParkingDao {
 	 void deleteSlot(String buildingName,String floorName,String slot);
 	 
 	 public List buildingList(String bName);
-    
+	  void updateStatus(String building,String floor,String slot);
+      void updateStatusAvailable(String building,String floor,String slot);
+      public String getStatus(String building,String floor,String slot);
 	 }

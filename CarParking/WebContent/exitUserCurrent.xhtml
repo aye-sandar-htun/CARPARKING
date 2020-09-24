@@ -50,8 +50,7 @@
 	   		    
    			 <p:growl showDetail="true" />
      
-    		<p:commandButton value="Clear" styleClass="ui-priority-primary">
-       		 <p:confirm header="Confirmation" message="Are you sure?" icon="pi pi-exclamation-triangle" />
+    		<p:commandButton value="Clear" styleClass="ui-priority-primary" action="#{carParkingHistoryBean.clearSlot(h.floor,h.slot)}" update="@form">
     		</p:commandButton>
     </p:column>
     </p:dataTable>

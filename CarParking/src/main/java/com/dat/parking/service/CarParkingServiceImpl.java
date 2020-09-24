@@ -68,5 +68,23 @@ public class CarParkingServiceImpl implements CarParkingService{
 	 public List buildingList(String bName) {
 		 return this.carParkingDao.buildingList(bName);
 	 }
+	 @Transactional
+	@Override
+	public void updateStatus(String building, String floor, String slot) {
+		// TODO Auto-generated method stub
+		 carParkingDao.updateStatus(building, floor, slot);
+	}
+	 @Transactional
+	@Override
+	public void updateStatusAvailable(String building, String floor, String slot) {
+		// TODO Auto-generated method stub
+		 carParkingDao.updateStatusAvailable(building, floor, slot);
+	}
+	 @Transactional
+	@Override
+	public String getStatus(String building, String floor, String slot) {
+		// TODO Auto-generated method stub
+		return carParkingDao.getStatus(building, floor, slot);
+	}
 	
 }

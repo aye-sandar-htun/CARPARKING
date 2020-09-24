@@ -19,6 +19,7 @@ private String slot;
 private String floor;
 private String building;
 private Date date;
+
 private Timestamp  entryTime;
 private Timestamp  exitTime;
 private String submittedUser;

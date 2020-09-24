@@ -129,15 +129,27 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 		return todayList;
 	}
 	
+
 	
-	/*
-	 * public CarParkingHistory findById(int id) 
-	 * { 
-	 * return (CarParkingHistory)sessionFactory.getCurrentSession().get(CarParkingHistory.class,id); 
-	 * } 
-	 * public void deleteCarHistory(CarParkingHistory cars) {
-	 * sessionFactory.getCurrentSession().delete(cars); 
-	 * }
-	 */
+	
+	
+	  public CarParkingHistory findById(int id) 
+	  { 
+	  return (CarParkingHistory)sessionFactory.getCurrentSession().get(CarParkingHistory.class,id); 
+	  } 
+	  public void deleteCarHistory(CarParkingHistory cars) {
+	  sessionFactory.getCurrentSession().delete(cars); 
+	  }
+	 
+
+	@Override
+	public void addExitTime(String building, String floor, String slot,Timestamp exitTime) {
+		// TODO Auto-generated method stub
+		session=this.sessionFactory.getCurrentSession();
+		String hql="update CarParkingHistory set exitTime=:exitTime where building=:building AND floor=:floor AND slot=:slot";
+		Query query=session.createQuery(hql);
+		query.setParameter("exitTime",exitTime).setParameter("building", building).setParameter("floor", floor).setParameter("slot", slot);
+		query.executeUpdate();
+	}
 	
 }

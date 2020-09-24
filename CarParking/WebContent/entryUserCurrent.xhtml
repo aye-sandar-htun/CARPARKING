@@ -7,7 +7,8 @@
 	xmlns:p="http://primefaces.org/ui">  
   
      <p:outputLabel value="Building : "/><p:outputLabel value="#{carParkingHistoryBean.historyCtl.building}"/>
-    
+    <br></br>
+    <br></br>
     <h:form enctype="multipart/form-data" id="form1">
 			<p:growl id="growl" sticky="false" life="3000" />
 			 <p:dataTable id="dt" var="t" rows="15" rowKey="row" value="#{carParkingHistoryBean.showCurrent()}">  
@@ -36,6 +37,7 @@
              <p:column headerText="Entry Time">  
                 <h:outputText value="#{t.entryTime}">  
                  <f:convertDateTime pattern="hh:mm:ss" />
+                                  <f:convertDateTime pattern="HH:mm:ss" />
                   
                 </h:outputText>
             </p:column> 
@@ -45,9 +47,7 @@
                 </h:outputText>
             </p:column> 
                 
-             <p:column headerText="Submitted User">  
-                <h:outputText value="#{t.submittedUser}" />  
-            </p:column> 
+             
             
     </p:dataTable>
     </h:form>
