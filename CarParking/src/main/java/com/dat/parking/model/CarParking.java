@@ -14,7 +14,7 @@ private int building_id;
 private String buildingName;
 private String floorName;
 private String slot;
-
+private String status;
 @Id
 @GeneratedValue(strategy=GenerationType.AUTO)
 @Column(name="building_id")
@@ -51,6 +51,14 @@ public String getSlot() {
 
 public void setSlot(String slot) {
 	this.slot = slot;
+}
+@Column(name="status")
+public String getStatus() {
+	return status;
+}
+
+public void setStatus(String status) {
+	this.status = status;
 }
 
 }

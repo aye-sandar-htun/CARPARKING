@@ -1,5 +1,6 @@
 package com.dat.parking.service;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -84,4 +85,12 @@ public class CarParkingHistoryServiceImpl implements CarParkingHistoryService{
 	 public List checkFreeSlot(String slot,String floorName,String buildingName) {
 		return carParkingHistoryDao.checkFreeSlot(slot,floorName,buildingName);
 	}
+	@Transactional
+	@Override
+	public void addExitTime(String building, String floor, String slot, Timestamp exitTime) {
+		// TODO Auto-generated method stub
+		carParkingHistoryDao.addExitTime(building, floor, slot, exitTime);
+	}
+	
+	
 }

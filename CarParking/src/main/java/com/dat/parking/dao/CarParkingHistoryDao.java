@@ -1,5 +1,6 @@
 package com.dat.parking.dao;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -17,9 +18,6 @@ public interface CarParkingHistoryDao {
 	 public List<CarParkingHistory> showCurrent(Date date);
 
      public List<CarParkingHistory> searchByCarNumber(Date date,String carNumber);
-
-
-	 
 	 public List checkFreeSlot(String slot,String floorName,String buildingName);
-
+    void addExitTime(String buildingName,String floorName,String slot,Timestamp exitTime);
 }

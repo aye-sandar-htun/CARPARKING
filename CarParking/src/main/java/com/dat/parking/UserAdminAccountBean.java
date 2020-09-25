@@ -145,13 +145,13 @@ public class UserAdminAccountBean implements Serializable{
 			userAdminAccountService.persistInformation(this.accountCtl);
 			System.out.println("persist method success");
 			 FacesContext context = FacesContext.getCurrentInstance();
-			 context.addMessage(null, new FacesMessage("Successfully Registered!"));
+			 context.addMessage("registerMsg", new FacesMessage(FacesMessage.SEVERITY_INFO,"Successfully Registered.","Successfully Registered."));
 			 this.reset();
 			return "userAdminLogin";
 		}
 			else {
 				 FacesContext context = FacesContext.getCurrentInstance();
-				 context.addMessage(null, new FacesMessage("Exiting User name Change and Try again!"));
+				 context.addMessage("registerMsg", new FacesMessage(FacesMessage.SEVERITY_ERROR,"Exiting user.Try again!.","Exiting user.Try again!."));
 				 System.out.print("Exiting user");
 				 this.reset();
 				return "userAdminRegistration";
@@ -163,7 +163,7 @@ public class UserAdminAccountBean implements Serializable{
 			 List id=userAdminAccountService.checkAccount(accountCtl.getName(),accountCtl.getPassword());
 			if(id.isEmpty()) {
 				 FacesContext context = FacesContext.getCurrentInstance();
-				 context.addMessage(null, new FacesMessage("Wrong username or password.Try again!"));
+				 context.addMessage("loginMsg", new FacesMessage(FacesMessage.SEVERITY_ERROR,"Wrong username or password.Try again!","Wrong username or password.Try again!"));
 				 this.reset();
 				 
 				 return "userAdminLogin";
@@ -172,9 +172,9 @@ public class UserAdminAccountBean implements Serializable{
 				
 				System.out.println("Login success");
 				 FacesContext context = FacesContext.getCurrentInstance();
-				 context.addMessage(null, new FacesMessage("Login success."));
+				 context.addMessage("loginMsg", new FacesMessage(FacesMessage.SEVERITY_INFO,"Login Success","Login Success"));
 
-			// userAdminInformation= getUserProfileInformation(accountCtl.getName());
+			 userAdminInformation= getUserProfileInformation(accountCtl.getName());
 			 if(rank.equals("Entry")) {
 				 this.reset();
 				 return "entryUserAdminHomePage";

@@ -1,5 +1,6 @@
 package com.dat.parking.service;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -19,4 +20,6 @@ public interface CarParkingHistoryService {
 
 
 	 public List checkFreeSlot(String slot,String floorName,String buildingName);
+	    void addExitTime(String building,String floor,String slot,Timestamp exitTime);
+
 }

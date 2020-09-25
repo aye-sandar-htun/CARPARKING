@@ -27,10 +27,9 @@ body{
  <h:outputText  value="&emsp;&ensp;&emsp;&ensp;Car Parking System" style="font-weight:bold;font-family:Arial;
 	color:rgb(0, 0, 0); font-size:35px;" ></h:outputText>
 	
- 		 <h:form styleClass="form">
-
+<h:form>
 <p:panel header="Add System Admin Information" style="width: 500px;">
-	<p:messages/>
+	<p:messages for="registerMsg" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
     <h:panelGrid columns="2">
       <p:outputLabel value="Admin Name:"/>
       <p:inputText id="name" value="#{systemAdminAccountBean.accountCtl.name}" label="name" required="true" validatorMessage="Insert only characters for name."> 
@@ -73,7 +72,7 @@ body{
         <br/>  <br/>   -->
      <div  margin="100px">
     
-  <p:commandButton style="width:55%;float:center;" value="Register" oncomplete="" action="#{systemAdminAccountBean.persistInformation()}"  styleClass="ui-priority-primary" />  
+  <p:commandButton style="width:55%;float:center;" value="Register" oncomplete="" action="#{systemAdminAccountBean.persistInformation()}" update="@form" styleClass="ui-priority-primary" />  
       
   
      
@@ -87,6 +86,6 @@ body{
     </h:form> 
    </center> 
 
-   
+  
 </h:body>
 </html>

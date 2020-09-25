@@ -29,7 +29,7 @@ body{
  		 <h:form styleClass="form">
 
 <p:panel header="Add New UserAdmin" style="width: 500px;">
-	<p:messages/>
+	<p:messages for="registerMsg" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
     <h:panelGrid columns="2">
       <p:outputLabel value="Name:"/>
       <p:inputText id="name" value="#{userAdminAccountBean.accountCtl.name}" label="userName" required="true" validatorMessage="Insert only characters for name."> 
@@ -64,7 +64,7 @@ body{
         <br/>  <br/>  
     
     
-  <p:commandButton style="width:55%;float:center;" value="Register" oncomplete="" action="#{userAdminAccountBean.persistInformation()}" styleClass="ui-priority-primary" />  
+  <p:commandButton style="width:55%;float:center;" value="Register" oncomplete="" action="#{userAdminAccountBean.persistInformation()}" update="@form" styleClass="ui-priority-primary" />  
         
  </h:panelGrid>
   </p:panel>

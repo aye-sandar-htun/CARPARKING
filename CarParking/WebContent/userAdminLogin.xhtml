@@ -29,7 +29,7 @@ body{
  	
 <h:form>
     <p:panel header="Welcome UserAdmin Login" style="width: 500px;">
-	<p:messages/>
+	<p:messages for="loginMsg" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
     <h:panelGrid columns="2">
       <p:outputLabel value="Name:"/>
       <p:inputText id="userName" value="#{userAdminAccountBean.accountCtl.name}" label="userName" required="true" validatorMessage="Insert only characters for name."> 
@@ -44,14 +44,14 @@ body{
      
 
       <p:outputLabel value="Rank"></p:outputLabel>
-      <p:selectOneMenu id="rank" value="#{userAdminAccountBean.rank}" style="width:80%">  
+      <p:selectOneMenu id="rank" value="#{userAdminAccountBean.rank}" style="width:80%" required="true">  
         <p:ajax listener="#{userAdminAccountBean.onRankChange}"/> 
         <f:selectItem itemLabel="Select Rank" itemValue="" noSelectionOption="true" />  
         <f:selectItems value="#{userAdminAccountBean.userRank}"/> 
         </p:selectOneMenu>
          
         <p:outputLabel value="Building"></p:outputLabel>
-        <p:selectOneMenu id="building" value="#{carParkingHistoryBean.historyCtl.building}" style="width:80%">  
+        <p:selectOneMenu id="building" value="#{carParkingHistoryBean.historyCtl.building}" style="width:80%" required="true">  
         <p:ajax listener="#{carParkingHistoryBean.onBuildingChange}"/> 
         <f:selectItem itemLabel="Select building" itemValue="" noSelectionOption="true" />  
         <f:selectItems value="#{carParkingBean.buildingLists()}"/>  
@@ -59,7 +59,7 @@ body{
         <br/>  <br/> 
      <div  margin="100px">
      
-  <p:commandButton style="width:55%;float:center;" value="Login" icon="ui-icon-check" oncomplete="" action="#{userAdminAccountBean.checkAccount()}" styleClass="ui-priority-primary" />  
+  <p:commandButton style="width:55%;float:center;" value="Login" icon="ui-icon-check" oncomplete="" action="#{userAdminAccountBean.checkAccount()}" update="@form" styleClass="ui-priority-primary" />  
       
     </div>
 

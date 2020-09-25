@@ -1,5 +1,6 @@
 package com.dat.parking.dao;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
@@ -127,4 +128,14 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 		List todayList= query.list();	
 		return todayList;
 	}
+	@Override
+	public void addExitTime(String building, String floor, String slot,Timestamp exitTime) {
+		// TODO Auto-generated method stub
+		session=this.sessionFactory.getCurrentSession();
+		String hql="update CarParkingHistory set exitTime=:exitTime where building=:building AND floor=:floor AND slot=:slot";
+		Query query=session.createQuery(hql);
+		query.setParameter("exitTime",exitTime).setParameter("building", building).setParameter("floor", floor).setParameter("slot", slot);
+		query.executeUpdate();
+	}
+	
 }
