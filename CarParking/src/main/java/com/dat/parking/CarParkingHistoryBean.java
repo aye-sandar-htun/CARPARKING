@@ -369,6 +369,7 @@ public void clearSlot(String f,String s) {
 	 context.addMessage("exitMsg", new FacesMessage(FacesMessage.SEVERITY_INFO,"Car Exit","Car Exit"));
 	System.out.println(" clear slot Buidling "+historyCtl.getBuilding()+" Floor "+f+" Slot "+s);
 }
+
 public String toggleStatus(String f,String s) {
 	System.out.println(" get status for "+historyCtl.getBuilding()+" Floor "+f+" Slot "+s);
 
@@ -378,7 +379,24 @@ public String toggleStatus(String f,String s) {
 		System.out.println("status is green");
 		return "green";
 	}
+
+	
+	
 	else {
 	return "red";}
 }
+
+
+
+
+  //SystemAdmin deletecarHistory 
+	public void deleteCarHistory(int id) {
+  CarParkingHistory cars=carParkingHistoryService.findById(id);
+  getCarParkingHistoryService().deleteCarHistory(cars); 
+  FacesContext context=FacesContext.getCurrentInstance();
+  context.addMessage(null, new FacesMessage("Delete successfully"));
+  
+  }
+ 
+
 }

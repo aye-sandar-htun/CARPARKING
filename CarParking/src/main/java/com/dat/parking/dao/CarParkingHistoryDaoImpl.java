@@ -128,6 +128,20 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 		List todayList= query.list();	
 		return todayList;
 	}
+	
+
+	
+	
+	
+	  public CarParkingHistory findById(int id) 
+	  { 
+	  return (CarParkingHistory)sessionFactory.getCurrentSession().get(CarParkingHistory.class,id); 
+	  } 
+	  public void deleteCarHistory(CarParkingHistory cars) {
+	  sessionFactory.getCurrentSession().delete(cars); 
+	  }
+	 
+
 	@Override
 	public void addExitTime(String building, String floor, String slot,Timestamp exitTime) {
 		// TODO Auto-generated method stub

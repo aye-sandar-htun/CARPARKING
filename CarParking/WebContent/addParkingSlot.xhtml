@@ -8,7 +8,7 @@
 
 <!-- adding building and floors -->
 
-<h:form id="form1">  
+<h:form>  
 <p:growl id="msgs" showDetail="true" />  
 <p:panel id="panel">  
 <h:panelGrid columns="2" cellpadding="5">
@@ -19,24 +19,23 @@
     <h:outputText value="Number of floor: "/>  
     <p:inputText style="width:70%;" value="#{carParkingBean.carCtl.floorName}"/>   
     <h:outputText/>
-</h:panelGrid>
-</p:panel>
-</h:form>
-
-  <p:commandButton style="width:20%;float:right;" value="ADD" update="form1 form2" oncomplete="" actionListener="#{carParkingBean.floorList()}" styleClass="ui-priority-primary" />  
+  <p:commandButton style="width:55%;float:center;" value="ADD" update="panel" oncomplete="" actionListener="#{carParkingBean.floorList()}" styleClass="ui-priority-primary" />  
 
 
 
+<!-- drop down -->
 
-<h:form id="form2">  
-<p:growl id="msgs" showDetail="true" />  
-<p:panel id="panel" header="Creating slots">  
-<h:panelGrid columns="2" cellpadding="5">  
+  
+
+
+<h:panelGrid  columns="2" cellpadding="5">  
+<h:outputLabel/> 
+<h4 align="center">ADD Slot</h4>
 <h:outputLabel/> 
 <h:outputLabel style="font-size:13px;color:gray">*Enter the number of slot for each floor.</h:outputLabel>
 <p:outputLabel for="floor" value="Floor : " />  
 <p:selectOneMenu id="floor" value="#{carParkingBean.floorName}" style="width:70%">  
-<p:ajax listener="#{carParkingBean.onFloorChange}" process="@this"/> 
+<p:ajax listener="#{carParkingBean.onFloorChange}" /> 
 <f:selectItem itemLabel="Select floor" itemValue="" noSelectionOption="true" />  
 <f:selectItems value="#{carParkingBean.floors}" />  
 </p:selectOneMenu>  
@@ -44,11 +43,22 @@
 <p:inputText style="width:70%" value="#{carParkingBean.carCtl.slot}"/>
 </h:panelGrid>
 <p:separator />  
-<p:commandButton style="float:right;" value="Submit" update="form2" action="#{carParkingBean.persistInformation()}" icon="ui-icon-check" styleClass="ui-priority-primary"  />  
-</p:panel>  
-</h:form> 
+<p:commandButton style="float:right;" value="Submit" update="panel" action="#{carParkingBean.persistInformation()}" icon="ui-icon-check" styleClass="ui-priority-primary"  />  
+ 
+
+
+
+</h:panelGrid>
+</p:panel> 
+
+</h:form>
 
 <br></br>
+<br></br>
+<br></br>
+
+
+
 <!-- Editing button -->
 <div>
 <p:panel header="Edit">  
@@ -59,5 +69,6 @@
 </h:panelGrid>
 </p:panel>
 </div>
+
 
 </html>

@@ -85,6 +85,23 @@ public class CarParkingHistoryServiceImpl implements CarParkingHistoryService{
 	 public List checkFreeSlot(String slot,String floorName,String buildingName) {
 		return carParkingHistoryDao.checkFreeSlot(slot,floorName,buildingName);
 	}
+
+	
+	
+	  @Transactional
+	  @Override 
+	  public CarParkingHistory findById(int id) {
+	   return carParkingHistoryDao.findById(id); 
+	   }
+	  
+	  @Transactional
+	  @Override 
+	  public void deleteCarHistory(CarParkingHistory cars) {
+	  
+	  carParkingHistoryDao.deleteCarHistory(cars); 
+	  }
+	 
+
 	@Transactional
 	@Override
 	public void addExitTime(String building, String floor, String slot, Timestamp exitTime) {

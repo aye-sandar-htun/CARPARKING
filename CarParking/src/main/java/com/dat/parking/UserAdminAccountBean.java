@@ -166,7 +166,8 @@ public class UserAdminAccountBean implements Serializable{
 				 context.addMessage("loginMsg", new FacesMessage(FacesMessage.SEVERITY_ERROR,"Wrong username or password.Try again!","Wrong username or password.Try again!"));
 				 this.reset();
 				 
-				 return "userAdminLogin";
+				 //return "userAdminLogin";
+				 return"";
 			}
 			else {
 				

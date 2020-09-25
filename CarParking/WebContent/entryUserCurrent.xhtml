@@ -36,6 +36,7 @@
             </p:column>
              <p:column headerText="Entry Time">  
                 <h:outputText value="#{t.entryTime}">  
+                 <f:convertDateTime pattern="hh:mm:ss" />
                                   <f:convertDateTime pattern="HH:mm:ss" />
                   
                 </h:outputText>

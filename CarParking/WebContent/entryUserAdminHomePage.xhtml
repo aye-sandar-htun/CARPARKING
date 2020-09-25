@@ -16,13 +16,15 @@
     <h:body> 
     <h:outputText  value="&emsp;&ensp;&emsp;&ensp;Car Parking System" style="font-weight:bold;font-family:Arial;
 	color:rgb(0, 0, 0); font-size:35px;" ></h:outputText>
-   <p:tabView id="entryUserAdmin">
+   <p:tabView id="entryUserAdmin" dynamic="true">
 		
 	
 		<p:tab title="Add Car Parking">
-			<ui:include src="addCarParking.xhtml" />
+		<ui:include src="addCarParking.xhtml" />
 		</p:tab>
+		
 		<p:tab title="Current">
+			<p:button href="entryUserAdminHomePage.xhtml" value="Refresh"/>
 			<ui:include src="entryUserCurrent.xhtml" />
 		</p:tab>
 		<p:tab title="Profile">
