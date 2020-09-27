@@ -7,11 +7,35 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <!-- adding building and floors -->
+<h:head><title>Add Building</title> </h:head>
 
-<h:form>  
+ <h:body > 
+
+ 
+
+	
+<h:form>
+
+
+    <div align="center">
+    <h:outputText  value="Car Parking System"  style="font-weight:bold;font-family:Arial;
+	color:rgb(0, 0, 0); font-size:35px;" ></h:outputText>
+	</div><br></br>
+	
+	
+				<p:button href="addParkingSlot.xhtml" value="Add Building" style="margin:2px;width:100px;height:50px; background:#f4f6f6  ;color:#000000;" />
+				<p:button href="view.xhtml" value="Car view" style="margin:2px;width:100px;height:50px; background:#f2f4f4  ;color:#000000;" />
+				<p:button href="carHistory.xhtml" value="Car History" style="margin:2px;width:100px;height:50px; background: #ebedef  ;color:#000000;" />
+				<p:button href="systemAdminProfile.xhtml" value="Admin Profile" style="margin:2px;width:100px;height:50px; background: #ebedef  ;color:#000000;" />
+				
+	
+	
+
+
+  <!-- <h2 align="center">Add Building</h2> -->
 <p:growl id="msgs" showDetail="true" />  
 <p:panel id="panel">  
-<h:panelGrid columns="2" cellpadding="5">
+<h:panelGrid columns="2" cellpadding="5"> 
     <h:outputText value="Building name: "/>  
     <p:inputText style="width:70%;" value="#{carParkingBean.carCtl.buildingName}" label="buildingName" required="true" validatorMessage="Insert only characters for building name.">
      <f:validateRegex pattern="[a-zA-Z ]+"/>
@@ -19,7 +43,7 @@
     <h:outputText value="Number of floor: "/>  
     <p:inputText style="width:70%;" value="#{carParkingBean.carCtl.floorName}"/>   
     <h:outputText/>
-  <p:commandButton style="width:55%;float:center;" value="ADD" update="panel" oncomplete="" actionListener="#{carParkingBean.floorList()}" styleClass="ui-priority-primary" />  
+  <p:commandButton style="width:100px;height:50px; background:#209114 ;color:#000000;" value="ADD" update="panel" oncomplete="" actionListener="#{carParkingBean.floorList()}" styleClass="ui-priority-primary" />  
 
 
 
@@ -43,7 +67,7 @@
 <p:inputText style="width:70%" value="#{carParkingBean.carCtl.slot}"/>
 </h:panelGrid>
 <p:separator />  
-<p:commandButton style="float:right;" value="Submit" update="panel" action="#{carParkingBean.persistInformation()}" icon="ui-icon-check" styleClass="ui-priority-primary"  />  
+<p:commandButton style="width:100px;height:50px; background:#209114 ;color:#000000;"  value="Submit" update="panel" action="#{carParkingBean.persistInformation()}" icon="ui-icon-check" styleClass="ui-priority-primary"  />  
  
 
 
@@ -63,12 +87,12 @@
 <div>
 <p:panel header="Edit">  
 <h:panelGrid style="margin: 0 auto;" columns="3" cellpadding="5"> 
-<p:button value="Delete Building" href="deleteBuilding.xhtml" styleClass="ui-priority-primary"  />  
-<p:button value="Delete Floor" href="deleteFloor.xhtml" styleClass="ui-priority-primary"  />  
-<p:button value="Delete Slot" href="deleteSlot.xhtml" styleClass="ui-priority-primary"  />  
+<p:button value="Delete Building" href="deleteBuilding.xhtml" styleClass="ui-priority-primary" style="width:100px;height:50px; background:#ac131f ;color:#000000;"  />  
+<p:button value="Delete Floor" href="deleteFloor.xhtml" styleClass="ui-priority-primary" style="width:100px;height:50px; background:#ac131f ;color:#000000;"  />  
+<p:button value="Delete Slot" href="deleteSlot.xhtml" styleClass="ui-priority-primary" style="width:100px;height:50px; background:#ac131f ;color:#000000;" />  
 </h:panelGrid>
 </p:panel>
 </div>
 
-
+</h:body>
 </html>

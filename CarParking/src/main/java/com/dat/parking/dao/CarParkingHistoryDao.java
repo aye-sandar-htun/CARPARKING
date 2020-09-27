@@ -18,7 +18,7 @@ public interface CarParkingHistoryDao {
 	 public List<CarParkingHistory> showCurrent(Date date);
 
      public List<CarParkingHistory> searchByCarNumber(Date date,String carNumber);
-	 public List checkFreeSlot(String slot,String floorName,String buildingName);
+	 public List checkFreeSlot(String slot,String floorName,String buildingName,Timestamp exitTime);
 
 	 
 	 

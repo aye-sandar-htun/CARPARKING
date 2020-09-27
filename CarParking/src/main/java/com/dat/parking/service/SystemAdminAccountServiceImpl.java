@@ -15,14 +15,14 @@ public class SystemAdminAccountServiceImpl implements SystemAdminAccountService{
 	SystemAdminAccountDao systemAdminAccountDao;
 	
 	@Transactional
-	@Override
+	
 	public void persistInformation(SystemAdminAccount systemAdminAccount) {
 		// TODO Auto-generated method stub
 		systemAdminAccountDao.persistInformation(systemAdminAccount);
 
 	}
 	@Transactional
-	@Override
+	
 	public List checkAccount(String name, String password) {
 		// TODO Auto-generated method stub
 		return systemAdminAccountDao.checkAccount(name, password);
@@ -30,12 +30,12 @@ public class SystemAdminAccountServiceImpl implements SystemAdminAccountService{
 	
 	
 	@Transactional
-	@Override
+	
 	public List adminList(String name) {
 		return systemAdminAccountDao.adminList(name);
 	}
 	@Transactional
-	@Override
+	
 	public List<SystemAdminAccount> getAdminProfileInformation(String name) {
 		// TODO Auto-generated method stub
 		return systemAdminAccountDao.getAdminProfileInformation(name);

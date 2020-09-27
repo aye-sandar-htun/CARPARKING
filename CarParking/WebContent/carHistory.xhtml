@@ -6,9 +6,26 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui">
 
+<h:head><title>Car History</title></h:head>
+
+<h:body > 
 
 
-<h:form >
+
+    <div align="center">
+    <h:outputText  value="Car Parking System"  style="font-weight:bold;font-family:Arial;
+	color:rgb(0, 0, 0); font-size:35px;" ></h:outputText>
+	</div><br></br>
+	
+	<p:button href="addParkingSlot.xhtml" value="Add Building" style="margin:2px;width:100px;height:50px; background:#f4f6f6  ;color:#000000;" />
+				<p:button href="view.xhtml" value="Car view" style="margin:2px;width:100px;height:50px; background:#f2f4f4  ;color:#000000;" />
+				<p:button href="carHistory.xhtml" value="Car History" style="margin:2px;width:100px;height:50px; background: #ebedef  ;color:#000000;" />
+				<p:button href="systemAdminProfile.xhtml" style="margin:2px;width:100px;height:50px; background: #f8f9f9  ;color:#000000;" value="Admin Profile"/>
+		
+
+
+
+<h:form id="form1">
 
 
     <p:dataTable  var="h" value="#{carParkingHistoryBean.historylist}" widgetVar="history_record"
@@ -51,7 +68,7 @@
         </p:column>
         
           <p:column headerText="Actions"> 
-        <p:commandButton value="Delete" action="#{carParkingHistoryBean.deleteCarHistory(h.id)}"  styleClass="ui-priority-primary">
+        <p:commandButton value="Delete" action="#{carParkingHistoryBean.deleteCarHistory(h.id)}" update="form1" styleClass="ui-priority-primary">
        		 <p:confirm header="Confirmation" message="Are you sure?" icon="pi pi-exclamation-triangle" />
     		</p:commandButton>
      <h:form>
@@ -66,5 +83,5 @@
     </p:dataTable>
   
     </h:form>
- 
+ </h:body>
 </html>

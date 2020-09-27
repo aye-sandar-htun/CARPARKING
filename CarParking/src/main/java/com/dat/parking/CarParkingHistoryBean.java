@@ -231,7 +231,9 @@ public void setStatus(String status) {
 	public String persistInformation(){
 		historyCtl.setFloor(selectedFloor);
 		historyCtl.setSlot(selectedSlot);
-		//List t=carParkingHistoryService.checkFreeSlot(historyCtl.getSlot(), historyCtl.getFloor(), historyCtl.getBuilding());
+		//List t=carParkingHistoryService.checkFreeSlot(historyCtl.getSlot(), historyCtl.getFloor(), historyCtl.getBuilding(),historyCtl.getExitTime());
+		
+		
 		String status=carParkingService.getStatus(historyCtl.getBuilding(), historyCtl.getFloor(), historyCtl.getSlot());
 		System.out.println(" status  "+status);
 		if(status.equals("available")){

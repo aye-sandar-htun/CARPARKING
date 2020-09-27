@@ -18,7 +18,7 @@ public class CarParkingServiceImpl implements CarParkingService{
 	CarParkingDao carParkingDao;
 	
 	@Transactional
-	@Override
+	
 	public void persistInformation(CarParking carParking) {
 		// TODO Auto-generated method stub
 		carParkingDao.persistInformation(carParking);
@@ -26,38 +26,38 @@ public class CarParkingServiceImpl implements CarParkingService{
 	}
 	
 	@Transactional
-	@Override
+	
 	public List buildingLists() {
 		// TODO Auto-generated method stub
 		return carParkingDao.buildingLists();
 	}
 	@Transactional
-	@Override
+	
 	public List floorLists(String buildingName) {
 		// TODO Auto-generated method stub
 		return carParkingDao.floorLists(buildingName);
 	}
 	@Transactional
-	@Override
+	
 	public List slotLists(String floorName,String buildingName) {
 		// TODO Auto-generated method stub
 		return carParkingDao.slotLists(floorName,buildingName);
 	}
 	@Transactional
-	@Override
+	
 	public void deleteBuilding(String buildingName) {
 		// TODO Auto-generated method stub
 		carParkingDao.deleteBuilding(buildingName);
 	}
 	@Transactional
-	@Override
+	
 	public void deleteFloor(String buildingName, String floorName) {
 		// TODO Auto-generated method stub
 		carParkingDao.deleteFloor(buildingName, floorName);
 		
 	}
 	@Transactional
-	@Override
+	
 	public void deleteSlot(String buildingName, String floorName, String slot) {
 		// TODO Auto-generated method stub
 		carParkingDao.deleteSlot(buildingName, floorName, slot);
@@ -69,19 +69,19 @@ public class CarParkingServiceImpl implements CarParkingService{
 		 return this.carParkingDao.buildingList(bName);
 	 }
 	 @Transactional
-	@Override
+	
 	public void updateStatus(String building, String floor, String slot) {
 		// TODO Auto-generated method stub
 		 carParkingDao.updateStatus(building, floor, slot);
 	}
 	 @Transactional
-	@Override
+	
 	public void updateStatusAvailable(String building, String floor, String slot) {
 		// TODO Auto-generated method stub
 		 carParkingDao.updateStatusAvailable(building, floor, slot);
 	}
 	 @Transactional
-	@Override
+	
 	public String getStatus(String building, String floor, String slot) {
 		// TODO Auto-generated method stub
 		return carParkingDao.getStatus(building, floor, slot);

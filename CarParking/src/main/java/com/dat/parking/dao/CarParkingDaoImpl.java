@@ -19,19 +19,19 @@ public class CarParkingDaoImpl implements CarParkingDao{
 	
 	
 	
-	@Override
+	
 	public void persistInformation(CarParking carParking) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().save(carParking);
 	}
-	@Override
+	
 	public List buildingLists() {
 		// TODO Auto-generated method stub
 		 session = this.sessionFactory.getCurrentSession(); 
 		List buildingList = new LinkedList(new LinkedHashSet(session.createQuery("select buildingName from CarParking").list()));	
 		return buildingList;
 	}
-	@Override
+	
 	public List floorLists(String buildingName) {
 		// TODO Auto-generated method stub
 		 session=this.sessionFactory.getCurrentSession();
@@ -41,7 +41,7 @@ public class CarParkingDaoImpl implements CarParkingDao{
 		List floorList= new LinkedList(new LinkedHashSet(query.list()));
 		return floorList;
 	}
-	@Override
+	
 	public List slotLists(String floorName,String buildingName) {
 		// TODO Auto-generated method stub
 		 session=this.sessionFactory.getCurrentSession();
@@ -51,7 +51,7 @@ public class CarParkingDaoImpl implements CarParkingDao{
 		List slotList= query.list();	
 		return slotList;
 	}
-	@Override
+	
 	public void deleteBuilding(String buildingName) {
 		// TODO Auto-generated method stub
 		 session=this.sessionFactory.getCurrentSession();
@@ -62,7 +62,7 @@ public class CarParkingDaoImpl implements CarParkingDao{
 		
 
 	}
-	@Override
+	
 	public void deleteFloor(String buildingName, String floorName) {
 		// TODO Auto-generated method stub
 		 session=this.sessionFactory.getCurrentSession();
@@ -72,7 +72,7 @@ public class CarParkingDaoImpl implements CarParkingDao{
 	     query.executeUpdate();
 		
 	}
-	@Override
+	
 	public void deleteSlot(String buildingName, String floorName, String slot) {
 		// TODO Auto-generated method stub
 		 session=this.sessionFactory.getCurrentSession();
@@ -92,7 +92,7 @@ public class CarParkingDaoImpl implements CarParkingDao{
 		List result=q.list();
 		return result;
 	}
-	@Override
+	
 	public void updateStatus(String buildingName, String floorName, String slot) {
 		// TODO Auto-generated method stub
 		session=this.sessionFactory.getCurrentSession();
@@ -101,7 +101,7 @@ public class CarParkingDaoImpl implements CarParkingDao{
 		query.setParameter("buildingName", buildingName).setParameter("floorName", floorName).setParameter("slot", slot);
 		query.executeUpdate();
 	}
-	@Override
+	
 	public void updateStatusAvailable(String buildingName, String floorName, String slot) {
 		// TODO Auto-generated method stub
 		session=this.sessionFactory.getCurrentSession();
@@ -110,7 +110,7 @@ public class CarParkingDaoImpl implements CarParkingDao{
 		query.setParameter("buildingName", buildingName).setParameter("floorName", floorName).setParameter("slot", slot);
 		query.executeUpdate();
 	}
-	@Override
+	
 	public String getStatus(String buildingName, String floorName, String slot) {
 		// TODO Auto-generated method stub
 		session=this.sessionFactory.getCurrentSession();

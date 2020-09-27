@@ -16,13 +16,13 @@ public class SystemAdminAccountDaoImpl implements SystemAdminAccountDao{
 	@Autowired
 	private SessionFactory sessionFactory;
 	Session session;
-	@Override
+	
 	public void persistInformation(SystemAdminAccount systemAdminAccount) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().save(systemAdminAccount);
 
 	}
-	@Override
+	
 	public List checkAccount(String name, String password) {
 		// TODO Auto-generated method stub
 		 session=this.sessionFactory.getCurrentSession();
@@ -42,7 +42,7 @@ public class SystemAdminAccountDaoImpl implements SystemAdminAccountDao{
 		List id=q.list();
 		return id;
 	}
-	@Override
+	
 	public List<SystemAdminAccount> getAdminProfileInformation(String name) {
 		// TODO Auto-generated method stub
 		Session session=this.sessionFactory.getCurrentSession();
