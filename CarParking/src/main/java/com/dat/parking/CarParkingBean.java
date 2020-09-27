@@ -16,6 +16,7 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.component.tabview.TabView;
 import org.primefaces.event.TabChangeEvent;
 
 import com.dat.parking.model.CarParking;
@@ -194,7 +195,7 @@ public CarParkingService getCarParkingService() {
 		     floors.remove(selectedFloor);
 
 		      this.reset();
-		    
+		      //TabView tabView = FacesContext.getCurrentInstance().getViewRoot().findComponent(view); 
 
 
 		      }
