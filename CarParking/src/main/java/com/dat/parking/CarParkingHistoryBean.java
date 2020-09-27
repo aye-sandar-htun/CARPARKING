@@ -232,7 +232,9 @@ public void setStatus(String status) {
 		historyCtl.setFloor(selectedFloor);
 		historyCtl.setSlot(selectedSlot);
 		//List t=carParkingHistoryService.checkFreeSlot(historyCtl.getSlot(), historyCtl.getFloor(), historyCtl.getBuilding(),historyCtl.getExitTime());
+		List t=carParkingHistoryService.checkExitingCar(historyCtl.getCarNumber(), historyCtl.getExitTime());
 		
+		if(t.isEmpty()) {
 		
 		String status=carParkingService.getStatus(historyCtl.getBuilding(), historyCtl.getFloor(), historyCtl.getSlot());
 		System.out.println(" status  "+status);
@@ -257,7 +259,15 @@ public void setStatus(String status) {
 		carParkingHistoryService.persistInformation(this.historyCtl);
 	   
 		return"carHistory";
-	}
+			  }
+		else {
+			 FacesContext context = FacesContext.getCurrentInstance();
+			 context.addMessage("addCarMsg", new FacesMessage(FacesMessage.SEVERITY_WARN,"Exiting car in the slot","Exiting car in the slot"));
+			
+			System.out.print("Exiting car in the slot");
+			return "addCarParking";
+				}
+		}
 		else {
 			 FacesContext context = FacesContext.getCurrentInstance();
 			 context.addMessage("addCarMsg", new FacesMessage(FacesMessage.SEVERITY_WARN,"Exiting car in the slot","Exiting car in the slot"));
@@ -265,7 +275,7 @@ public void setStatus(String status) {
 			System.out.print("Exiting car in the slot");
 			return "addCarParking";
 		}
-		}
+	}
 	
 	//Search history 
 	@PostConstruct

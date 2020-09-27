@@ -20,7 +20,7 @@ public interface CarParkingHistoryDao {
      public List<CarParkingHistory> searchByCarNumber(Date date,String carNumber);
 	 public List checkFreeSlot(String slot,String floorName,String buildingName,Timestamp exitTime);
 
-	 
+	 public List checkExitingCar(String carNumber,Timestamp exitTime);
 	 
 	
 	  CarParkingHistory findById(int id); 

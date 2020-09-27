@@ -26,7 +26,7 @@
  
 <h:form> 
 <p:panel> 
-<p:messages for="addCarMsg" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
+<p:messages for="addCarMsg" autoUpdate="true" closable="true" />
 
 <h:panelGrid columns="2" cellpadding="7">
 
@@ -51,7 +51,9 @@
 <p:panel id="slot">
 <center>
   <ui:repeat var="s" value="${carParkingHistoryBean.slotLists()}">
-                 	<p:commandButton value="#{s}" action="#{carParkingHistoryBean.selectedSlot(userAdminAccountBean.accountCtl.name,s)}" update="@form" style="background:#{carParkingHistoryBean.toggleStatus(carParkingHistoryBean.selectedFloor,s)}"></p:commandButton>	
+                 	<p:commandButton value="#{s}" action="#{carParkingHistoryBean.selectedSlot(userAdminAccountBean.accountCtl.name,s)}" update="@form" style="background:#{carParkingHistoryBean.toggleStatus(carParkingHistoryBean.selectedFloor,s)}">
+                 	
+                 	</p:commandButton>	
    	              </ui:repeat>
    	              </center>
    	              </p:panel>

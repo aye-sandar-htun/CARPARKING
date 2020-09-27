@@ -19,7 +19,7 @@
 	</div><br></br>
 	
 				
-				<p:button href="exitUserCurrent.xhtml" style="margin:2px;width:100px;height:50px; background: #ebedef  ;color:#000000;" value="Car List"/>
+				<p:button href="exitUserCurrent.xhtml" style="margin:2px;width:100px;height:50px; background: #ebedef  ;color:#000000;" value="Show Car List"/>
 				<p:button href="exitUserAdminProfile.xhtml" style="margin:2px;width:100px;height:50px; background: #ebedef  ;color:#000000;" value="Admin Profile"/>
 
 
@@ -27,11 +27,9 @@
 
 
     <h:form>
-<<<<<<< HEAD
+
         	<p:messages for="exitMsg" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
-=======
-    
->>>>>>> branch 'master' of https://github.com/aye-sandar-htun/CARPARKING.git
+
                
     <p:dataTable var="h" value="#{carParkingHistoryBean.showCurrentList}" widgetVar="history_record"
                  emptyMessage="No cars found with given criteria" filteredValue="#{carParkingHistoryBean.showFilteredCurrentList}">

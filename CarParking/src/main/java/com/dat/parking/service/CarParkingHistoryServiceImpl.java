@@ -85,6 +85,11 @@ public class CarParkingHistoryServiceImpl implements CarParkingHistoryService{
 	 public List checkFreeSlot(String slot,String floorName,String buildingName,Timestamp exitTime) {
 		return carParkingHistoryDao.checkFreeSlot(slot,floorName,buildingName,exitTime);
 	}
+	
+	@Transactional
+	 public List checkExitingCar(String carNumber,Timestamp exitTime) {
+		return carParkingHistoryDao.checkExitingCar(carNumber, exitTime);
+	}
 
 	
 	
