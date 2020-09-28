@@ -122,4 +122,44 @@ public class CarParkingDaoImpl implements CarParkingDao{
 	}
 	
 	
+	//Check Exiting Building Name?
+    public List buildList(String buildingName) {
+    	session =this.sessionFactory.getCurrentSession();
+    	String sql="select buildingName from CarParking where buildingName=:buildingName";
+    	Query q=session.createQuery(sql);
+    	q.setParameter("buildingName",buildingName);
+    	List r=q.list();
+    	return r;
+    }
+    
+    //check for delete building with status
+    public List statusBuildingList(String buildingName) {
+    	session=this.sessionFactory.getCurrentSession();
+    	String sql="select id from CarParking where  buildingName=:buildingName and status='occupied'";
+    	Query q=session.createQuery(sql);
+    	q.setParameter("buildingName",buildingName);
+    	List t=q.list();
+    	return t;
+    	
+    }
+    
+    //Check for delete floor with status
+    public List statusFloorList(String buildingName,String floorName) {
+    	session=this.sessionFactory.getCurrentSession();
+    	String sql="select id from CarParking where buildingName=:buildingName and floorName=:floorName and status='occupied'";
+    	Query q=session.createQuery(sql);
+    	q.setParameter("buildingName",buildingName).setParameter("floorName",floorName);
+    	List t=q.list();
+    	return t;
+    }
+	
+    //Check for delete slot with status
+    public List statusSlotList(String buildingName,String floorName,String slot) {
+    	session=this.sessionFactory.getCurrentSession();
+    	String sql="select id from CarParking where buildingName=:buildingName and floorName=:floorName and slot=:slot and status='occupied'";
+    	Query q=session.createQuery(sql);
+    	q.setParameter("buildingName",buildingName).setParameter("floorName",floorName).setParameter("slot",slot);
+    	List t=q.list();
+    	return t;
+    }
 }

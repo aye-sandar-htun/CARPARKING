@@ -86,5 +86,25 @@ public class CarParkingServiceImpl implements CarParkingService{
 		// TODO Auto-generated method stub
 		return carParkingDao.getStatus(building, floor, slot);
 	}
-	
+	 
+	 @Transactional
+     public List buildList(String buildingName) {
+		 return carParkingDao.buildingList(buildingName);
+	 }
+
+	 @Transactional
+	 public List statusBuildingList(String buildingName) {
+		 return carParkingDao.statusBuildingList(buildingName);
+	 }
+	 
+	 @Transactional
+     public List statusFloorList(String buildingName,String floorName) {
+		 return carParkingDao.statusFloorList(buildingName, floorName);
+	 }
+	 
+	 @Transactional
+     public List statusSlotList(String buildingName,String floorName,String slot) {
+		 return carParkingDao.statusSlotList(buildingName, floorName, slot);
+	 }
+
 }
