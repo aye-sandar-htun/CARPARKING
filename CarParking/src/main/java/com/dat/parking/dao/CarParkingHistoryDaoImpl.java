@@ -20,12 +20,12 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 	@Autowired
 	private SessionFactory sessionFactory;
 	Session session;
-	@Override
+	
 	public void persistInformation(CarParkingHistory carParkingHistory) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().save(carParkingHistory);
 	}
-	@Override
+	
 	public List<CarParkingHistory> carHistory() {
 		// TODO Auto-generated method stub
 		session=this.sessionFactory.getCurrentSession();
@@ -35,14 +35,14 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 		}
 		return history;
 	}
-	@Override
+	
 	public List dateList() {
 		// TODO Auto-generated method stub
 		session = this.sessionFactory.getCurrentSession(); 
 		List dateList = new LinkedList(new LinkedHashSet(session.createQuery("select date from CarParkingHistory").list()));	
 		return dateList;
 	}
-	@Override
+	
 	public List<CarParkingHistory> searchByFloor(String floor) {
 		// TODO Auto-generated method stub
 		session=this.sessionFactory.getCurrentSession();
@@ -52,7 +52,7 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 		List historyList= query.list();
 		return historyList;
 	}
-	@Override
+	
 	public List<CarParkingHistory> searchByBuilding(String building) {
 		// TODO Auto-generated method stub
 		session=this.sessionFactory.getCurrentSession();
@@ -62,7 +62,7 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 		List historyList= query.list();
 		return historyList;
 	}
-	@Override
+	
 	public List<CarParkingHistory> searchByBuildingFloor(String building, String floor) {
 		// TODO Auto-generated method stub
 		session=this.sessionFactory.getCurrentSession();
@@ -72,7 +72,7 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 		List historyList= query.list();
 		return historyList;
 	}
-	@Override
+	
 	public List floorLists(String buildingName) {
 		// TODO Auto-generated method stub
 		 session=this.sessionFactory.getCurrentSession();
@@ -82,7 +82,7 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 			List floorList= new LinkedList(new LinkedHashSet(query.list()));
 			return floorList;
 	}
-	@Override
+	
 	public List slotLists(String floorName, String buildingName) {
 		// TODO Auto-generated method stub
 		session=this.sessionFactory.getCurrentSession();
@@ -97,18 +97,29 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 	
 	
 	
-	 public List checkFreeSlot(String slot,String floor,String building) {
+	 public List checkFreeSlot(String slot,String floor,String building,Timestamp exitTime) {
 		 session=this.sessionFactory.getCurrentSession();
-		 String sql="select id from CarParkingHistory where slot=:slot and floor=:floor and building=:building";
+		 String sql="select id from CarParkingHistory where slot=:slot and floor=:floor and building=:building and exitTime=null";
 		 		
 		 Query q=session.createQuery(sql);
-		 q.setParameter("slot", slot).setParameter("floor",floor).setParameter("building",building);
+		 q.setParameter("slot", slot).setParameter("floor",floor).setParameter("building",building).setParameter("exitTime",exitTime);
+		 List s=q.list();
+		 return s;
+	 }
+	 
+	 
+	 //CheckExitingCar
+	 public List checkExitingCar(String carNumber,Timestamp exitTime) {
+		 session=this.sessionFactory.getCurrentSession();
+		 String sql="select id from CarParkingHistory where carNumber=:carNumber and exitTime=null";
+		 Query q=session.createQuery(sql);
+		 q.setParameter("carNumber",carNumber);
 		 List s=q.list();
 		 return s;
 	 }
 	
 
-	@Override
+	
 	public List<CarParkingHistory> showCurrent(Date date) {
 		// TODO Auto-generated method stub
 		session=this.sessionFactory.getCurrentSession();
@@ -118,7 +129,8 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 		List todayList= query.list();	
 		return todayList;
 	}
-	@Override
+	
+	
 	public List<CarParkingHistory> searchByCarNumber(Date date,String carNumber) {
 		// TODO Auto-generated method stub
 		session=this.sessionFactory.getCurrentSession();
@@ -142,7 +154,7 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 	  }
 	 
 
-	@Override
+	
 	public void addExitTime(String building, String floor, String slot,Timestamp exitTime) {
 		// TODO Auto-generated method stub
 		session=this.sessionFactory.getCurrentSession();

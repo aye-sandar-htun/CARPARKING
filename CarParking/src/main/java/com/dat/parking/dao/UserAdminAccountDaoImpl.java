@@ -17,14 +17,14 @@ public class UserAdminAccountDaoImpl implements UserAdminAccountDao{
 	private SessionFactory sessionFactory;
 	Session session;
 	
-	@Override
+	
 	public void persistInformation(UserAdminAccount userAdminAccount) {
 		// TODO Auto-generated method stub
 		sessionFactory.getCurrentSession().save(userAdminAccount);
 
 	}
 
-	@Override
+	
 	public List checkAccount(String name, String password) {
 		// TODO Auto-generated method stub
 		 session=this.sessionFactory.getCurrentSession();
@@ -35,7 +35,7 @@ public class UserAdminAccountDaoImpl implements UserAdminAccountDao{
 			return id;
 	}
 
-	@Override
+	
 	public List<UserAdminAccount> getUserProfileInformation(String name) {
 		// TODO Auto-generated method stub
 		Session session=this.sessionFactory.getCurrentSession();

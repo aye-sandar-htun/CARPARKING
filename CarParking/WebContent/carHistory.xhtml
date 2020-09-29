@@ -6,65 +6,71 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui">
 
+<h:head><title>Car History</title></h:head>
+
+<h:body > 
 
 
-<h:form >
 
+    <div align="center">
+    <h:outputText  value="Car Parking System"  style="font-weight:bold;font-family:Arial;
+	color:rgb(0, 0, 0); font-size:35px;" ></h:outputText>
+	</div><br></br>
+	
+	<p:button href="addParkingSlot.xhtml" value="Add Building" style="margin:2px;width:100px;height:50px; background:#f4f6f6  ;color:#000000;" />
+				<p:button href="view.xhtml" value="Car view" style="margin:2px;width:100px;height:50px; background:#f2f4f4  ;color:#000000;" />
+				<p:button href="carHistory.xhtml" value="Car History" style="margin:2px;width:100px;height:50px; background: #ebedef  ;color:#000000;" />
+				<p:button href="systemAdminProfile.xhtml" style="margin:2px;width:100px;height:50px; background: #f8f9f9  ;color:#000000;" value="Admin Profile"/>
+		
 
-    <p:dataTable  var="h" value="#{carParkingHistoryBean.historylist}" widgetVar="history_record"
+<h:form style="margin:30px;">
+<h:panelGrid columns="2" cellpadding="5">  
+<p:outputLabel for="inline" value="Select Date" />  
+
+<p:calendar id="inline" value="#{carParkingHistoryBean.selectedDate}" mode="popup" pattern="dd/MM/yyyy" readOnlyInputText="true">  
+<p:ajax event="dateSelect" listener="#{carParkingHistoryBean.dateChange}"/>
+</p:calendar>
+</h:panelGrid>
+</h:form>
+
+    <h:form>
+    <p:dataTable style="margin-top:30px;" var="h" value="#{carParkingHistoryBean.historylist()}" widgetVar="history_record"
                  emptyMessage="No cars found with given criteria" filteredValue="#{carParkingHistoryBean.filteredRecords}">
-
-        <p:column filterBy="#{h.building}" headerText="Building" filterMatchMode="contains">
+ 
+      <p:column filterBy="#{h.building}" headerText="Building" filterMatchMode="contains">
             <h:outputText value="#{h.building}" />
         </p:column>
         <p:column filterBy="#{h.floor}" headerText="Floor" filterMatchMode="contains">
             <h:outputText value="#{h.floor}" />
         </p:column>
-        <p:column filterBy="#{h.slot}" headerText="Slot" filterMatchMode="contains">
+        <p:column filterBy="#{h.slot}" headerText="Slot Name" filterMatchMode="contains">
             <h:outputText value="#{h.slot}" />
         </p:column>
         <p:column filterBy="#{h.carNumber}" headerText="Car Number" filterMatchMode="contains">
             <h:outputText value="#{h.carNumber}" />
         </p:column>
         <p:column filterBy="#{h.entryTime}" headerText="Entry Time" filterMatchMode="contains">
-        
             <h:outputText value="#{h.entryTime}">
-              <f:convertDateTime pattern="HH:mm:ss" />
-            
+              <f:convertDateTime pattern="hh:mm aa" />
             </h:outputText>
         </p:column>
         <p:column filterBy="#{h.exitTime}" headerText="Exit Time" filterMatchMode="contains">
-        
             <h:outputText value="#{h.exitTime}">
-              <f:convertDateTime pattern="HH:mm:ss" />
-            </h:outputText>
-        </p:column>
-        <p:column filterBy="#{h.date}" headerText="Date" filterMatchMode="contains">
-        
-            <h:outputText value="#{h.date}">
-                                 <f:convertDateTime pattern="yyyy/MM/dd" />
+                          <f:convertDateTime pattern="hh:mm aa" />
             
             </h:outputText>
         </p:column>
-         <p:column filterBy="#{h.submittedUser}" headerText="Submitted User" filterMatchMode="contains">
-            <h:outputText value="#{h.submittedUser}" />
+        <p:column filterBy="#{h.date}" headerText="Date" filterMatchMode="contains">
+            <h:outputText value="#{h.date}">
+             <f:convertDateTime pattern="yyyy/MM/dd" />
+             </h:outputText>
         </p:column>
-        
-          <p:column headerText="Actions"> 
-        <p:commandButton value="Delete" action="#{carParkingHistoryBean.deleteCarHistory(h.id)}"  styleClass="ui-priority-primary">
-       		 <p:confirm header="Confirmation" message="Are you sure?" icon="pi pi-exclamation-triangle" />
-    		</p:commandButton>
-     <h:form>
-   			 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-  			 <p:commandButton value="Yes" oncomplete="PF('history_record').filter()" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
-     		 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
-   			 </p:confirmDialog>      
-			</h:form>
-        
-          </p:column> 
-         
+        <p:column filterBy="#{h.submittedUser}" headerText="Submitted User" filterMatchMode="contains">
+            <h:outputText value="#{h.submittedUser}">
+             <f:convertDateTime pattern="yyyy/MM/dd" />
+             </h:outputText>
+        </p:column>
     </p:dataTable>
-  
     </h:form>
- 
+ </h:body>
 </html>

@@ -178,11 +178,13 @@ public class UserAdminAccountBean implements Serializable{
 			 userAdminInformation= getUserProfileInformation(accountCtl.getName());
 			 if(rank.equals("Entry")) {
 				 this.reset();
-				 return "entryUserAdminHomePage";
+				// return "entryUserAdminHomePage";
+				 return "addCarParking.xhtml";
 			 }
 			 else {
 				 this.reset();
-				 return "exitUserAdminHomePage";
+				// return "exitUserAdminHomePage";
+				 return "exitUserCurrent";
 			 }
 
 			

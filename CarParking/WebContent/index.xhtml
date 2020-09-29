@@ -14,9 +14,9 @@
 
 <style>
 body{
-	/* background-image:url(#{request.contextPath}/resources/img/c0.jpg);
+	background-image:url(#{request.contextPath}/resources/img/c0.jpg);
 	height:100vh;
-	background-size:100% 100%; */ 
+	background-size:100% 100%; 
 	
 }
 </style>
@@ -25,29 +25,28 @@ body{
 
 <h:body>
 <br></br>
-<div style="float:right;">
-  
-<h:panelGrid columns="2">  
-<p:button href="systemAdminLogin.xhtml" value="SystemAdminLogin"></p:button>  
-<p:button href="userAdminLogin.xhtml" value="UserAdminLogin"> </p:button> 
 
 
-
-</h:panelGrid>
-
-
-</div>
 <div>
-      <h:outputText  value="Car Parking System" style="font-weight:bold;font-family:Castellar;
-	color:rgb(0, 0, 0); font-size:35px;" ></h:outputText>
+      <h:outputText  value="Car Parking System" style="font-weight:bold;font-family:Castellar;color:rgb(0, 0, 0); font-size:35px;" ></h:outputText>
 	
 	
+
   <fieldset style="border:0; bottom:-400px; position: relative; margin: 9px;">
         <legend>
-           <center> <h:outputText value="  &emsp;&ensp;&emsp;&emsp;&ensp;&emsp;&ensp;Save Time and Get Better Satisfaction With Online Car Parking System" style="font-weight: bold;"/></center>
-        </legend>
-    </fieldset>
-	</div>
 
+         <center>
+           <h:outputText value="  &emsp;&ensp;&emsp;&emsp;&ensp;&emsp;&ensp;Save Time and Get Better Satisfaction With Online Car Parking System" style="font-weight: bold;"/>
+           </center>
+		  </legend>
+    </fieldset>
+   </div>
+	
+	
+<div style="float:right; margin-top:-80px;"> 
+<p:button outcome="systemAdminLogin" value="SystemAdmin "  style="margin-right:5px;height:50px; background:#209114 ;color:#000000;" styleClass="ui-priority-primary"></p:button>
+<p:button outcome="userAdminLogin" value="UserAdmin"  style="margin-right:5px;height:50px;background:#ac131f; color:#000000;" styleClass="ui-priority-primary"></p:button>
+  </div>
+  
 </h:body>
 </html>

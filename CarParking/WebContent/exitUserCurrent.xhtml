@@ -6,17 +6,32 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<body>
+<h:head><title>Car Parking System</title></h:head>
+
+<h:body > 
+
+
+
+   
+	 <div align="center">
+    <h:outputText  value="Car Parking System"  style="font-weight:bold;font-family:Arial;
+	color:rgb(0, 0, 0); font-size:35px;" ></h:outputText>
+	</div><br></br>
+	
+				
+				<p:button href="exitUserCurrent.xhtml" style="margin:2px;width:100px;height:50px; background: #ebedef  ;color:#000000;" value="Show Car List"/>
+				<p:button href="exitUserAdminProfile.xhtml" style="margin:2px;width:100px;height:50px; background: #ebedef  ;color:#000000;" value="Admin Profile"/>
+
+
+
 
 
     <h:form>
-<<<<<<< HEAD
+
         	<p:messages for="exitMsg" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
-=======
-    
->>>>>>> branch 'master' of https://github.com/aye-sandar-htun/CARPARKING.git
+
                
-    <p:dataTable var="h" value="#{carParkingHistoryBean.showCurrentList}" widgetVar="history_record"
+    <p:dataTable var="h" value="#{carParkingHistoryBean.showCurrentList()}" widgetVar="history_record"
                  emptyMessage="No cars found with given criteria" filteredValue="#{carParkingHistoryBean.showFilteredCurrentList}">
   
  <p:column filterBy="#{h.carNumber}" headerText="Car Number" filterMatchMode="contains">
@@ -59,5 +74,5 @@
     </p:column>
     </p:dataTable>
     </h:form>
- </body>
+</h:body>
 </html>

@@ -7,11 +7,26 @@
 	xmlns:p="http://primefaces.org/ui">
 
 
-<center><h2>Add Car Parking</h2></center>
+<h:head><title>Car Parking System</title></h:head>
+
+<h:body> 
+  <div align="center">
+    <h:outputText  value="Car Parking System"  style="font-weight:bold;font-family:Arial;
+	color:rgb(0, 0, 0); font-size:35px;" ></h:outputText>
+	</div><br></br>
+	
+	
+				<p:button href="addCarParking.xhtml" style="margin:2px;width:100px;height:50px; background: #ebedef  ;color:#000000;" value="Add Car"/>
+				<p:button href="entryUserCurrent.xhtml" style="margin:2px;width:100px;height:50px; background: #ebedef  ;color:#000000;"  value="Show Car List"/>
+				<p:button href="userAdminProfile.xhtml" style="margin:2px;width:100px;height:50px; background: #ebedef  ;color:#000000;" value="Admin Profile"/>
+	
+
+
+<!-- <center><h2>Add Car Parking</h2></center> -->
  
 <h:form> 
 <p:panel> 
-<p:messages for="addCarMsg" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
+<p:messages for="addCarMsg" autoUpdate="true" closable="true" />
 
 <h:panelGrid columns="2" cellpadding="7">
 
@@ -36,10 +51,12 @@
 <p:panel id="slot">
 <center>
   <ui:repeat var="s" value="${carParkingHistoryBean.slotLists()}">
-                 	<p:commandButton value="#{s}" action="#{carParkingHistoryBean.selectedSlot(userAdminAccountBean.accountCtl.name,s)}" update="@form" style="background:#{carParkingHistoryBean.toggleStatus(carParkingHistoryBean.selectedFloor,s)}"></p:commandButton>	
+                 	<p:commandButton value="#{s}" action="#{carParkingHistoryBean.selectedSlot(userAdminAccountBean.accountCtl.name,s)}" update="@form" style="background:#{carParkingHistoryBean.toggleStatus(carParkingHistoryBean.selectedFloor,s)}">
+                 	
+                 	</p:commandButton>	
    	              </ui:repeat>
    	              </center>
    	              </p:panel>
  </h:form>  
-          
+   </h:body>       
 </html>

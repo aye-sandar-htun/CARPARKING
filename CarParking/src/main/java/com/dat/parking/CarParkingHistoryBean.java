@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -19,7 +20,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.transaction.Transactional;
+
+import org.primefaces.event.SelectEvent;
 
 import com.dat.parking.model.CarParkingHistory;
 import com.dat.parking.model.UserAdminAccount;
@@ -59,7 +63,7 @@ public class CarParkingHistoryBean implements Serializable{
 	private List<CarParkingHistory> filteredRecords;
 	private List<CarParkingHistory> showCurrentList;
 	private List<CarParkingHistory> showFilteredCurrentList;
-private String status;
+    private String status;
 
 	
 	public CarParkingService getCarParkingService() {
@@ -231,7 +235,11 @@ public void setStatus(String status) {
 	public String persistInformation(){
 		historyCtl.setFloor(selectedFloor);
 		historyCtl.setSlot(selectedSlot);
-		//List t=carParkingHistoryService.checkFreeSlot(historyCtl.getSlot(), historyCtl.getFloor(), historyCtl.getBuilding());
+		//List t=carParkingHistoryService.checkFreeSlot(historyCtl.getSlot(), historyCtl.getFloor(), historyCtl.getBuilding(),historyCtl.getExitTime());
+		List t=carParkingHistoryService.checkExitingCar(historyCtl.getCarNumber(), historyCtl.getExitTime());
+		
+		if(t.isEmpty()) {
+		
 		String status=carParkingService.getStatus(historyCtl.getBuilding(), historyCtl.getFloor(), historyCtl.getSlot());
 		System.out.println(" status  "+status);
 		if(status.equals("available")){
@@ -255,7 +263,15 @@ public void setStatus(String status) {
 		carParkingHistoryService.persistInformation(this.historyCtl);
 	   
 		return"carHistory";
-	}
+			  }
+		else {
+			 FacesContext context = FacesContext.getCurrentInstance();
+			 context.addMessage("addCarMsg", new FacesMessage(FacesMessage.SEVERITY_WARN,"Exiting car in the slot","Exiting car in the slot"));
+			
+			System.out.print("Exiting car in the slot");
+			return "addCarParking";
+				}
+		}
 		else {
 			 FacesContext context = FacesContext.getCurrentInstance();
 			 context.addMessage("addCarMsg", new FacesMessage(FacesMessage.SEVERITY_WARN,"Exiting car in the slot","Exiting car in the slot"));
@@ -263,15 +279,19 @@ public void setStatus(String status) {
 			System.out.print("Exiting car in the slot");
 			return "addCarParking";
 		}
-		}
+	}
 	
 	//Search history 
-	@PostConstruct
-    public void init() {
+    @PostConstruct
+    public List historylist() {
         historylist = carParkingHistoryService.carHistory();
-        showCurrentList=carParkingHistoryService.showCurrent(today);
+return historylist;
     }
-	
+    @PostConstruct
+    public List showCurrentList() {
+        showCurrentList=carParkingHistoryService.showCurrent(today);
+return showCurrentList;
+    }
 	
 	public void onBuildingChange() {  
 		if(building!=null && !building.equals("")) { 
@@ -398,5 +418,47 @@ public String toggleStatus(String f,String s) {
   
   }
  
+//date from calendar
+	public void dateChange(SelectEvent selectEvent) {
+		 Date date =selectedDate;
+			System.out.println(" date selected from calendar"+selectedDate);
+   
+	}
+	//compute duration
+	public long computeDuration(Timestamp entryTime,Timestamp exitTime) {
+	
+		 
+		if(exitTime==null) {
+			
+			return 0;
+		}
+		else {
+			
+				 // SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+				// Date date1 = new Date(entryTime.getTime());
+				 // Date date2 = new Date(exitTime.getTime());
+				//  long duration = ent - ext;
+				//  long d=new Timestamp(date1.getTime()-date2.getTime());
+				  //System.out.println(" duration  "+d);
+				//  String ent=entryTime.toString(); 
+				//	String ext=exitTime.toString();
+				//    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 
+				    Date d1 = new Date(entryTime.getTime());
+				    Date d2 = new Date(exitTime.getTime());
+				    Calendar c1 = Calendar.getInstance();
+				    Calendar c2 = Calendar.getInstance();
+				    c1.setTime(d1);
+				    c2.setTime(d2);
+				   
+					/*
+					 * if(c2.get(Calendar.HOUR_OF_DAY) < 12) { c2.set(Calendar.DAY_OF_YEAR,
+					 * c2.get(Calendar.DAY_OF_YEAR) + 1); }
+					 */
+				    long elapsed = c2.getTimeInMillis() - c1.getTimeInMillis();
+				    return elapsed;
+		}
+		
+		
+	}
 }

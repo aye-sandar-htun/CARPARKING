@@ -15,26 +15,26 @@ public class UserAdminAccountServiceImpl implements UserAdminAccountService{
 	UserAdminAccountDao userAdminAccountDao;
 	
 	@Transactional
-	@Override
+	
 	public void persistInformation(UserAdminAccount userAdminAccount) {
 		// TODO Auto-generated method stub
 		userAdminAccountDao.persistInformation(userAdminAccount);
 	}
 	@Transactional
-	@Override
+	
 	public List checkAccount(String name, String password) {
 		// TODO Auto-generated method stub
 		return userAdminAccountDao.checkAccount(name, password);
 	}
 	@Transactional
-	@Override
+	
 	public List<UserAdminAccount> getUserProfileInformation(String name) {
 		// TODO Auto-generated method stub
 		return userAdminAccountDao.getUserProfileInformation(name);
 	}
 	
 	@Transactional
-	@Override
+	
 	public List adminList(String name) {
 		return userAdminAccountDao.adminList(name);
 	}
