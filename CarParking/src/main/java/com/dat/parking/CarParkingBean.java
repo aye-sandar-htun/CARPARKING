@@ -155,14 +155,17 @@ public CarParkingService getCarParkingService() {
 		
 //add floorlist to dropdown
 	public String floorList() {
-		
+		List l=carParkingService.buildList(carCtl.getBuildingName());
+		if(l.isEmpty()) {
 		System.out.println("floorlist");
 		
 		
 		int count=Integer.parseInt(carCtl.getFloorName());
 		if(count>7) {
-			FacesContext context = FacesContext.getCurrentInstance();
-			context.addMessage(null, new FacesMessage("More than 7floors are not allowed!"));
+			 FacesContext context = FacesContext.getCurrentInstance();
+			 context.addMessage("msgs", new FacesMessage(FacesMessage.SEVERITY_INFO,"More than 7floors are not allowed!","More than 7floors are not allowed!"));
+		 
+			
 		}
 		else {
 		for(int i=1;i<=count;i++) {
@@ -171,18 +174,29 @@ public CarParkingService getCarParkingService() {
 		return "index";
 	}
 	
+	else {
+		 FacesContext context = FacesContext.getCurrentInstance();
+		 context.addMessage("msgs", new FacesMessage(FacesMessage.SEVERITY_INFO,"Exiting name of building.","Exiting name of building."));
+	  return "addParkingSlot";
+	}
+	}
 	
 
 	
 	
 	//method CRUD
 	public String persistInformation() {
+		
+		
 		String bName=carCtl.getBuildingName();
 		
 		  int slotcount=Integer.parseInt(carCtl.getSlot());
 		  if(selectedFloor==null || selectedFloor.equals("")) {
+			
 			  FacesContext context = FacesContext.getCurrentInstance();
-				context.addMessage(null, new FacesMessage("Please select a floor."));
+				 context.addMessage("msgs", new FacesMessage(FacesMessage.SEVERITY_INFO,"Please select a floor.","Please select a floor."));
+			  
+			  
 		  }
 		  else {
 		  for(int i=1;i<=slotcount;i++) {
@@ -201,11 +215,13 @@ public CarParkingService getCarParkingService() {
 		      }
 		  
 		  FacesContext context = FacesContext.getCurrentInstance();
-			 context.addMessage(null, new FacesMessage("Successfully added for "+selectedFloor+"."));
+			 context.addMessage("msgs", new FacesMessage(FacesMessage.SEVERITY_INFO,"Successfully added for "+selectedFloor+".","Successfully added for "+selectedFloor+"."));
+		  
 		  }
+		
 
 		  
-		return "systemAdminHomePagee";
+		return "addParkingSlot";
 	}
 
 	//building view
@@ -261,23 +277,61 @@ public CarParkingService getCarParkingService() {
 		}
 //delete building
 	 public void deleteBuilding(String buildingName) {
+		 System.out.println("deleted building is "+selectedBuilding);
+		 List t=carParkingService.statusBuildingList(selectedBuilding);
+		 
+		 
+		 if(t.isEmpty()) {
+		 
 		 carParkingService.deleteBuilding(selectedBuilding);
-		  FacesContext context = FacesContext.getCurrentInstance();
-			context.addMessage(null, new FacesMessage("Successfully deleted."));
+		 FacesContext context = FacesContext.getCurrentInstance();
+		 context.addMessage(null, new FacesMessage("Successfully deleted.",""));
+	
 		
 	 }
+		 else {
+			 FacesContext context = FacesContext.getCurrentInstance();
+			context.addMessage(null, new FacesMessage("Please attention.","car exiting in a building so u can not deleted."));
+			
+			 }
+		 }
 //delete floor
 	 public void deleteFloor(String buildingName,String floorName) {
+		 System.out.println("delete floor is "+selectedBuilding+" and "+selectedFloor);
+		 List f=carParkingService.statusFloorList(selectedBuilding, selectedFloor);
+		 if(f.isEmpty()) {
      
 		 carParkingService.deleteFloor(selectedBuilding, selectedFloor);
+		
 		 FacesContext context = FacesContext.getCurrentInstance();
-		 context.addMessage(null, new FacesMessage("Successfully deleted."));
+		 context.addMessage(null, new FacesMessage("Successfully deleted.",""));
+	
 			 }
+		 else {
+			 	FacesContext context = FacesContext.getCurrentInstance();
+			 	context.addMessage(null, new FacesMessage("Please attention ","car exiting in a floor so u can not deleted.."));
+			
+		 }
+		 
+	 }
 	 //delete slot
 	 public void deleteSlot(String buildingName,String floorName,String slot) {
+		 List s=carParkingService.statusSlotList(selectedBuilding, selectedFloor, selectedslot);
+		 if(s.isEmpty()) {
+		 
 		 carParkingService.deleteSlot(selectedBuilding, selectedFloor, selectedslot);
 		 FacesContext context = FacesContext.getCurrentInstance();
-		 context.addMessage(null, new FacesMessage("Successfully deleted."));
+		 context.addMessage(null, new FacesMessage("Successfully deleted.",""));
+		
+		 }
+		 else {
+			
+			 FacesContext context = FacesContext.getCurrentInstance();
+			 context.addMessage(null, new FacesMessage("Please attention","car exiting in a slot so u can not deleted."));
+			
+		 }
+		 
+	 
 	 }
 	 
 	 //reset

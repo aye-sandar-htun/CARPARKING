@@ -17,7 +17,7 @@
 
 <div id="div">
 <h:form>
-<p:growl id="msgs" showDetail="true" />  
+<p:growl id="msgs" showDetail="true" sticky="true" /> 
 <p:panel id="panel" header="Delete Floor">  
 <h:panelGrid columns="2" cellpadding="5">  
 
@@ -36,13 +36,13 @@
 </p:selectOneMenu>
 
 <p:outputLabel/> 
-<p:commandButton style="float:right;" value="Delete" icon="ui-icon-check" styleClass="ui-priority-primary">
+<p:commandButton style="float:right;"   value="Delete" icon="ui-icon-check" styleClass="ui-priority-primary">
 <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
 </p:commandButton>  
 </h:panelGrid>
 </p:panel>
 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">  
-<p:commandButton value="Yes" actionListener="#{carParkingBean.deleteFloor(buildingName,floorName)}" update="building floor" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
+<p:commandButton value="Yes" actionListener="#{carParkingBean.deleteFloor(buildingName,floorName)}" update="msgs" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />  
 </p:confirmDialog> 
 </h:form>

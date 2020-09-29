@@ -18,5 +18,12 @@ public interface CarParkingService {
 	 public void updateStatus(String building,String floor,String slot);
 	 void updateStatusAvailable(String building,String floor,String slot);
 	 public String getStatus(String building,String floor,String slot);
+	 
+     public List buildList(String buildingName);
+
+
+     public List statusBuildingList(String buildingName);
+     public List statusFloorList(String buildingName,String floorName);
+     public List statusSlotList(String buildingName,String floorName,String slot);
 
 }

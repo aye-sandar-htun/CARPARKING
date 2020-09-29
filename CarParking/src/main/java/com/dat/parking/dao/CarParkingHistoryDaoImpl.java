@@ -29,10 +29,8 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 	public List<CarParkingHistory> carHistory() {
 		// TODO Auto-generated method stub
 		session=this.sessionFactory.getCurrentSession();
-		List<CarParkingHistory> history=session.createQuery("from CarParkingHistory").list();
-		for(CarParkingHistory h:history) {
-
-		}
+		List<CarParkingHistory> history=session.createQuery("FROM CarParkingHistory").list();
+		
 		return history;
 	}
 	

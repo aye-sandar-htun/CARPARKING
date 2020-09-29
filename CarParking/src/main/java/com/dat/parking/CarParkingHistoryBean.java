@@ -386,7 +386,7 @@ public void clearSlot(String f,String s) {
     carParkingHistoryService.addExitTime(historyCtl.getBuilding(), f, s, ts);
     carParkingService.updateStatusAvailable(historyCtl.getBuilding(), f, s);
     FacesContext context = FacesContext.getCurrentInstance();
-	 context.addMessage("exitMsg", new FacesMessage(FacesMessage.SEVERITY_INFO,"Car Exit","Car Exit"));
+	 context.addMessage("exitMsg", new FacesMessage(FacesMessage.SEVERITY_INFO,"Car Exit",""));
 	System.out.println(" clear slot Buidling "+historyCtl.getBuilding()+" Floor "+f+" Slot "+s);
 }
 
