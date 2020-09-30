@@ -27,13 +27,14 @@
 <f:selectItems value="#{carParkingBean.buildingLists()}"/>  
 </p:selectOneMenu>
 <p:outputLabel/> 
-<p:commandButton style="float:right;" value="Delete" icon="ui-icon-check" styleClass="ui-priority-primary">
+
+<p:commandButton style="float:right;"   value="Delete" icon="ui-icon-check" styleClass="ui-priority-primary">
 <p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
 </p:commandButton>  
 </h:panelGrid>
 </p:panel>
 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">  
-<p:commandButton value="Yes" actionListener="#{carParkingBean.deleteBuilding(buildingName)}" update="building" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
+<p:commandButton value="Yes" actionListener="#{carParkingBean.deleteBuilding(buildingName)}" update="@form" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />  
 </p:confirmDialog> 
 </h:form>

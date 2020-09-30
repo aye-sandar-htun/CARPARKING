@@ -28,10 +28,10 @@
 
     <h:form>
 
-        	<p:messages for="exitMsg" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
+        	<p:messages for="exitMsg" autoUpdate="true" closable="true" showSummary="true" />
 
                
-    <p:dataTable var="h" value="#{carParkingHistoryBean.showCurrentList}" widgetVar="history_record"
+    <p:dataTable var="h" value="#{carParkingHistoryBean.showCurrentList()}" widgetVar="history_record"
                  emptyMessage="No cars found with given criteria" filteredValue="#{carParkingHistoryBean.showFilteredCurrentList}">
   
  <p:column filterBy="#{h.carNumber}" headerText="Car Number" filterMatchMode="contains">
@@ -65,6 +65,7 @@
                  </h:outputText>
         </p:column>
           <p:column headerText="Actions"> 
+               
                
 	   		    
    			 <p:growl showDetail="true" />

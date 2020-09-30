@@ -17,7 +17,8 @@
 
  <div id="div">
 <h:form id="f">
-<p:growl id="msgs" showDetail="true" />  
+<p:growl id="msgs" showDetail="true"/>  
+<!-- <p:messages for="msgs" autoUpdate="true" closable="true"  />  -->
 <p:panel id="panel" header="Delete Slot">  
 <h:panelGrid columns="2" cellpadding="5">  
 
@@ -51,7 +52,7 @@
 </p:commandButton>  
 
 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">  
-<p:commandButton value="Yes" actionListener="#{carParkingBean.deleteSlot(buildingName,floorName,slot)}" update="building floor slot" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
+<p:commandButton value="Yes" actionListener="#{carParkingBean.deleteSlot(buildingName,floorName,slot)}" update="@form" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />  
 </p:confirmDialog> 
 </h:form>

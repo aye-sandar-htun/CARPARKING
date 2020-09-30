@@ -23,65 +23,59 @@
 				<p:button href="systemAdminProfile.xhtml" style="margin:2px;width:120px;height:50px; background: #f8f9f9  ;color:#000000;" value="Admin Profile"/>
 		
 
+<h:form style="margin:30px;">
+<h:panelGrid columns="2" cellpadding="5">  
+<p:outputLabel for="inline" value="Select Date" />  
 
+<p:calendar id="inline" value="#{carParkingHistoryBean.selectedDate}" mode="popup" pattern="dd/MM/yyyy" readOnlyInputText="true">  
+<p:ajax event="dateSelect" listener="#{carParkingHistoryBean.dateChange}"/>
+</p:calendar>
+</h:panelGrid>
+</h:form>
 
-<h:form id="form1">
-
-
-    <p:dataTable  var="h" value="#{carParkingHistoryBean.historylist}" widgetVar="history_record"
+    <h:form>
+    <p:dataTable style="margin-top:30px;" var="h" value="#{carParkingHistoryBean.historylist()}" widgetVar="history_record"
                  emptyMessage="No cars found with given criteria" filteredValue="#{carParkingHistoryBean.filteredRecords}">
-
-        <p:column filterBy="#{h.building}" headerText="Building" filterMatchMode="contains">
+ 
+      <p:column filterBy="#{h.building}" headerText="Building" filterMatchMode="contains">
             <h:outputText value="#{h.building}" />
         </p:column>
         <p:column filterBy="#{h.floor}" headerText="Floor" filterMatchMode="contains">
             <h:outputText value="#{h.floor}" />
         </p:column>
-        <p:column filterBy="#{h.slot}" headerText="Slot" filterMatchMode="contains">
+        <p:column filterBy="#{h.slot}" headerText="Slot Name" filterMatchMode="contains">
             <h:outputText value="#{h.slot}" />
         </p:column>
         <p:column filterBy="#{h.carNumber}" headerText="Car Number" filterMatchMode="contains">
             <h:outputText value="#{h.carNumber}" />
         </p:column>
         <p:column filterBy="#{h.entryTime}" headerText="Entry Time" filterMatchMode="contains">
-        
             <h:outputText value="#{h.entryTime}">
-              <f:convertDateTime pattern="HH:mm:ss" />
-            
+              <f:convertDateTime pattern="hh:mm aa" />
             </h:outputText>
         </p:column>
         <p:column filterBy="#{h.exitTime}" headerText="Exit Time" filterMatchMode="contains">
-        
             <h:outputText value="#{h.exitTime}">
-              <f:convertDateTime pattern="HH:mm:ss" />
-            </h:outputText>
-        </p:column>
-        <p:column filterBy="#{h.date}" headerText="Date" filterMatchMode="contains">
-        
-            <h:outputText value="#{h.date}">
-                                 <f:convertDateTime pattern="yyyy/MM/dd" />
+                          <f:convertDateTime pattern="hh:mm aa" />
             
             </h:outputText>
         </p:column>
-         <p:column filterBy="#{h.submittedUser}" headerText="Submitted User" filterMatchMode="contains">
-            <h:outputText value="#{h.submittedUser}" />
+         <p:column headerText="Duration">
+            <h:outputText value="#{carParkingHistoryBean.computeDuration(h.entryTime,h.exitTime)}">
+            
+            </h:outputText>
         </p:column>
-        
-          <p:column headerText="Actions"> 
-        <p:commandButton value="Delete" action="#{carParkingHistoryBean.deleteCarHistory(h.id)}" update="form1" styleClass="ui-priority-primary">
-       		 <p:confirm header="Confirmation" message="Are you sure?" icon="pi pi-exclamation-triangle" />
-    		</p:commandButton>
-     <h:form>
-   			 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-  			 <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
-     		 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
-   			 </p:confirmDialog>      
-			</h:form>
-        
-          </p:column> 
-         
+        <p:column headerText="Date">
+            <h:outputText value="#{h.date}">
+             <f:convertDateTime pattern="dd/MM/yyyy" />
+             </h:outputText>
+        </p:column>
+        <p:column headerText="Submitted User">
+            <h:outputText value="#{h.submittedUser}">
+             <f:convertDateTime pattern="yyyy/MM/dd" />
+             </h:outputText>
+        </p:column>
     </p:dataTable>
-  
     </h:form>
  </h:body>
 </html>

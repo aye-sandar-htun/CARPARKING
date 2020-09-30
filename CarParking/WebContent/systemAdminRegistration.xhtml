@@ -28,8 +28,11 @@ body{
 	color:rgb(0, 0, 0); font-size:35px;" ></h:outputText>
 	
 <h:form>
+
+ 		 <p:growl id="msgs" showDetail="true" life="2000"/>
+
 <p:panel header="Add System Admin Information" style="width: 500px; margin-top:28px;">
-	<p:messages for="registerMsg" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
+<p:messages for="registerMsg" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
     <h:panelGrid columns="2">
       <p:outputLabel value="Admin Name:"/>
       <p:inputText id="name" value="#{systemAdminAccountBean.accountCtl.name}" label="name" required="true" validatorMessage="Insert only characters for name."> 
@@ -50,7 +53,7 @@ body{
        
        
         <p:outputLabel for="password" value="Password:"/>
-       <p:password id="password" value="#{systemAdminAccountBean.accountCtl.password}" feedback="false" match="repeated_password" validatorMessage="You can insert  integer and characters for password and mini8 char.">
+       <p:password id="password" value="#{systemAdminAccountBean.accountCtl.password}" feedback="false" match="repeated_password">
        <f:validateLength minimum="8" />
        </p:password>
        

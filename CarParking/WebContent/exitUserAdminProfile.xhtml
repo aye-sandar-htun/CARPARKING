@@ -24,7 +24,11 @@
 
   <center>
 <p:panel> 
-<h:panelGrid columns="2" cellpadding="5">
+<h:panelGrid columns="2" cellpadding="5" style="float:center;">
+<f:facet name="header"> ExitUserAdmin Profile </f:facet> 
+   <p:graphicImage name="/img/a.png"  style="width=100px; height=100px;float:left;"/> 
+    
+<h:panelGrid columns="2" cellpadding="2">
   <ui:repeat var="u" value="${userAdminAccountBean.userAdminInformation}">
   <p:outputLabel>User Name :</p:outputLabel>
     <h:outputText value="#{u.name}" /> <br></br> 
@@ -36,7 +40,7 @@
     <h:outputText value="#{u.email}" />  <br></br>
    
   </ui:repeat>
-
+</h:panelGrid>
     </h:panelGrid>
     </p:panel>
   </center>

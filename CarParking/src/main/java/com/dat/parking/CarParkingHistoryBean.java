@@ -6,7 +6,10 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
@@ -19,7 +22,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.transaction.Transactional;
+
+import org.primefaces.event.SelectEvent;
 
 import com.dat.parking.model.CarParkingHistory;
 import com.dat.parking.model.UserAdminAccount;
@@ -59,7 +65,7 @@ public class CarParkingHistoryBean implements Serializable{
 	private List<CarParkingHistory> filteredRecords;
 	private List<CarParkingHistory> showCurrentList;
 	private List<CarParkingHistory> showFilteredCurrentList;
-private String status;
+    private String status;
 
 	
 	public CarParkingService getCarParkingService() {
@@ -278,12 +284,16 @@ public void setStatus(String status) {
 	}
 	
 	//Search history 
-	@PostConstruct
-    public void init() {
+    @PostConstruct
+    public List historylist() {
         historylist = carParkingHistoryService.carHistory();
-        showCurrentList=carParkingHistoryService.showCurrent(today);
+return historylist;
     }
-	
+    @PostConstruct
+    public List showCurrentList() {
+        showCurrentList=carParkingHistoryService.showCurrent(today);
+return showCurrentList;
+    }
 	
 	public void onBuildingChange() {  
 		if(building!=null && !building.equals("")) { 
@@ -378,7 +388,7 @@ public void clearSlot(String f,String s) {
     carParkingHistoryService.addExitTime(historyCtl.getBuilding(), f, s, ts);
     carParkingService.updateStatusAvailable(historyCtl.getBuilding(), f, s);
     FacesContext context = FacesContext.getCurrentInstance();
-	 context.addMessage("exitMsg", new FacesMessage(FacesMessage.SEVERITY_INFO,"Car Exit","Car Exit"));
+	 context.addMessage("exitMsg", new FacesMessage(FacesMessage.SEVERITY_INFO,"Car Exit",""));
 	System.out.println(" clear slot Buidling "+historyCtl.getBuilding()+" Floor "+f+" Slot "+s);
 }
 
@@ -410,5 +420,35 @@ public String toggleStatus(String f,String s) {
   
   }
  
-
+//date from calendar
+	public void dateChange(SelectEvent selectEvent) {
+		 Date date =selectedDate;
+			System.out.println(" date selected from calendar"+selectedDate);
+   
+	}
+	//compute duration
+	public String computeDuration(Timestamp entryTime,Timestamp exitTime) {
+		String duration;
+		 
+		if(exitTime!=null) {
+			
+				
+				    long millis =exitTime.getTime()-entryTime.getTime();
+				    int sec=(int)millis/1000;
+				    int hr=sec/3600;
+				    int min=(sec%3600)/60;
+				    sec=(sec%3600)%60;
+				     duration=hr+":"+min+":"+sec;
+				    
+				   System.out.println("duration "+duration);
+				    return duration;
+		}
+		else {
+		return"";
+		}
+		
+	}
+	LocalDate currentdate = LocalDate.now();
+	 Month currentMonth = currentdate.getMonth();
+	
 }

@@ -111,7 +111,7 @@ public class SystemAdminAccountBean implements Serializable{
 		if(id.isEmpty()) {
 			System.out.println("Login fail");
 			 FacesContext context = FacesContext.getCurrentInstance();
-			 context.addMessage("loginMsg", new FacesMessage(FacesMessage.SEVERITY_ERROR,"Wrong username or password.Try again!","Wrong username or password.Try again!"));
+			 context.addMessage("loginMsg", new FacesMessage("Wrong username or password.Try again!"));
 			 this.reset();
 				return "systemAdminLogin";
 
@@ -119,7 +119,7 @@ public class SystemAdminAccountBean implements Serializable{
 		else {
 		System.out.println("Login success");
 		 FacesContext context = FacesContext.getCurrentInstance();
-		 context.addMessage("loginMsg", new FacesMessage(FacesMessage.SEVERITY_INFO,"Login Success","Login Success"));
+		 context.addMessage("loginMsg", new FacesMessage("Login Success"));
 		 adminInformation= getAdminProfileInformation(accountCtl.getName());
 		 this.reset();
 		//return "systemAdminHomePage";

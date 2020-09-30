@@ -18,20 +18,28 @@
 	color:rgb(0, 0, 0); font-size:35px;" ></h:outputText>
 	</div><br></br>
 
+
 	<p:button  href="addParkingSlot.xhtml" value="Add Building" style="margin:2px;width:120px;height:50px; background:#209114  ;color:#000000;" />
 	<p:button href="view.xhtml" value="View CarParking " style="margin:2px;width:120px;height:50px; background:#f2f4f4  ;color:#000000;" />
 	<p:button href="carHistory.xhtml" value="Car History" style="margin:2px;width:120px;height:50px; background: #f2f4f4  ;color:#000000;" />
 	<p:button href="systemAdminProfile.xhtml" value="Admin Profile" style="margin:2px;width:120px;height:50px; background: #f2f4f4  ;color:#000000;" />
 	
-<p:growl id="msgs" showDetail="true" />  
-<p:panel id="panel">  
+
+  <!-- <h2 align="center">Add Building</h2> -->
+<p:panel id="panel"> 
+ <p:growl id="msgs" showDetail="true" life="2000"/>
+<p:messages for="msgs" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
+ 
+
 <h:panelGrid columns="2" cellpadding="5"> 
     <h:outputText value="Building name: "/>  
     <p:inputText style="width:70%;" value="#{carParkingBean.carCtl.buildingName}" label="buildingName" required="true" validatorMessage="Insert only characters for building name.">
      <f:validateRegex pattern="[a-zA-Z ]+"/>
      </p:inputText>
     <h:outputText value="Number of floor: "/>  
-    <p:inputText style="width:70%;" value="#{carParkingBean.carCtl.floorName}"/>   
+    <p:inputText style="width:70%;" value="#{carParkingBean.carCtl.floorName}" label="floorNumber" required="true" validatorMessage="Insert integer for number of floor.">
+    <f:validateRegex pattern="[0-9]+" />
+    </p:inputText>   
     <h:outputText/>
   <p:commandButton style="width:100px;height:50px; background:#209114 ;color:#000000;" value="Add" update="panel" oncomplete="" actionListener="#{carParkingBean.floorList()}" styleClass="ui-priority-primary" />  
 
@@ -57,13 +65,14 @@
 </p:selectOneMenu>  
 
 <p:outputLabel value="Number of slot: " />     
-<p:inputText style="width:70%" value="#{carParkingBean.carCtl.slot}"/>
+<p:inputText style="width:70%" value="#{carParkingBean.carCtl.slot}">
+    <f:validateRegex pattern="[0-9]+" />
+
+</p:inputText>
 </h:panelGrid>
+
 <!-- <p:separator />   -->
 <p:commandButton style="width:100px;height:50px; background:#209114 ;color:#000000;"  value="Submit" update="panel" action="#{carParkingBean.persistInformation()}"  styleClass="ui-priority-primary"  />  
- 
-
-
 
 </h:panelGrid>
 </p:panel> 
