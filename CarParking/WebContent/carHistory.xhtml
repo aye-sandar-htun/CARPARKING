@@ -60,12 +60,17 @@
             
             </h:outputText>
         </p:column>
-        <p:column filterBy="#{h.date}" headerText="Date" filterMatchMode="contains">
+         <p:column headerText="Duration">
+            <h:outputText value="#{carParkingHistoryBean.computeDuration(h.entryTime,h.exitTime)}">
+            
+            </h:outputText>
+        </p:column>
+        <p:column headerText="Date">
             <h:outputText value="#{h.date}">
-             <f:convertDateTime pattern="yyyy/MM/dd" />
+             <f:convertDateTime pattern="dd/MM/yyyy" />
              </h:outputText>
         </p:column>
-        <p:column filterBy="#{h.submittedUser}" headerText="Submitted User" filterMatchMode="contains">
+        <p:column headerText="Submitted User">
             <h:outputText value="#{h.submittedUser}">
              <f:convertDateTime pattern="yyyy/MM/dd" />
              </h:outputText>

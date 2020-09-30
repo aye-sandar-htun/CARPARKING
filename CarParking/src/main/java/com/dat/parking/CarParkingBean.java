@@ -30,7 +30,7 @@ public class CarParkingBean implements Serializable{
 	public String slot;
 	
     public CarParking carCtl=new CarParking();
-    private List<String> floors=new LinkedList();
+    private Set<String> floors=new LinkedHashSet();
     private List<String>floor=new LinkedList();
     private String selectedBuilding;
     private String selectedFloor;
@@ -109,18 +109,18 @@ public class CarParkingBean implements Serializable{
 	}
 
     
-    public List<String> getFloors() {
+   
+	
+
+   public Set<String> getFloors() {
 		return floors;
 	}
 
-	
-	public void setFloors(List<String> floors) {
+	public void setFloors(Set<String> floors) {
 		this.floors = floors;
 	}
 
-	
-
-   public String getFloorName() {
+public String getFloorName() {
 		return floorName;
 	}
 
@@ -191,6 +191,11 @@ public CarParkingService getCarParkingService() {
 		String bName=carCtl.getBuildingName();
 		
 		  int slotcount=Integer.parseInt(carCtl.getSlot());
+		  if(slotcount>100) {
+			  FacesContext context = FacesContext.getCurrentInstance();
+				 context.addMessage("msgs", new FacesMessage(FacesMessage.SEVERITY_INFO,"More than 100slots are not allowed!","More than 100slots are not allowed!"));
+		  }
+		  else {
 		  if(selectedFloor==null || selectedFloor.equals("")) {
 			
 			  FacesContext context = FacesContext.getCurrentInstance();
@@ -219,7 +224,7 @@ public CarParkingService getCarParkingService() {
 		  
 		  }
 		
-
+		  }
 		  
 		return "addParkingSlot";
 	}

@@ -7,7 +7,9 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
@@ -425,40 +427,28 @@ public String toggleStatus(String f,String s) {
    
 	}
 	//compute duration
-	public long computeDuration(Timestamp entryTime,Timestamp exitTime) {
-	
+	public String computeDuration(Timestamp entryTime,Timestamp exitTime) {
+		String duration;
 		 
-		if(exitTime==null) {
+		if(exitTime!=null) {
 			
-			return 0;
+				
+				    long millis =exitTime.getTime()-entryTime.getTime();
+				    int sec=(int)millis/1000;
+				    int hr=sec/3600;
+				    int min=(sec%3600)/60;
+				    sec=(sec%3600)%60;
+				     duration=hr+":"+min+":"+sec;
+				    
+				   System.out.println("duration "+duration);
+				    return duration;
 		}
 		else {
-			
-				 // SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
-				// Date date1 = new Date(entryTime.getTime());
-				 // Date date2 = new Date(exitTime.getTime());
-				//  long duration = ent - ext;
-				//  long d=new Timestamp(date1.getTime()-date2.getTime());
-				  //System.out.println(" duration  "+d);
-				//  String ent=entryTime.toString(); 
-				//	String ext=exitTime.toString();
-				//    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-
-				    Date d1 = new Date(entryTime.getTime());
-				    Date d2 = new Date(exitTime.getTime());
-				    Calendar c1 = Calendar.getInstance();
-				    Calendar c2 = Calendar.getInstance();
-				    c1.setTime(d1);
-				    c2.setTime(d2);
-				   
-					/*
-					 * if(c2.get(Calendar.HOUR_OF_DAY) < 12) { c2.set(Calendar.DAY_OF_YEAR,
-					 * c2.get(Calendar.DAY_OF_YEAR) + 1); }
-					 */
-				    long elapsed = c2.getTimeInMillis() - c1.getTimeInMillis();
-				    return elapsed;
+		return"";
 		}
 		
-		
 	}
+	LocalDate currentdate = LocalDate.now();
+	 Month currentMonth = currentdate.getMonth();
+	
 }
