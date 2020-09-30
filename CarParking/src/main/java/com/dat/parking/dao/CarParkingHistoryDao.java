@@ -9,6 +9,7 @@ import com.dat.parking.model.CarParkingHistory;
 public interface CarParkingHistoryDao {
       void persistInformation(CarParkingHistory carParkingHistory);
       public List<CarParkingHistory> carHistory();
+      public List<CarParkingHistory> carHistoryForSelectedDate(Date date);
       public List dateList();
       public List<CarParkingHistory> searchByFloor(String floor);
       public List<CarParkingHistory> searchByBuilding(String building);

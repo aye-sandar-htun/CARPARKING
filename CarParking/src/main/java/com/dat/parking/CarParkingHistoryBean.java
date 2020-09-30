@@ -283,11 +283,24 @@ public void setStatus(String status) {
 		}
 	}
 	
-	//Search history 
-    @PostConstruct
+	//show car history 
+  
     public List historylist() {
-        historylist = carParkingHistoryService.carHistory();
-return historylist;
+    	
+        	if(selectedDate==null) {
+    		 historylist = carParkingHistoryService.carHistory();
+    		 return historylist;
+        	}
+        	else {
+        		System.out.println(" list for selected ate");
+        		historylist=carParkingHistoryService.carHistoryForSelectedDate(selectedDate);
+        		 return historylist;
+        	}
+    	
+      //  historylist = carParkingHistoryService.carHistory(selectedDate);
+       // return historylist;
+    	//}
+
     }
     @PostConstruct
     public List showCurrentList() {
@@ -355,7 +368,7 @@ return showCurrentList;
 	 }
 	 
 	public List slotLists() {
-
+System.out.println("                    selected building "+historyCtl.getBuilding()+" selectedFloor    "+selectedFloor);
 		slotList=carParkingHistoryService.slotLists(selectedFloor, historyCtl.getBuilding());
 		return slotList;
 		
@@ -383,6 +396,12 @@ public void updateStatus() {
 }
 //clear slot
 public void clearSlot(String f,String s) {
+	String status=carParkingService.getStatus(historyCtl.getBuilding(), f, s);
+	if(status.equals("available")) {
+		 FacesContext context = FacesContext.getCurrentInstance();
+		 context.addMessage("exitMsg", new FacesMessage(FacesMessage.SEVERITY_INFO,"Already exiting!",""));
+	}
+	else {
 	Date date = new Date();  
     Timestamp ts=new Timestamp(date.getTime());  
     carParkingHistoryService.addExitTime(historyCtl.getBuilding(), f, s, ts);
@@ -391,7 +410,7 @@ public void clearSlot(String f,String s) {
 	 context.addMessage("exitMsg", new FacesMessage(FacesMessage.SEVERITY_INFO,"Car Exit",""));
 	System.out.println(" clear slot Buidling "+historyCtl.getBuilding()+" Floor "+f+" Slot "+s);
 }
-
+}
 public String toggleStatus(String f,String s) {
 	System.out.println(" get status for "+historyCtl.getBuilding()+" Floor "+f+" Slot "+s);
 
@@ -450,5 +469,13 @@ public String toggleStatus(String f,String s) {
 	}
 	LocalDate currentdate = LocalDate.now();
 	 Month currentMonth = currentdate.getMonth();
-	
+	//show slot detail
+	 public String showMessage(String building,String floor,String slot) {
+			String status=carParkingService.getStatus(building, floor, slot);
+			System.out.println(" get status for detail "+building+" Floor "+floor+" Slot "+slot);
+
+		 String message="Hi";
+		 System.out.println("Hi");
+		 return message;
+	 }
 }

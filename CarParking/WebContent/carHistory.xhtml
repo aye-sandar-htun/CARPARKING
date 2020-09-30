@@ -28,12 +28,12 @@
 <p:outputLabel for="inline" value="Select Date" />  
 
 <p:calendar id="inline" value="#{carParkingHistoryBean.selectedDate}" mode="popup" pattern="dd/MM/yyyy" readOnlyInputText="true">  
-<p:ajax event="dateSelect" listener="#{carParkingHistoryBean.dateChange}"/>
+<p:ajax event="dateSelect" listener="#{carParkingHistoryBean.dateChange}" update="history"/>
 </p:calendar>
 </h:panelGrid>
 </h:form>
 
-    <h:form>
+    <h:form id="history">
     <p:dataTable style="margin-top:30px;" var="h" value="#{carParkingHistoryBean.historylist()}" widgetVar="history_record"
                  emptyMessage="No cars found with given criteria" filteredValue="#{carParkingHistoryBean.filteredRecords}">
  

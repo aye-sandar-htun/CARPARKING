@@ -29,8 +29,9 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 	public List<CarParkingHistory> carHistory() {
 		// TODO Auto-generated method stub
 		session=this.sessionFactory.getCurrentSession();
-		List<CarParkingHistory> history=session.createQuery("FROM CarParkingHistory").list();
-		
+		String hql="FROM CarParkingHistory WHERE date >= date_trunc('month',CURRENT_DATE)";
+		Query query=session.createQuery(hql);
+		List history= query.list();
 		return history;
 	}
 	
@@ -160,6 +161,17 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 		Query query=session.createQuery(hql);
 		query.setParameter("exitTime",exitTime).setParameter("building", building).setParameter("floor", floor).setParameter("slot", slot);
 		query.executeUpdate();
+	}
+
+	@Override
+	public List<CarParkingHistory> carHistoryForSelectedDate(Date date) {
+		// TODO Auto-generated method stub
+		session=this.sessionFactory.getCurrentSession();
+		String hql="from CarParkingHistory where date=:date";
+		Query query=session.createQuery(hql);
+		query.setParameter("date", date);
+		List selectedCarList= query.list();	
+		return selectedCarList;
 	}
 	
 }

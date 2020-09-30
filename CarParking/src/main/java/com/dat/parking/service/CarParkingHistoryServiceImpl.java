@@ -113,6 +113,12 @@ public class CarParkingHistoryServiceImpl implements CarParkingHistoryService{
 		// TODO Auto-generated method stub
 		carParkingHistoryDao.addExitTime(building, floor, slot, exitTime);
 	}
+	@Transactional
+	@Override
+	public List<CarParkingHistory> carHistoryForSelectedDate(Date date) {
+		// TODO Auto-generated method stub
+		return carParkingHistoryDao.carHistoryForSelectedDate(date);
+	}
 	
 	
 }
