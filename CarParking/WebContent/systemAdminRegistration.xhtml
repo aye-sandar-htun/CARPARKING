@@ -14,24 +14,25 @@
 <link rel="stylesheet" href="resources/css/style.css" type="text/css"/>
 <style>
 body{
-	/* background-image:url(#{request.contextPath}/resources/img/c10.jpg);
+	 background-image:url(#{request.contextPath}/resources/img/c.jpg);
 	height:100vh;
-	background-size:100% 100%; */ 
+	background-size:100% 100%; 
 }
 </style>
 <link rel="stylesheet" href="resources/css/style.css" type="text/css"/>
 
 </h:head>
 <h:body>
-<center>
+<center style="margin-top:28px;">
  <h:outputText  value="&emsp;&ensp;&emsp;&ensp;Car Parking System" style="font-weight:bold;font-family:Arial;
 	color:rgb(0, 0, 0); font-size:35px;" ></h:outputText>
 	
 <h:form>
+
  		 <p:growl id="msgs" showDetail="true" life="2000"/>
 
-<p:panel header="Add System Admin Information" style="width: 500px;">
-	<p:messages for="registerMsg" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
+<p:panel header="Add System Admin Information" style="width: 500px; margin-top:28px;">
+<p:messages for="registerMsg" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
     <h:panelGrid columns="2">
       <p:outputLabel value="Admin Name:"/>
       <p:inputText id="name" value="#{systemAdminAccountBean.accountCtl.name}" label="name" required="true" validatorMessage="Insert only characters for name."> 
@@ -72,17 +73,13 @@ body{
         <f:validateLength maximum="20" />
        </p:inputText> 
         <br/>  <br/>   -->
-     <div  margin="100px">
+        
+        <h:panelGrid columns="2" style="margin-top:18px;">
     
-  <p:commandButton style="width:55%;float:center;" value="Register" oncomplete="" action="#{systemAdminAccountBean.persistInformation()}" update="@form" styleClass="ui-priority-primary" />  
-      
+  <p:commandButton style="margin-right:5px;height:50px;background:#209114; color:#000000;" value="Register" oncomplete="" action="#{systemAdminAccountBean.persistInformation()}" update="@form" styleClass="ui-priority-primary" />  
+<p:button outcome="systemAdminLogin" value="Cancel"  style="margin-right:5px;height:50px;background:#f2f4f4; color:#000000;" styleClass="ui-priority-primary"></p:button>    
+ </h:panelGrid>  
   
-     
-    
-      
-    
-    </div>
-    
  </h:panelGrid>
   </p:panel>
     </h:form> 

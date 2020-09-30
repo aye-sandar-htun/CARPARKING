@@ -18,13 +18,17 @@
 	</div><br></br>
 	
 				
-				<p:button href="exitUserCurrent.xhtml" style="margin:2px;width:100px;height:50px; background: #ebedef  ;color:#000000;" value="Car List"/>
-				<p:button href="exitUserAdminProfile.xhtml" style="margin:2px;width:100px;height:50px; background: #ebedef  ;color:#000000;" value="Profile"/>
+				<p:button href="exitUserCurrent.xhtml" style="margin:2px;width:120px;height:50px; background: #f2f4f4  ;color:#000000;" value="Car List"/>
+				<p:button href="exitUserAdminProfile.xhtml" style="margin:2px;width:120px;height:50px; background: #209114  ;color:#000000;" value="Profile"/>
 
 
   <center>
 <p:panel> 
-<h:panelGrid columns="2" cellpadding="5">
+<h:panelGrid columns="2" cellpadding="5" style="float:center;">
+<f:facet name="header"> ExitUserAdmin Profile </f:facet> 
+   <p:graphicImage name="/img/a.png"  style="width=100px; height=100px;float:left;"/> 
+    
+<h:panelGrid columns="2" cellpadding="2">
   <ui:repeat var="u" value="${userAdminAccountBean.userAdminInformation}">
   <p:outputLabel>User Name :</p:outputLabel>
     <h:outputText value="#{u.name}" /> <br></br> 
@@ -36,7 +40,7 @@
     <h:outputText value="#{u.email}" />  <br></br>
    
   </ui:repeat>
-
+</h:panelGrid>
     </h:panelGrid>
     </p:panel>
   </center>

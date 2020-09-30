@@ -12,26 +12,26 @@
 <h:head>
 <title>Car Parking</title>
 <style>
-body{
-	/* background-image:url(#{request.contextPath}/resources/img/c10.jpg);
+ body{
+	 background-image:url(#{request.contextPath}/resources/img/c.jpg);
 	height:100vh;
-	background-size:100% 100%;  */
-}
+	background-size:100% 100%; 
+} 
 </style>
 <link rel="stylesheet" href="resources/css/style.css" type="text/css"/>
 </h:head>
 <h:body>
-<center>
+<center style="margin-top:28px;">
 
-     <!--  <h:outputText  value="&emsp;&ensp;&emsp;&ensp;Car Parking System" style="font-weight:bold;font-family:Arial;
-	color:rgb(0, 0, 0); font-size:35px;" ></h:outputText> -->
+       <h:outputText  value="&emsp;&ensp;&emsp;&ensp;Car Parking System" style="font-weight:bold;font-family:Arial;
+	color:rgb(0, 0, 0); font-size:35px;" ></h:outputText> 
 	
- 		<!-- <h2>Welcome System Admin Login </h2> -->
  		 <h:form>
+
  		 <p:growl id="msgs" showDetail="true" life="2000"/>
-    <p:panel id="panel" header="Welcome SystemAdmin Login" style="width:500px; height:190px;">
+    <p:panel id="panel" header="Welcome SystemAdmin Login" style="width:500px; height:250px; margin-top:28px;">
 	<p:messages for="loginMsg" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
-    <h:panelGrid columns="2">
+    <h:panelGrid columns="2" style="margin-top:10px;">
       <p:outputLabel value="Admin Name:"/>
       <p:inputText id="userName" value="#{systemAdminAccountBean.accountCtl.name}" label="userName" required="true" validatorMessage="Insert only characters for name."> 
        <f:validateRegex pattern="[a-zA-Z ]+"/>
@@ -43,8 +43,9 @@ body{
 
      <div  margin="100px">
      
-  <p:commandButton style="width:55%;float:center;" value="Login" oncomplete="" action="#{systemAdminAccountBean.checkAccount()}" update="@form" icon="ui-icon-add" styleClass="ui-priority-primary" />  
+  <p:commandButton style="margin-right:5px;margin-top:18px;height:40px; background:#209114 ;color:#000000;" value="Login" oncomplete="" action="#{systemAdminAccountBean.checkAccount()}" update="@form"  styleClass="ui-priority-primary" />  
 
+<!-- 4CAF50 -->
     
     </div>
     
@@ -53,7 +54,7 @@ body{
         
        </h:form> 
      <br></br>
-<a href="systemAdminRegistration.xhtml">Register here!</a>
+<a href="systemAdminRegistration.xhtml" style="font-family:Arial;font-weight:bold;color:#0000AD; font-size:20px;">Register here!</a>
        </center>   
  	</h:body>
 </html>

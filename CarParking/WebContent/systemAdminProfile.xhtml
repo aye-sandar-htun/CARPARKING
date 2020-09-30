@@ -17,29 +17,73 @@
 	color:rgb(0, 0, 0); font-size:35px;" ></h:outputText>
 	</div><br></br>
 	
-	<p:button href="addParkingSlot.xhtml" value="Add Building" style="margin:2px;width:100px;height:50px; background:#f4f6f6  ;color:#000000;" />
-				<p:button href="view.xhtml" value="Car view" style="margin:2px;width:100px;height:50px; background:#f2f4f4  ;color:#000000;" />
-				<p:button href="carHistory.xhtml" value="Car History" style="margin:2px;width:100px;height:50px; background: #ebedef  ;color:#000000;" />
-				<p:button href="systemAdminProfile.xhtml" style="margin:2px;width:100px;height:50px; background: #f8f9f9  ;color:#000000;" value="Admin Profile"/>
+	<p:button href="addParkingSlot.xhtml" value="Add Building" style="margin:2px;width:120px;height:50px; background:#f4f6f6  ;color:#000000;" />
+				<p:button href="view.xhtml" value="View CarParking" style="margin:2px;width:120px;height:50px; background:#f2f4f4  ;color:#000000;" />
+				<p:button href="carHistory.xhtml" value="Car History" style="margin:2px;width:120px;height:50px; background: #ebedef  ;color:#000000;" />
+				<p:button href="systemAdminProfile.xhtml" style="margin:2px;width:120px;height:50px; background: #209114  ;color:#000000;" value="Admin Profile"/>
 		
 
   <h:form>
   <center>
   <p:panel> 
-<h:panelGrid columns="2" cellpadding="5">
+<h:panelGrid columns="2" cellpadding="5" style="float:center;">
+<f:facet name="header"> SystemAdmin Profile </f:facet> 
+   <p:graphicImage name="/img/a.png"  style="width=100px; height=100px;float:left;"/> 
+    
+   <h:panelGrid columns="2" cellpadding="2">    
   <ui:repeat var="u" value="${systemAdminAccountBean.adminInformation}">
-  <p:outputLabel>User Name :</p:outputLabel>
-    <h:outputText value="#{u.name}" /> <br></br> 
+     <p:outputLabel>Name :</p:outputLabel>
+     <h:outputText value="#{u.name}" /> <br></br>   
     <p:outputLabel>Contact Number :</p:outputLabel>
     <h:outputText value="#{u.contactNumber}" /><br></br>  
     <p:outputLabel>Email:</p:outputLabel>
     <h:outputText value="#{u.email}" />  <br></br>
    
   </ui:repeat>
-
-    </h:panelGrid>
+ </h:panelGrid>
+</h:panelGrid>
     </p:panel>
-  </center>
+  </center> 
+ <!--  <p:dataTable var="u" value="${systemAdminAccountBean.adminInformation}" >
+        <f:facet name="header">
+            SystemAdmin Profile
+        </f:facet>
+        <p:columnGroup type="header">
+          <p:row>
+                <p:column rowspan="3">
+                  <p:graphicImage name="/img/c.jpg"  width="100px" height="100px"/>
+                </p:column>
+            </p:row>
+             </p:columnGroup>
+            <p:row>
+            <p:column  colspan="4">
+               <p:outputLabel>User Name :</p:outputLabel>
+   			 </p:column>
+   			 <p:column  colspan="4">
+   	        	<h:outputText value="#{u.name}" /> <br></br> 
+   			 </p:column>
+            </p:row>
+            
+               <p:row>
+            <p:column  colspan="4">
+               <p:outputLabel>Contact Number :</p:outputLabel>
+   			 </p:column>
+   			 <p:column  colspan="4">
+   	        	<h:outputText value="#{u.contactNumber}" /> <br></br> 
+   			 </p:column>
+            </p:row>
+            
+                <p:row>
+            <p:column  colspan="4">
+               <p:outputLabel>Email :</p:outputLabel>
+   			 </p:column>
+   			 <p:column  colspan="4">
+   	        	<h:outputText value="#{u.email}" /> <br></br> 
+   			 </p:column>
+            </p:row>
+            
+           
+  </p:dataTable> -->
   </h:form>  
   <a style="float:right;" href="index.xhtml">Log Out</a>
   

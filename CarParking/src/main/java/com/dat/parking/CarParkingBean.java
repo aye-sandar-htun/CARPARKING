@@ -348,6 +348,8 @@ public CarParkingService getCarParkingService() {
 		 this.carCtl.setBuildingName("");
 		 this.carCtl.setFloorName("");
 	 }
+
+	
 	//button color
 	 public String toggleStatus(String b,String f,String s) {
 			System.out.println(" get status for "+b+" Floor "+f+" Slot "+s);
@@ -359,6 +361,8 @@ public CarParkingService getCarParkingService() {
 				return "green";
 			}
 			else {
-			return "red";}
+			return "red";
+			}
 		}
+	 
 }
