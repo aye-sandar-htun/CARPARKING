@@ -13,24 +13,24 @@
 <title>Car Parking</title>
 <style>
 body{
-	/* background-image:url(#{request.contextPath}/resources/img/c10.jpg);
+	 background-image:url(#{request.contextPath}/resources/img/c.jpg);
 	height:100vh;
-	background-size:100% 100%;  */
+	background-size:100% 100%;  
 }
 </style>
 <link rel="stylesheet" href="resources/css/style.css" type="text/css"/>
 </h:head>
 <h:body>
-<center>
+<center style="margin-top:28px;">
 
       <h:outputText  value="&emsp;&ensp;&emsp;&ensp;Car Parking System" style="font-weight:bold;font-family:Arial;
 	color:rgb(0, 0, 0); font-size:35px;" ></h:outputText>
 	
  	
 <h:form>
-    <p:panel header="Welcome UserAdmin Login" style="width: 500px;">
+    <p:panel header="Welcome UserAdmin Login" style="margin-top:28px; width: 500px;">
 	<p:messages for="loginMsg" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
-    <h:panelGrid columns="2">
+    <h:panelGrid columns="2" style="margin:5px;">
       <p:outputLabel value="Name:"/>
       <p:inputText id="userName" value="#{userAdminAccountBean.accountCtl.name}" label="userName" required="true" validatorMessage="Insert only characters for name."> 
        <f:validateRegex pattern="[a-zA-Z ]+"/>
@@ -59,7 +59,7 @@ body{
         <br/>  <br/> 
      <div  margin="100px">
      
-  <p:commandButton style="width:55%;float:center;" value="Login" icon="ui-icon-check" oncomplete="" action="#{userAdminAccountBean.checkAccount()}" update="@form" styleClass="ui-priority-primary" />  
+  <p:commandButton style="margin-right:5px;margin-top:18px;height:40px; background:#209114 ;color:#000000;" value="Login" icon="ui-icon-check" oncomplete="" action="#{userAdminAccountBean.checkAccount()}" update="@form" styleClass="ui-priority-primary" />  
       
     </div>
 
@@ -69,7 +69,7 @@ body{
         
        </h:form> 
        
-         <a href="userAdminRegistration.xhtml">Registration</a>
+         <a href="userAdminRegistration.xhtml" style="margin-top:20px;font-family:Arial;font-weight:bold;color:#0000AD; font-size:20px;">Registration</a>
     
      
    </center>  
