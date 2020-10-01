@@ -36,7 +36,7 @@
  <p:outputLabel value="Building : "/><p:outputLabel id="b" value="#{carParkingHistoryBean.historyCtl.building}"/>
 
 <p:outputLabel value="Car Number : "/>
-<p:inputText value="#{carParkingHistoryBean.historyCtl.carNumber}"/>
+<p:inputText value="#{carParkingHistoryBean.historyCtl.carNumber}" required="true"/>
         
          <p:outputLabel for="floor" value="Choose Floor : "/>
          <p:selectOneMenu id="floor" value="#{carParkingHistoryBean.selectedFloor}" style="width:80%">  
@@ -53,6 +53,7 @@
 <center>
   <ui:repeat var="s" value="${carParkingHistoryBean.slotLists()}">
                  	<p:commandButton value="#{s}" action="#{carParkingHistoryBean.selectedSlot(userAdminAccountBean.accountCtl.name,s)}" update="@form" style="background:#{carParkingHistoryBean.toggleStatus(carParkingHistoryBean.selectedFloor,s)}">
+              
                  	
                  	</p:commandButton>	
    	              </ui:repeat>

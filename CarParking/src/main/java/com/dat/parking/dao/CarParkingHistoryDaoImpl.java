@@ -59,7 +59,7 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 	public List slotLists(String floorName, String buildingName) {
 		// TODO Auto-generated method stub
 		session=this.sessionFactory.getCurrentSession();
-		String hql="select slot from CarParking where floorName=:floorName AND buildingName=:buildingName order by building_id";
+		String hql="select slot from CarParking where floorName=:floorName AND buildingName=:buildingName AND status!='disable' order by building_id";
 		Query query=session.createQuery(hql);
 		query.setParameter("floorName", floorName).setParameter("buildingName", buildingName);
 		List slotList= query.list();	

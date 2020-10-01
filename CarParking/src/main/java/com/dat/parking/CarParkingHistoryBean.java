@@ -361,7 +361,6 @@ return showCurrentList;
 	 }
 	 
 	public List slotLists() {
-System.out.println("                    selected building "+historyCtl.getBuilding()+" selectedFloor    "+selectedFloor);
 		slotList=carParkingHistoryService.slotLists(selectedFloor, historyCtl.getBuilding());
 		return slotList;
 		
@@ -411,10 +410,11 @@ public String toggleStatus(String f,String s) {
 		return "green";
 	}
 
-	
-	
-	else {
+	else if(status.equals("occupied")){
 	return "red";}
+else {
+	return "gray";
+}
 }
 
 

@@ -98,8 +98,8 @@
 </h:panelGrid>
 
 <!-- dialog to do slot disable -->
-<p:dialog id="dia" header="Disable slot" widgetVar="dlg" modal="true" height="300">
-   <h:form>
+<p:dialog id="ds" header="Disable slot" widgetVar="dlg" modal="true" height="300">
+   <h:form id="form1">
  <p:growl id="msgs" showDetail="true" life="2000"/>
 <p:panel id="panel">  
 <p>Only available slot can be disabled.</p>
@@ -121,10 +121,11 @@
 
 </h:panelGrid>
 </p:panel>
+
 <center>
 <p:panel id="slot">
 <ui:repeat var="s" value="${carParkingBean.getAvailableSlot()}">
-                 	<p:commandButton value="#{s}" action="#{carParkingBean.disableSlot(s)}" update="dia" style="background:green">
+                 	<p:commandButton value="#{s}" action="#{carParkingBean.disableSlot(s)}"  style="background:green" update="ds">
                  	
                  	</p:commandButton>	
    	              </ui:repeat>
