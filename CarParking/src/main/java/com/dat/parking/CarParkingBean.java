@@ -339,11 +339,12 @@ public CarParkingService getCarParkingService() {
 		 
 	 }
 	 //delete slot
-	 public void deleteSlot(String buildingName,String floorName,String slot) {
+	 public void deleteSlot(String slot) {
+			
 		 List s=carParkingService.statusSlotList(selectedBuilding, selectedFloor, selectedslot);
 		 if(s.isEmpty()) {
-		 
-		 carParkingService.deleteSlot(selectedBuilding, selectedFloor, selectedslot);
+			 System.out.println("Building Name is "+selectedBuilding+" Floor Name is "+selectedFloor+"slot is "+slot);
+		 carParkingService.deleteSlot(selectedBuilding, selectedFloor, slot);
 		 FacesContext context = FacesContext.getCurrentInstance();
 		 context.addMessage(null, new FacesMessage("Successfully deleted.",""));
 		
