@@ -162,4 +162,40 @@ public class CarParkingDaoImpl implements CarParkingDao{
     	List t=q.list();
     	return t;
     }
+
+	@Override
+	public List getAvailableSlot(String buildingName, String floorName) {
+		// TODO Auto-generated method stub
+		session=this.sessionFactory.getCurrentSession();
+    	String sql="select slot from CarParking where buildingName=:buildingName and floorName=:floorName and status='available'";
+    	Query q=session.createQuery(sql);
+    	q.setParameter("buildingName",buildingName).setParameter("floorName",floorName);
+    	List availableSlot=q.list();
+    	return availableSlot;
+	}
+
+	@Override
+	public void disableSlot(String buildingName, String floorName, String slot) {
+		// TODO Auto-generated method stub
+		session=this.sessionFactory.getCurrentSession();
+    	String sql="update CarParking set status='disable' where buildingName=:buildingName AND floorName=:floorName AND slot=:slot";
+    	Query q=session.createQuery(sql);
+    	q.setParameter("buildingName",buildingName).setParameter("floorName",floorName).setParameter("slot", slot);
+    	q.executeUpdate();
+	}
+
+	@Override
+	public List getDisableSlot(String buildingName, String floorName) {
+		// TODO Auto-generated method stub
+		session=this.sessionFactory.getCurrentSession();
+    	String sql="select slot from CarParking where buildingName=:buildingName and floorName=:floorName and status='disable'";
+    	Query q=session.createQuery(sql);
+    	q.setParameter("buildingName",buildingName).setParameter("floorName",floorName);
+    	List disableSlot=q.list();
+    	return disableSlot;
+	}
+
+	
+	
+	
 }

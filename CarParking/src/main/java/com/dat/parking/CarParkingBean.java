@@ -37,6 +37,8 @@ public class CarParkingBean implements Serializable{
     private List selectedSlots=new LinkedList();
     private List<String> buildings;
     private String status;
+    private String selectedBuildingForDisable;
+    private String selectedFloorForDisable;
     @ManagedProperty(value="#{carParkingService}")
     CarParkingService carParkingService;
     
@@ -45,6 +47,22 @@ public class CarParkingBean implements Serializable{
     
     public String getSlot() {
 		return slot;
+	}
+
+	public String getSelectedFloorForDisable() {
+		return selectedFloorForDisable;
+	}
+
+	public void setSelectedFloorForDisable(String selectedFloorForDisable) {
+		this.selectedFloorForDisable = selectedFloorForDisable;
+	}
+
+	public String getSelectedBuildingForDisable() {
+		return selectedBuildingForDisable;
+	}
+
+	public void setSelectedBuildingForDisable(String selectedBuildingForDisable) {
+		this.selectedBuildingForDisable = selectedBuildingForDisable;
 	}
 
 	public String getStatus() {
@@ -262,6 +280,7 @@ public CarParkingService getCarParkingService() {
 		public void onBuildingChange() {  
 			if(buildingName !=null && !buildingName.equals("")) { 
 				selectedBuilding = buildingName; 
+				 selectedBuildingForDisable=buildingName;
 				 floorLists(selectedBuilding);
 
 			}
@@ -270,6 +289,7 @@ public CarParkingService getCarParkingService() {
 		public void onFloorChange() {  
 			if(floorName !=null && !floorName.equals("")) { 
 				selectedFloor= floorName; 
+				selectedFloorForDisable=floorName;
 				slotLists(selectedFloor,selectedBuilding);
 			}  
 		
@@ -360,9 +380,36 @@ public CarParkingService getCarParkingService() {
 				System.out.println("status is green");
 				return "green";
 			}
-			else {
+			else if(status.equals("occupied")){
 			return "red";
 			}
+			else {
+				return "gray";
+			}
 		}
-	 
+	 //get available slot to do disable
+	
+	 public List getAvailableSlot() {
+		List availableSlot=carParkingService.getAvailableSlot(selectedBuildingForDisable,selectedFloorForDisable);
+		
+		 return availableSlot; 
+		 
+		
+	 }
+	 //disable selected slot
+	 public void disableSlot(String slot) {
+
+		 FacesContext context = FacesContext.getCurrentInstance();
+		 context.addMessage(null, new FacesMessage(selectedBuildingForDisable+">"+selectedFloorForDisable+">"+slot+" is temporarily out of service now!"));
+		 carParkingService.disableSlot(selectedBuildingForDisable, selectedFloorForDisable, slot);
+	 }
+	 //enable selected slot
+	 public List getDisableSlot() {
+		return carParkingService.getDisableSlot(selectedBuildingForDisable,selectedFloorForDisable);
+	 }
+	 public void enableSlot(String slot) {
+		 FacesContext context = FacesContext.getCurrentInstance();
+		 context.addMessage(null, new FacesMessage(selectedBuildingForDisable+">"+selectedFloorForDisable+">"+slot+" is availablen now!"));
+		 carParkingService.updateStatusAvailable(selectedBuildingForDisable, selectedFloorForDisable, slot);
+	 }
 }

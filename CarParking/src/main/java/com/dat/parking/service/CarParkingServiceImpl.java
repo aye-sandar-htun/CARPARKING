@@ -106,5 +106,23 @@ public class CarParkingServiceImpl implements CarParkingService{
      public List statusSlotList(String buildingName,String floorName,String slot) {
 		 return carParkingDao.statusSlotList(buildingName, floorName, slot);
 	 }
+	 @Transactional
+	@Override
+	public List getAvailableSlot(String buildingName, String floorName) {
+		// TODO Auto-generated method stub
+		return carParkingDao.getAvailableSlot(buildingName, floorName);
+	}
+	 @Transactional
+	@Override
+	public void disableSlot(String buildingName, String floorName, String slot) {
+		// TODO Auto-generated method stub
+		 carParkingDao.disableSlot(buildingName, floorName, slot);
+	}
+	 @Transactional
+	@Override
+	public List getDisableSlot(String buildingName, String floorName) {
+		// TODO Auto-generated method stub
+		return carParkingDao.getDisableSlot(buildingName, floorName);
+	}
 
 }

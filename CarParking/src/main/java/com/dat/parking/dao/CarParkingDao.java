@@ -25,4 +25,7 @@ public interface CarParkingDao {
       public List statusBuildingList(String buildingName);
       public List statusFloorList(String buildingName,String floorName);
       public List statusSlotList(String buildingName,String floorName,String slot);
+      public List getAvailableSlot(String buildingName,String floorName);
+      void disableSlot(String buildingName,String floorName,String slot);
+      public List getDisableSlot(String buildingName,String floorName);
 	 }

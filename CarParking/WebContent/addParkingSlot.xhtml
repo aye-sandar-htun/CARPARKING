@@ -89,11 +89,87 @@
 <div>
 <p:panel header="Edit">  
 
-<h:panelGrid style="margin: 0 auto;" columns="3" cellpadding="5"> 
+<h:panelGrid style="margin: 0 auto;" columns="5" cellpadding="5"> 
 <p:button value="Delete Building" href="deleteBuilding.xhtml" styleClass="ui-priority-primary" style="width:120px;height:50px; background:#ac131f ;color:#000000;"  />  
 <p:button value="Delete Floor" href="deleteFloor.xhtml" styleClass="ui-priority-primary" style="width:120px;height:50px; background:#ac131f ;color:#000000;"  />  
 <p:button value="Delete Slot" href="deleteSlot.xhtml" styleClass="ui-priority-primary" style="width:120px;height:50px; background:#ac131f ;color:#000000;" />  
+<p:commandButton value="Disable slot" type="button" onclick="PF('dlg').show();"  styleClass="ui-priority-primary" style="width:120px;height:50px; background:#ac131f ;color:#000000;" />  
+<p:commandButton value="Enable slot" type="button" onclick="PF('dlg1').show();" styleClass="ui-priority-primary" style="width:120px;height:50px; background:#ac131f ;color:#000000;" />  
+
 </h:panelGrid>
+
+<!-- dialog to do slot disable -->
+<p:dialog header="Disable slot" widgetVar="dlg" modal="true" height="300">
+   <h:form>
+<p:growl id="msgs" showDetail="true"/> 
+<p:panel id="panel">  
+<p>Only available slot can be disabled.</p>
+<h:panelGrid columns="2" cellpadding="5">  
+
+<p:outputLabel for="building" value="Building Name :" />
+<p:selectOneMenu id="building" value="#{carParkingBean.buildingName}" style="width:80%">  
+<p:ajax listener="#{carParkingBean.onBuildingChange}" update="floor"/> 
+<f:selectItem itemLabel="Select building" itemValue="" noSelectionOption="true" />  
+<f:selectItems value="#{carParkingBean.buildingLists()}"/>  
+</p:selectOneMenu>
+
+<p:outputLabel for="floor" value="Floor Name :"/>
+<p:selectOneMenu id="floor" value="#{carParkingBean.floorName}" style="width:80%">  
+<p:ajax listener="#{carParkingBean.onFloorChange}" update="slot"/> 
+<f:selectItem itemLabel="Select floor" itemValue="" noSelectionOption="true" />  
+<f:selectItems value="#{carParkingBean.floor}"/>  
+</p:selectOneMenu>
+
+</h:panelGrid>
+</p:panel>
+<center>
+<p:panel id="slot">
+<ui:repeat var="s" value="${carParkingBean.getAvailableSlot()}">
+                 	<p:commandButton value="#{s}" action="#{carParkingBean.disableSlot(s)}" update="@form" style="background:green">
+                 	
+                 	</p:commandButton>	
+   	              </ui:repeat>
+   	             </p:panel>
+   	              </center>
+</h:form>
+</p:dialog> 
+
+<!-- dialog to do slot enable -->
+<p:dialog header="Enable slot" widgetVar="dlg1" modal="true" height="300">
+   <h:form>
+<p:growl id="msgs" showDetail="true"/> 
+<p:panel id="panel1">  
+
+<h:panelGrid columns="2" cellpadding="5">  
+
+<p:outputLabel for="building" value="Building Name :" />
+<p:selectOneMenu id="building" value="#{carParkingBean.buildingName}" style="width:80%">  
+<p:ajax listener="#{carParkingBean.onBuildingChange}" update="floor"/> 
+<f:selectItem itemLabel="Select building" itemValue="" noSelectionOption="true" />  
+<f:selectItems value="#{carParkingBean.buildingLists()}"/>  
+</p:selectOneMenu>
+
+<p:outputLabel for="floor" value="Floor Name :"/>
+<p:selectOneMenu id="floor" value="#{carParkingBean.floorName}" style="width:80%">  
+<p:ajax listener="#{carParkingBean.onFloorChange}" update="slot1"/> 
+<f:selectItem itemLabel="Select floor" itemValue="" noSelectionOption="true" />  
+<f:selectItems value="#{carParkingBean.floor}"/>  
+</p:selectOneMenu>
+
+</h:panelGrid>
+</p:panel>
+<center>
+
+<p:panel id="slot1">
+<ui:repeat var="s" value="${carParkingBean.getDisableSlot()}">
+                 	<p:commandButton value="#{s}" action="#{carParkingBean.enableSlot(s)}" update="@form" style="background:gray">
+                 	
+                 	</p:commandButton>	
+   	              </ui:repeat>
+   	             </p:panel>
+   	              </center>
+</h:form>
+</p:dialog>  
 </p:panel>
 </div>
 
