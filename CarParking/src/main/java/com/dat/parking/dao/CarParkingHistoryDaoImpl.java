@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.TreeSet;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -38,39 +39,12 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 	public List dateList() {
 		// TODO Auto-generated method stub
 		session = this.sessionFactory.getCurrentSession(); 
-		List dateList = new LinkedList(new LinkedHashSet(session.createQuery("select date from CarParkingHistory").list()));	
+		List dateList = new LinkedList(new TreeSet(session.createQuery("select date from CarParkingHistory").list()));	
 		return dateList;
 	}
 	
-	public List<CarParkingHistory> searchByFloor(String floor) {
-		// TODO Auto-generated method stub
-		session=this.sessionFactory.getCurrentSession();
-		String hql="from CarParkingHistory where floor=:floor";
-		Query query=session.createQuery(hql);
-		query.setParameter("floor", floor);
-		List historyList= query.list();
-		return historyList;
-	}
 	
-	public List<CarParkingHistory> searchByBuilding(String building) {
-		// TODO Auto-generated method stub
-		session=this.sessionFactory.getCurrentSession();
-		String hql="from CarParkingHistory where building=:building";
-		Query query=session.createQuery(hql);
-		query.setParameter("building", building);
-		List historyList= query.list();
-		return historyList;
-	}
 	
-	public List<CarParkingHistory> searchByBuildingFloor(String building, String floor) {
-		// TODO Auto-generated method stub
-		session=this.sessionFactory.getCurrentSession();
-		String hql="from CarParkingHistory where building=:building AND floor=:floor";
-		Query query=session.createQuery(hql);
-		query.setParameter("building", building).setParameter("floor", floor);
-		List historyList= query.list();
-		return historyList;
-	}
 	
 	public List floorLists(String buildingName) {
 		// TODO Auto-generated method stub
@@ -78,14 +52,14 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 			String hql="select floorName from CarParking where buildingName=:buildingName";
 			Query query=session.createQuery(hql);
 			query.setParameter("buildingName", buildingName);
-			List floorList= new LinkedList(new LinkedHashSet(query.list()));
+			List floorList= new LinkedList(new TreeSet(query.list()));
 			return floorList;
 	}
 	
 	public List slotLists(String floorName, String buildingName) {
 		// TODO Auto-generated method stub
 		session=this.sessionFactory.getCurrentSession();
-		String hql="select slot from CarParking where floorName=:floorName AND buildingName=:buildingName";
+		String hql="select slot from CarParking where floorName=:floorName AND buildingName=:buildingName order by building_id";
 		Query query=session.createQuery(hql);
 		query.setParameter("floorName", floorName).setParameter("buildingName", buildingName);
 		List slotList= query.list();	

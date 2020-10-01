@@ -81,11 +81,9 @@ public class SystemAdminAccountBean implements Serializable{
 	public String persistInformation() {
 		List l=systemAdminAccountService.adminList(accountCtl.getName());
 		if(l.isEmpty()) {
-		System.out.println("Password "+accountCtl.getPassword());
 				
 		systemAdminAccountService.persistInformation(this.accountCtl);
 		this.reset();
-		System.out.println("persist method success");
 
 		 FacesContext context = FacesContext.getCurrentInstance();
 		 context.addMessage("registerMsg", new FacesMessage(FacesMessage.SEVERITY_INFO,"Successfully Registered.","Successfully Registered."));
@@ -109,7 +107,6 @@ public class SystemAdminAccountBean implements Serializable{
 	public String checkAccount() {
 		 List id=systemAdminAccountService.checkAccount(accountCtl.getName(),accountCtl.getPassword());
 		if(id.isEmpty()) {
-			System.out.println("Login fail");
 			 FacesContext context = FacesContext.getCurrentInstance();
 			 context.addMessage("loginMsg", new FacesMessage("Wrong username or password.Try again!"));
 			 this.reset();
@@ -117,7 +114,6 @@ public class SystemAdminAccountBean implements Serializable{
 
 		}
 		else {
-		System.out.println("Login success");
 		 FacesContext context = FacesContext.getCurrentInstance();
 		 context.addMessage("loginMsg", new FacesMessage("Login Success"));
 		 adminInformation= getAdminProfileInformation(accountCtl.getName());

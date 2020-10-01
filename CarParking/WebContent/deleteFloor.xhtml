@@ -22,14 +22,14 @@
 <h:panelGrid columns="2" cellpadding="5">  
 
 <p:outputLabel for="building" value="Building Name :" />
-<p:selectOneMenu id="building" value="#{carParkingBean.buildingName}" style="width:80%">  
+<p:selectOneMenu id="building" value="#{carParkingBean.buildingName}" style="width:80%" required="true">  
 <p:ajax listener="#{carParkingBean.onBuildingChange}" update="floor"/> 
 <f:selectItem itemLabel="Select building" itemValue="" noSelectionOption="true" />  
 <f:selectItems value="#{carParkingBean.buildingLists()}"/>  
 </p:selectOneMenu>
 
 <p:outputLabel for="floor" value="Floor Name :"/>
-<p:selectOneMenu id="floor" value="#{carParkingBean.floorName}" style="width:80%">  
+<p:selectOneMenu id="floor" value="#{carParkingBean.floorName}" style="width:80%" required="true">  
 <p:ajax listener="#{carParkingBean.onFloorChange}" /> 
 <f:selectItem itemLabel="Select floor" itemValue="" noSelectionOption="true" />  
 <f:selectItems value="#{carParkingBean.floor}"/>  

@@ -21,7 +21,7 @@
 <p:panel id="panel" header="Delete Building">  
 <h:panelGrid columns="2" cellpadding="5">  
 <p:outputLabel for="building" value="Building Name :" />
-<p:selectOneMenu id="building" value="#{carParkingBean.buildingName}" style="width:80%">  
+<p:selectOneMenu id="building" value="#{carParkingBean.buildingName}" style="width:80%" required="true">  
 <p:ajax listener="#{carParkingBean.onBuildingChange}" /> 
 <f:selectItem itemLabel="Select Building" itemValue="" noSelectionOption="true" />  
 <f:selectItems value="#{carParkingBean.buildingLists()}"/>  

@@ -26,7 +26,7 @@
 	
 
   <!-- <h2 align="center">Add Building</h2> -->
-<p:panel id="panel"> 
+<p:panel id="panel" style="margin:10px;"> 
  <p:growl id="msgs" showDetail="true" life="2000"/>
 <p:messages for="msgs" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
  
@@ -38,7 +38,7 @@
      </p:inputText>
     <h:outputText value="Number of floor: "/>  
     <p:inputText style="width:70%;" value="#{carParkingBean.carCtl.floorName}" label="floorNumber" required="true" validatorMessage="Insert integer for number of floor.">
-    <f:validateRegex pattern="[0-9]+" />
+   <!--  <f:validateRegex pattern="[0-9]+" /> -->
     </p:inputText>   
     <h:outputText/>
   <p:commandButton style="width:100px;height:50px; background:#209114 ;color:#000000;" value="Add" update="panel" oncomplete="" actionListener="#{carParkingBean.floorList()}" styleClass="ui-priority-primary" />  
@@ -49,7 +49,6 @@
 <!-- drop down -->
 
   
-
 
 <h:panelGrid  columns="2" cellpadding="5">  
 <h:outputLabel/> 
@@ -70,11 +69,11 @@
 
 </p:inputText>
 </h:panelGrid>
-
 <!-- <p:separator />   -->
 <p:commandButton style="width:100px;height:50px; background:#209114 ;color:#000000;"  value="Submit" update="panel" action="#{carParkingBean.persistInformation()}"  styleClass="ui-priority-primary"  />  
 
 </h:panelGrid>
+
 </p:panel> 
 
 </h:form>
@@ -99,9 +98,9 @@
 </h:panelGrid>
 
 <!-- dialog to do slot disable -->
-<p:dialog header="Disable slot" widgetVar="dlg" modal="true" height="300">
+<p:dialog id="dia" header="Disable slot" widgetVar="dlg" modal="true" height="300">
    <h:form>
-<p:growl id="msgs" showDetail="true"/> 
+ <p:growl id="msgs" showDetail="true" life="2000"/>
 <p:panel id="panel">  
 <p>Only available slot can be disabled.</p>
 <h:panelGrid columns="2" cellpadding="5">  
@@ -125,7 +124,7 @@
 <center>
 <p:panel id="slot">
 <ui:repeat var="s" value="${carParkingBean.getAvailableSlot()}">
-                 	<p:commandButton value="#{s}" action="#{carParkingBean.disableSlot(s)}" update="@form" style="background:green">
+                 	<p:commandButton value="#{s}" action="#{carParkingBean.disableSlot(s)}" update="dia" style="background:green">
                  	
                  	</p:commandButton>	
    	              </ui:repeat>

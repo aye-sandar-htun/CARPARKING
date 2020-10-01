@@ -143,7 +143,6 @@ public class UserAdminAccountBean implements Serializable{
 			if(l.isEmpty()) {
 			System.out.println("Password "+accountCtl.getPassword());					
 			userAdminAccountService.persistInformation(this.accountCtl);
-			System.out.println("persist method success");
 			 FacesContext context = FacesContext.getCurrentInstance();
 			 context.addMessage("registerMsg", new FacesMessage(FacesMessage.SEVERITY_INFO,"Successfully Registered.","Successfully Registered."));
 			 this.reset();
@@ -152,14 +151,12 @@ public class UserAdminAccountBean implements Serializable{
 			else {
 				 FacesContext context = FacesContext.getCurrentInstance();
 				 context.addMessage("registerMsg", new FacesMessage(FacesMessage.SEVERITY_ERROR,"Exiting user.Try again!.","Exiting user.Try again!."));
-				 System.out.print("Exiting user");
 				 this.reset();
 				return "userAdminRegistration";
 			}	
 		}
 		
 		public String checkAccount() throws IOException {
-			System.out.println(" account cl name "+accountCtl.getName());
 			 List id=userAdminAccountService.checkAccount(accountCtl.getName(),accountCtl.getPassword());
 			if(id.isEmpty()) {
 				 FacesContext context = FacesContext.getCurrentInstance();
@@ -171,7 +168,6 @@ public class UserAdminAccountBean implements Serializable{
 			}
 			else {
 				
-				System.out.println("Login success");
 				 FacesContext context = FacesContext.getCurrentInstance();
 				 context.addMessage("loginMsg", new FacesMessage(FacesMessage.SEVERITY_INFO,"Login Success","Login Success"));
 
@@ -193,15 +189,7 @@ public class UserAdminAccountBean implements Serializable{
 		}
 	//choose rank
 		public void onRankChange(){
-			if(rank!=null && rank.equals("")) {
-				
-				System.out.println("   Selected Rank "+rank);
-
-		}
-			else {
-				System.out.println("   Selected Rank "+rank);
-
-			}
+			
 			}
 		
 		//User Admin Profile

@@ -28,7 +28,7 @@
 
     <h:form>
 
-        	<p:messages for="exitMsg" autoUpdate="true" closable="true" showSummary="true" />
+ <p:growl id="msgs" showDetail="true" life="1000"/>
 
                
     <p:dataTable var="h" value="#{carParkingHistoryBean.showCurrentList()}" widgetVar="history_record"

@@ -175,7 +175,6 @@ public CarParkingService getCarParkingService() {
 	public String floorList() {
 		List l=carParkingService.buildList(carCtl.getBuildingName());
 		if(l.isEmpty()) {
-		System.out.println("floorlist");
 		
 		
 		int count=Integer.parseInt(carCtl.getFloorName());
@@ -186,6 +185,8 @@ public CarParkingService getCarParkingService() {
 			
 		}
 		else {
+			 FacesContext context = FacesContext.getCurrentInstance();
+			 context.addMessage(null, new FacesMessage(count+"floors are added for "+carCtl.getBuildingName()));
 		for(int i=1;i<=count;i++) {
 			floors.add("Floor"+i);}
 		}
@@ -261,12 +262,12 @@ public CarParkingService getCarParkingService() {
 	
 	 //floor view
 	 public List floorLists(String buildingName) {
-         System.out.println("     building"+buildingName);
 			  floor=carParkingService.floorLists(buildingName); 
 			  for(int i=0;i<floor.size();i++) { 
 				  slotLists((String)floor.get(i),buildingName);
+				  
 			  }
-
+			 
 					 return floor;
 	 }
 	 //slot view
@@ -302,7 +303,6 @@ public CarParkingService getCarParkingService() {
 		}
 //delete building
 	 public void deleteBuilding(String buildingName) {
-		 System.out.println("deleted building is "+selectedBuilding);
 		 List t=carParkingService.statusBuildingList(selectedBuilding);
 		 
 		 
@@ -322,7 +322,6 @@ public CarParkingService getCarParkingService() {
 		 }
 //delete floor
 	 public void deleteFloor(String buildingName,String floorName) {
-		 System.out.println("delete floor is "+selectedBuilding+" and "+selectedFloor);
 		 List f=carParkingService.statusFloorList(selectedBuilding, selectedFloor);
 		 if(f.isEmpty()) {
      
@@ -372,12 +371,9 @@ public CarParkingService getCarParkingService() {
 	
 	//button color
 	 public String toggleStatus(String b,String f,String s) {
-			System.out.println(" get status for "+b+" Floor "+f+" Slot "+s);
 
 			String status=carParkingService.getStatus(b, f, s);
-			System.out.println(" status  "+status);
 			if(status.equals("available")){
-				System.out.println("status is green");
 				return "green";
 			}
 			else if(status.equals("occupied")){

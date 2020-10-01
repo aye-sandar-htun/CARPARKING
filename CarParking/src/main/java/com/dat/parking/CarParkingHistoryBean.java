@@ -247,17 +247,14 @@ public void setStatus(String status) {
 		if(status.equals("available")){
 		
 			 FacesContext context = FacesContext.getCurrentInstance();
-			 context.addMessage("addCarMsg", new FacesMessage(FacesMessage.SEVERITY_INFO,"Successfully Parked.","Successfully Parked."));
-			System.out.println("buidling :" +historyCtl.getBuilding()+"floor :"+selectedFloor+" slot"+selectedSlot);
+			 context.addMessage("msgs", new FacesMessage("Successfully Parked."));
 			
 			updateStatus();
-		System.out.println("    car Number  : "+historyCtl.getCarNumber());
 	
 		
 		Date date = new Date();  
         Timestamp ts=new Timestamp(date.getTime());  
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");  
-        System.out.println(formatter.format(ts));                     
 		  historyCtl.setEntryTime(ts);   
 		   historyCtl.setDate(new Date());
 		   historyCtl.setSubmittedUser(submittedUser);
@@ -268,17 +265,15 @@ public void setStatus(String status) {
 			  }
 		else {
 			 FacesContext context = FacesContext.getCurrentInstance();
-			 context.addMessage("addCarMsg", new FacesMessage(FacesMessage.SEVERITY_WARN,"Exiting car in the slot","Exiting car in the slot"));
+			 context.addMessage("msgs", new FacesMessage(FacesMessage.SEVERITY_WARN,"Exiting car in the slot","Exiting car in the slot"));
 			
-			System.out.print("Exiting car in the slot");
 			return "addCarParking";
 				}
 		}
 		else {
 			 FacesContext context = FacesContext.getCurrentInstance();
-			 context.addMessage("addCarMsg", new FacesMessage(FacesMessage.SEVERITY_WARN,"Exiting car in the slot","Exiting car in the slot"));
+			 context.addMessage("msgs", new FacesMessage(FacesMessage.SEVERITY_WARN,"Exiting car in the slot","Exiting car in the slot"));
 			
-			System.out.print("Exiting car in the slot");
 			return "addCarParking";
 		}
 	}
@@ -320,7 +315,6 @@ return showCurrentList;
 	
 	
 	public void onFloorChange() {  
-		 System.out.println("          selected floor "+selectedFloor);
 
 		
 			/*
@@ -339,7 +333,6 @@ return showCurrentList;
 	public void onDateChange() {
 		
 			selectedDate=date;
-			System.out.println("  selected Date "+selectedDate);
 		
 	}
 	public List dateList() {
@@ -399,7 +392,7 @@ public void clearSlot(String f,String s) {
 	String status=carParkingService.getStatus(historyCtl.getBuilding(), f, s);
 	if(status.equals("available")) {
 		 FacesContext context = FacesContext.getCurrentInstance();
-		 context.addMessage("exitMsg", new FacesMessage(FacesMessage.SEVERITY_INFO,"Already exiting!",""));
+		 context.addMessage("msgs", new FacesMessage(FacesMessage.SEVERITY_INFO,"Already exiting!",""));
 	}
 	else {
 	Date date = new Date();  
@@ -407,17 +400,14 @@ public void clearSlot(String f,String s) {
     carParkingHistoryService.addExitTime(historyCtl.getBuilding(), f, s, ts);
     carParkingService.updateStatusAvailable(historyCtl.getBuilding(), f, s);
     FacesContext context = FacesContext.getCurrentInstance();
-	 context.addMessage("exitMsg", new FacesMessage(FacesMessage.SEVERITY_INFO,"Car Exit",""));
-	System.out.println(" clear slot Buidling "+historyCtl.getBuilding()+" Floor "+f+" Slot "+s);
+	 context.addMessage("msgs", new FacesMessage(FacesMessage.SEVERITY_INFO,"Car Exit",""));
 }
 }
 public String toggleStatus(String f,String s) {
-	System.out.println(" get status for "+historyCtl.getBuilding()+" Floor "+f+" Slot "+s);
 
 	String status=carParkingService.getStatus(historyCtl.getBuilding(), f, s);
 	System.out.println(" status  "+status);
 	if(status.equals("available")){
-		System.out.println("status is green");
 		return "green";
 	}
 
@@ -442,7 +432,6 @@ public String toggleStatus(String f,String s) {
 //date from calendar
 	public void dateChange(SelectEvent selectEvent) {
 		 Date date =selectedDate;
-			System.out.println(" date selected from calendar"+selectedDate);
    
 	}
 	//compute duration
@@ -459,7 +448,6 @@ public String toggleStatus(String f,String s) {
 				    sec=(sec%3600)%60;
 				     duration=hr+":"+min+":"+sec;
 				    
-				   System.out.println("duration "+duration);
 				    return duration;
 		}
 		else {
@@ -472,10 +460,8 @@ public String toggleStatus(String f,String s) {
 	//show slot detail
 	 public String showMessage(String building,String floor,String slot) {
 			String status=carParkingService.getStatus(building, floor, slot);
-			System.out.println(" get status for detail "+building+" Floor "+floor+" Slot "+slot);
 
 		 String message="Hi";
-		 System.out.println("Hi");
 		 return message;
 	 }
 }

@@ -23,17 +23,17 @@
 				<p:button href="systemAdminProfile.xhtml" style="margin:2px;width:120px;height:50px; background: #f8f9f9  ;color:#000000;" value="Admin Profile"/>
 			
 
-<table id="table">
+<table style="margin:40px;" id="table">
    <ui:repeat var="b" value="${carParkingBean.buildingLists()}">
     <tr>
-	  <td id="buildingname"><h:outputText value="#{b}"/></td> 
+	  <td id="buildingname"><h:outputText style="font-size:25px;" value="#{b}"/></td> 
 	   <td><h:outputText/></td>
 	    
 	</tr>
 	
-	    	<ui:repeat var="f" value="${carParkingBean.floorLists(b)}">
+	    	<ui:repeat var="f"  value="${carParkingBean.floorLists(b)}">
 	           <tr>
-    	       <td id="floorname"> <h:outputText value="#{f}"/></td>	
+    	       <td  style="text-align:center;padding:3px;" id="floorname"> <h:outputText  value="#{f}"/></td>	
                <td><h:outputText/></td>
                </tr>
                <tr>

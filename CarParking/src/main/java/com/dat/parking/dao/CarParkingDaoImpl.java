@@ -3,6 +3,8 @@ package com.dat.parking.dao;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.TreeSet;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -28,24 +30,24 @@ public class CarParkingDaoImpl implements CarParkingDao{
 	public List buildingLists() {
 		// TODO Auto-generated method stub
 		 session = this.sessionFactory.getCurrentSession(); 
-		List buildingList = new LinkedList(new LinkedHashSet(session.createQuery("select buildingName from CarParking").list()));	
+		List buildingList = new LinkedList(new TreeSet(session.createQuery("select buildingName from CarParking").list()));	
 		return buildingList;
 	}
 	
 	public List floorLists(String buildingName) {
 		// TODO Auto-generated method stub
 		 session=this.sessionFactory.getCurrentSession();
-		String hql="select floorName from CarParking where buildingName=:buildingName";
+		String hql="select floorName from CarParking where buildingName=:buildingName order by building_id";
 		Query query=session.createQuery(hql);
 		query.setParameter("buildingName", buildingName);
-		List floorList= new LinkedList(new LinkedHashSet(query.list()));
+		List floorList= new LinkedList(new TreeSet(query.list()));
 		return floorList;
 	}
 	
 	public List slotLists(String floorName,String buildingName) {
 		// TODO Auto-generated method stub
 		 session=this.sessionFactory.getCurrentSession();
-		String hql="select slot from CarParking where floorName=:floorName AND buildingName=:buildingName";
+		String hql="select slot from CarParking where floorName=:floorName AND buildingName=:buildingName order by building_id";
 		Query query=session.createQuery(hql);
 		query.setParameter("floorName", floorName).setParameter("buildingName", buildingName);
 		List slotList= query.list();	
