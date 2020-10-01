@@ -7,13 +7,17 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.TreeSet;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.dat.parking.model.CarParkingHistory;
+
+import javassist.bytecode.Descriptor.Iterator;
 
 @Repository("carParkingHistoryDao")
 public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
@@ -122,6 +126,8 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 	  { 
 	  return (CarParkingHistory)sessionFactory.getCurrentSession().get(CarParkingHistory.class,id); 
 	  } 
+	 
+	  
 	  public void deleteCarHistory(CarParkingHistory cars) {
 	  sessionFactory.getCurrentSession().delete(cars); 
 	  }
@@ -148,4 +154,35 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 		return selectedCarList;
 	}
 	
+	
+	//delete car parking history
+	public CarParkingHistory getById(int id) {
+		session=sessionFactory.getCurrentSession();
+		Transaction tran=session.beginTransaction();
+		List<?> list=session.createQuery("from CarParkingHistory where id=?").setParameter(0, id).list();
+		tran.commit();
+		return (CarParkingHistory) list.get(0);
+	}
+	
+    public void deleteParkingHistory(List<CarParkingHistory> carhistorys) {
+    	session=sessionFactory.openSession();
+    	Transaction tx=null;
+    	try {
+    		tx=session.beginTransaction();
+    		for(java.util.Iterator<CarParkingHistory> iterator= carhistorys.iterator();iterator.hasNext();) {
+    			CarParkingHistory carhistory=(CarParkingHistory) iterator.next();
+    			session.delete(carhistory);
+    		}
+    		tx.commit();
+    	}catch(HibernateException e) {
+    		if(tx!=null) {
+    			tx.rollback();
+    			e.printStackTrace();
+    		}
+    	}
+    	finally {
+			session.close();
+		}
+
+    }
 }

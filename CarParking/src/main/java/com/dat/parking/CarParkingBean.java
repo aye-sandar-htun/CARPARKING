@@ -282,6 +282,7 @@ public CarParkingService getCarParkingService() {
 			if(buildingName !=null && !buildingName.equals("")) { 
 				selectedBuilding = buildingName; 
 				 selectedBuildingForDisable=buildingName;
+				
 				 floorLists(selectedBuilding);
 
 			}
@@ -408,5 +409,15 @@ public CarParkingService getCarParkingService() {
 		 FacesContext context = FacesContext.getCurrentInstance();
 		 context.addMessage(null, new FacesMessage(selectedBuildingForDisable+">"+selectedFloorForDisable+">"+slot+" is availablen now!"));
 		 carParkingService.updateStatusAvailable(selectedBuildingForDisable, selectedFloorForDisable, slot);
+	 }
+	 
+	 public void resetBFS() {
+		 this.setSelectedBuilding("");
+		 this.setSelectedBuildingForDisable("");
+		 this.setSelectedFloor("");
+		 this.setSelectedFloorForDisable("");
+		// this.setSelectedslot("");
+		
+		 
 	 }
 }

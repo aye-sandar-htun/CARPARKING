@@ -65,6 +65,7 @@ public class CarParkingHistoryBean implements Serializable{
 	private List<CarParkingHistory> filteredRecords;
 	private List<CarParkingHistory> showCurrentList;
 	private List<CarParkingHistory> showFilteredCurrentList;
+	private List<CarParkingHistory> selectedCarHistorys;
     private String status;
 
 	
@@ -217,9 +218,17 @@ public void setStatus(String status) {
 	}
 	
 	
+	
+	
 	//method CRUD
 	//add data to database 
 	
+	public List<CarParkingHistory> getSelectedCarHistorys() {
+		return selectedCarHistorys;
+	}
+	public void setSelectedCarHistorys(List<CarParkingHistory> selectedCarHistorys) {
+		this.selectedCarHistorys = selectedCarHistorys;
+	}
 	public UserAdminAccount getAccountCtl() {
 		return accountCtl;
 	}
@@ -463,5 +472,18 @@ public String toggleStatus(String f,String s) {
 
 		 String message="Hi";
 		 return message;
+	 }
+	 
+	 
+	 //delete car parking history
+	 public void deleteParkingHistory() {
+		 
+		 
+		 
+		getCarParkingHistoryService().deleteParkingHistory(selectedCarHistorys);
+		 FacesContext context=FacesContext.getCurrentInstance();
+		  context.addMessage(null, new FacesMessage("Delete successfully",""));
+		  
+	 
 	 }
 }
