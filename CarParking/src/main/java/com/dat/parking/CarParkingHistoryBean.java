@@ -476,26 +476,30 @@ else {
 	 
 	 
 	 //delete car parking history
+	 
 	 public void deleteParkingHistory() {
 		 String pattern = "yyyy-MM-dd";
 		 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-
+		 int count=0;
 		 String date = simpleDateFormat.format(selectedCarHistorys.get(0).getDate());
 		 String date1=LocalDate.now().toString();
 		 for(int i=0;i<selectedCarHistorys.size();i++) {
 			 if(date.equals(date1)) {
 				 System.out.println(" if Date selected Car History "+LocalDate.now());
-
-				 FacesContext context=FacesContext.getCurrentInstance();
-				  context.addMessage("msgs", new FacesMessage("History for today cannot be deleted!",""));
+				 count=1;
 			 }
 			 else {
 				 getCarParkingHistoryService().deleteParkingHistory(selectedCarHistorys);
 				 FacesContext context=FacesContext.getCurrentInstance();
-				  context.addMessage("msgs", new FacesMessage("Delete successfully",""));
+				  context.addMessage("msgs", new FacesMessage(FacesMessage.SEVERITY_INFO,"Delete successfully",""));
 			 }
+			 
 		 }
-		 
+		 if(count==1) {
+			  
+			 FacesContext context=FacesContext.getCurrentInstance();
+			  context.addMessage("msgs", new FacesMessage(FacesMessage.SEVERITY_INFO,"History for today cannot be deleted!",""));
+	 } 
 		
 		  
 	 

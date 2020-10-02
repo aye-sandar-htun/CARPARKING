@@ -21,10 +21,10 @@
 				<p:button href="carHistory.xhtml" value="Car History" style="margin:2px;width:120px;height:50px; background: #209114  ;color:#000000;" />
 				<p:button href="systemAdminProfile.xhtml" style="margin:2px;width:120px;height:50px; background: #f8f9f9  ;color:#000000;" value="Admin Profile"/>
 		
+<p:growl id="growl" showDetail="true" life="3000" /> 
+<!-- 	<p:messages for="msgs" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
+ --><h:form style="margin:30px;">
 
-<h:form style="margin:30px;">
-<p:growl id="msgs" showDetail="true" lif="3000"/>  
-	<p:messages for="msgs" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
 
 <h:panelGrid columns="2" cellpadding="5">  
 <p:outputLabel for="inline" value="Select Date" />  
@@ -39,7 +39,7 @@
       <p:commandButton value="Delete" icon="ui-icon-trash"  type="button" onclick="PF('confirmDialog').show()" /> 
    <p:confirmDialog message="Are you sure you want to delete this record?Record once deleted can not be retrieved."                        
      header="Deleting" severity="alert" widgetVar="confirmDialog">         
-       <p:commandButton  value="Yes Sure" update=":history:cTable"   action="#{carParkingHistoryBean.deleteParkingHistory()}" oncomplete="PF('confirmDialog').hide()"/>            
+       <p:commandButton  value="Yes Sure" update=":history:cTable growl"   action="#{carParkingHistoryBean.deleteParkingHistory()}" oncomplete="PF('confirmDialog').hide()"/>            
         
  <p:commandButton value="Not Yet" onclick="PF('confirmDialog').hide();" type="button" /> 
  </p:confirmDialog>

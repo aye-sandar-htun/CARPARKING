@@ -39,8 +39,8 @@
                <tr>
    		            <td><h:outputText/></td>
                  	<td><ui:repeat var="s" value="${carParkingBean.slotLists(f,b)}">
-                 	<p:commandButton  id="slot" title="Hi" value="#{s}" style="background:#{carParkingBean.toggleStatus(b,f,s)}"/>	
-<p:tooltip id="toolTipFocus" for="slot" showEvent="focus" />
+                 	<p:commandButton  id="slot"  value="#{s}" style="margin:5px;background:#{carParkingBean.toggleStatus(b,f,s)}"/>	
+
   
    	              </ui:repeat>
    	             
