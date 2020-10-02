@@ -16,49 +16,54 @@
 <h:body>
 
  <div id="div">
-<h:form>
-<p:growl id="msgs" showDetail="true"/>  
+
+<h:form id="f">
+
+<p:growl id="msgs" showDetail="true" />  
+
+
 <!-- <p:messages for="msgs" autoUpdate="true" closable="true"  />  -->
-<p:panel id="panel" header="Delete Slot">  
+<p:panel id="panel">  
+<p>Only available slot can be Deleted.</p>
 <h:panelGrid columns="2" cellpadding="5">  
 
 <p:outputLabel for="building" value="Building Name :" />
-<p:selectOneMenu id="building" value="#{carParkingBean.buildingName}" style="width:80%" required="true">  
+<p:selectOneMenu id="building" value="#{carParkingBean.buildingName}" style="width:80%">  
 <p:ajax listener="#{carParkingBean.onBuildingChange}" update="floor"/> 
 <f:selectItem itemLabel="Select building" itemValue="" noSelectionOption="true" />  
 <f:selectItems value="#{carParkingBean.buildingLists()}"/>  
 </p:selectOneMenu>
 
 <p:outputLabel for="floor" value="Floor Name :"/>
-<p:selectOneMenu id="floor" value="#{carParkingBean.floorName}" style="width:80%" required="true">  
+<p:selectOneMenu id="floor" value="#{carParkingBean.floorName}" style="width:80%">  
 <p:ajax listener="#{carParkingBean.onFloorChange}" update="slot"/> 
 <f:selectItem itemLabel="Select floor" itemValue="" noSelectionOption="true" />  
 <f:selectItems value="#{carParkingBean.floor}"/>  
 </p:selectOneMenu>
 
-<p:outputLabel for="slot" value="Slot Name :"/>
-<p:selectOneMenu id="slot" value="#{carParkingBean.slot}" style="width:80%" required="true">  
-<p:ajax listener="#{carParkingBean.onSlotChange}" /> 
-<f:selectItem itemLabel="Select Slot" itemValue="" noSelectionOption="true" />  
-<f:selectItems value="#{carParkingBean.selectedSlots}"/>  
-</p:selectOneMenu>
-<p:outputLabel/> 
-<p:commandButton style="float:right;" value="Delete"  icon="ui-icon-check" styleClass="ui-priority-primary">
-<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
-</p:commandButton>
 </h:panelGrid>
 </p:panel>
+<center>
+<p:panel id="slot">
+<ui:repeat var="s" value="${carParkingBean.getAvailableSlot()}">
+                 	<p:commandButton value="#{s}" update="f" actionListener="#{carParkingBean.deleteSlot(s)}"  style="background:green">
+                 	<p:confirm header="Confirmation" message="Are you sure?" icon="ui-icon-alert" />
+                 	</p:commandButton>	
+   	              </ui:repeat>
+   	             </p:panel>
+   	              </center>
 
-  
+<p:outputLabel/> 
+
 
 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">  
-<p:commandButton value="Yes" actionListener="#{carParkingBean.deleteSlot(buildingName,floorName,slot)}" update="@form" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
+
+<p:commandButton value="Yes"  styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
 <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />  
 </p:confirmDialog> 
 </h:form>
 <p:button href="addParkingSlot.xhtml" style="float:right;" value="Back" type="button" styleClass="ui-priority-primary" />  
 
 </div> 
-
 </h:body>
 </html>

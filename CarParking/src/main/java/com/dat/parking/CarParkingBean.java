@@ -172,12 +172,18 @@ public CarParkingService getCarParkingService() {
 
 		
 //add floorlist to dropdown
+	int count;
 	public String floorList() {
 		List l=carParkingService.buildList(carCtl.getBuildingName());
 		if(l.isEmpty()) {
 		
-		
-		int count=Integer.parseInt(carCtl.getFloorName());
+		try {
+		 count=Integer.parseInt(carCtl.getFloorName());
+		}
+		catch(NumberFormatException e){
+			FacesContext context = FacesContext.getCurrentInstance();
+			 context.addMessage("msgs", new FacesMessage(FacesMessage.SEVERITY_INFO,"Number of floor should be integer!","Number of floor should be integer!"));
+		}
 		if(count>7) {
 			 FacesContext context = FacesContext.getCurrentInstance();
 			 context.addMessage("msgs", new FacesMessage(FacesMessage.SEVERITY_INFO,"More than 7floors are not allowed!","More than 7floors are not allowed!"));
@@ -186,7 +192,7 @@ public CarParkingService getCarParkingService() {
 		}
 		else {
 			 FacesContext context = FacesContext.getCurrentInstance();
-			 context.addMessage(null, new FacesMessage(count+"floors are added for "+carCtl.getBuildingName()));
+			 context.addMessage(null, new FacesMessage(count+"floors are added for building "+carCtl.getBuildingName()));
 		for(int i=1;i<=count;i++) {
 			floors.add("Floor"+i);}
 		}
@@ -195,7 +201,7 @@ public CarParkingService getCarParkingService() {
 	
 	else {
 		 FacesContext context = FacesContext.getCurrentInstance();
-		 context.addMessage("msgs", new FacesMessage(FacesMessage.SEVERITY_INFO,"Exiting name of building.","Exiting name of building."));
+		 context.addMessage("msgs", new FacesMessage("Exiting name of building."));
 	  return "addParkingSlot";
 	}
 	}
@@ -239,7 +245,7 @@ public CarParkingService getCarParkingService() {
 		      }
 		  
 		  FacesContext context = FacesContext.getCurrentInstance();
-			 context.addMessage("msgs", new FacesMessage(FacesMessage.SEVERITY_INFO,"Successfully added for "+selectedFloor+".","Successfully added for "+selectedFloor+"."));
+			 context.addMessage(null, new FacesMessage("Successfully added for "+selectedFloor+"."));
 		  
 		  }
 		
@@ -339,11 +345,12 @@ public CarParkingService getCarParkingService() {
 		 
 	 }
 	 //delete slot
-	 public void deleteSlot(String buildingName,String floorName,String slot) {
+	 public void deleteSlot(String slot) {
+			
 		 List s=carParkingService.statusSlotList(selectedBuilding, selectedFloor, selectedslot);
 		 if(s.isEmpty()) {
-		 
-		 carParkingService.deleteSlot(selectedBuilding, selectedFloor, selectedslot);
+			 System.out.println("Building Name is "+selectedBuilding+" Floor Name is "+selectedFloor+"slot is "+slot);
+		 carParkingService.deleteSlot(selectedBuilding, selectedFloor, slot);
 		 FacesContext context = FacesContext.getCurrentInstance();
 		 context.addMessage(null, new FacesMessage("Successfully deleted.",""));
 		

@@ -9,8 +9,11 @@
 <h:head><title>Add Building</title>
  </h:head>
 
+
+
  <h:body > 	
-<h:form>
+<h:form id="form">
+
 
 
     <div align="center">
@@ -26,10 +29,14 @@
 	
 
   <!-- <h2 align="center">Add Building</h2> -->
-<p:panel id="panel" style="margin:10px;"> 
+
+<p:messages for="msgs" autoUpdate="true" closable="true" /> 
+
+
+<p:panel id="panel"> 
  <p:growl id="msgs" showDetail="true" life="2000"/>
-<p:messages for="msgs" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
- 
+<!-- <p:messages for="msgs" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
+ --> 
 
 <h:panelGrid columns="2" cellpadding="5"> 
     <h:outputText value="Building name: "/>  
@@ -38,18 +45,25 @@
      </p:inputText>
     <h:outputText value="Number of floor: "/>  
     <p:inputText style="width:70%;" value="#{carParkingBean.carCtl.floorName}" label="floorNumber" required="true" validatorMessage="Insert integer for number of floor.">
-   <!--  <f:validateRegex pattern="[0-9]+" /> -->
+    <f:validateRegex pattern="[0-9]+" />
     </p:inputText>   
     <h:outputText/>
-  <p:commandButton style="width:100px;height:50px; background:#209114 ;color:#000000;" value="Add" update="panel" oncomplete="" actionListener="#{carParkingBean.floorList()}" styleClass="ui-priority-primary" />  
+
+  <p:commandButton style="width:100px;height:50px; background:#209114 ;color:#000000;" value="Add" update="form form1" oncomplete="" actionListener="#{carParkingBean.floorList()}" styleClass="ui-priority-primary" />  
 
 
+
+</h:panelGrid>
+</p:panel> 
+</h:form>
+
+<h:form id="form1">
 
 
 <!-- drop down -->
 
   
-
+<p:panel>
 <h:panelGrid  columns="2" cellpadding="5">  
 <h:outputLabel/> 
 <h3 align="center">ADD Slot</h3>
@@ -64,22 +78,26 @@
 </p:selectOneMenu>  
 
 <p:outputLabel value="Number of slot: " />     
+
+
+
 <p:inputText style="width:70%" value="#{carParkingBean.carCtl.slot}">
     <f:validateRegex pattern="[0-9]+" />
-
 </p:inputText>
-</h:panelGrid>
+
+
+
 <!-- <p:separator />   -->
-<p:commandButton style="width:100px;height:50px; background:#209114 ;color:#000000;"  value="Submit" update="panel" action="#{carParkingBean.persistInformation()}"  styleClass="ui-priority-primary"  />  
+<p:commandButton style="width:100px;height:50px; background:#209114 ;color:#000000;"  value="Submit" update="form1" action="#{carParkingBean.persistInformation()}"  styleClass="ui-priority-primary"  />  
+
 
 </h:panelGrid>
-
-</p:panel> 
-
+</p:panel>
 </h:form>
 
 <br></br>
-<br></br>
+
+
 
 
 
@@ -92,15 +110,18 @@
 <p:button value="Delete Building" href="deleteBuilding.xhtml" styleClass="ui-priority-primary" style="width:120px;height:50px; background:#ac131f ;color:#000000;"  />  
 <p:button value="Delete Floor" href="deleteFloor.xhtml" styleClass="ui-priority-primary" style="width:120px;height:50px; background:#ac131f ;color:#000000;"  />  
 <p:button value="Delete Slot" href="deleteSlot.xhtml" styleClass="ui-priority-primary" style="width:120px;height:50px; background:#ac131f ;color:#000000;" />  
+
 <p:commandButton value="Disable slot" type="button" onclick="PF('dlg').show();"  styleClass="ui-priority-primary" style="width:120px;height:50px; background:#ac131f ;color:#000000;" />  
 <p:commandButton value="Enable slot" type="button" onclick="PF('dlg1').show();" styleClass="ui-priority-primary" style="width:120px;height:50px; background:#ac131f ;color:#000000;" />  
 
 </h:panelGrid>
 
 <!-- dialog to do slot disable -->
+
 <p:dialog id="ds" header="Disable slot" widgetVar="dlg" modal="true" height="300">
-   <h:form id="form1">
+   <h:form>
  <p:growl id="msgs" showDetail="true" life="2000"/>
+
 <p:panel id="panel">  
 <p>Only available slot can be disabled.</p>
 <h:panelGrid columns="2" cellpadding="5">  
@@ -125,12 +146,14 @@
 <center>
 <p:panel id="slot">
 <ui:repeat var="s" value="${carParkingBean.getAvailableSlot()}">
-                 	<p:commandButton value="#{s}" action="#{carParkingBean.disableSlot(s)}"  style="background:green" update="ds">
+                 	<p:commandButton value="#{s}" action="#{carParkingBean.disableSlot(s)}" update="@form" style="background:green">
                  	
                  	</p:commandButton>	
    	              </ui:repeat>
    	             </p:panel>
    	              </center>
+   	              
+   	           <h:button value="Finish" href="addParkingSlot.xhtml" styleClass="ui-priority-primary" style="width:80px;height:30px; background:#99b3ff ;color:#000000;"/>
 </h:form>
 </p:dialog> 
 
@@ -168,6 +191,10 @@
    	              </ui:repeat>
    	             </p:panel>
    	              </center>
+   	              
+   	                 	           <h:button value="Finish" href="addParkingSlot.xhtml" styleClass="ui-priority-primary" style="width:80px;height:30px; background:#99b3ff ;color:#000000;"/>
+   	           
+   	              
 </h:form>
 </p:dialog>  
 </p:panel>

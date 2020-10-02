@@ -26,7 +26,6 @@
 <h:form style="margin:30px;">
 <h:panelGrid columns="2" cellpadding="5">  
 <p:outputLabel for="inline" value="Select Date" />  
-
 <p:calendar id="inline" value="#{carParkingHistoryBean.selectedDate}" mode="popup" pattern="dd/MM/yyyy" readOnlyInputText="true">  
 <p:ajax event="dateSelect" listener="#{carParkingHistoryBean.dateChange}" update="history"/>
 </p:calendar>
@@ -46,7 +45,7 @@
         <p:column filterBy="#{h.slot}" headerText="Slot Name" filterMatchMode="contains">
             <h:outputText value="#{h.slot}" />
         </p:column>
-        <p:column filterBy="#{h.carNumber}" headerText="Car Number" filterMatchMode="contains">
+        <p:column filterBy="#{h.carNumber}" headerText="Car No" filterMatchMode="contains">
             <h:outputText value="#{h.carNumber}" />
         </p:column>
         <p:column filterBy="#{h.entryTime}" headerText="Entry Time" filterMatchMode="contains">
