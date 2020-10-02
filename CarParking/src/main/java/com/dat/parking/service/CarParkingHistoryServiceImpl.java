@@ -104,4 +104,15 @@ public class CarParkingHistoryServiceImpl implements CarParkingHistoryService{
 	}
 	
 	
+	//carParking history deleted
+	@Transactional
+	  public CarParkingHistory getById(int id) {
+		  return carParkingHistoryDao.getById(id);
+	  }
+	
+	@Transactional
+	public void deleteParkingHistory(List<CarParkingHistory> carhistorys) {
+		carParkingHistoryDao.deleteParkingHistory(carhistorys);
+	}
+
 }

@@ -65,6 +65,7 @@ public class CarParkingHistoryBean implements Serializable{
 	private List<CarParkingHistory> filteredRecords;
 	private List<CarParkingHistory> showCurrentList;
 	private List<CarParkingHistory> showFilteredCurrentList;
+	private List<CarParkingHistory> selectedCarHistorys;
     private String status;
 
 	
@@ -217,9 +218,17 @@ public void setStatus(String status) {
 	}
 	
 	
+	
+	
 	//method CRUD
 	//add data to database 
 	
+	public List<CarParkingHistory> getSelectedCarHistorys() {
+		return selectedCarHistorys;
+	}
+	public void setSelectedCarHistorys(List<CarParkingHistory> selectedCarHistorys) {
+		this.selectedCarHistorys = selectedCarHistorys;
+	}
 	public UserAdminAccount getAccountCtl() {
 		return accountCtl;
 	}
@@ -463,5 +472,32 @@ else {
 
 		 String message="Hi";
 		 return message;
+	 }
+	 
+	 
+	 //delete car parking history
+	 public void deleteParkingHistory() {
+		 String pattern = "yyyy-MM-dd";
+		 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
+		 String date = simpleDateFormat.format(selectedCarHistorys.get(0).getDate());
+		 String date1=LocalDate.now().toString();
+		 for(int i=0;i<selectedCarHistorys.size();i++) {
+			 if(date.equals(date1)) {
+				 System.out.println(" if Date selected Car History "+LocalDate.now());
+
+				 FacesContext context=FacesContext.getCurrentInstance();
+				  context.addMessage("msgs", new FacesMessage("History for today cannot be deleted!",""));
+			 }
+			 else {
+				 getCarParkingHistoryService().deleteParkingHistory(selectedCarHistorys);
+				 FacesContext context=FacesContext.getCurrentInstance();
+				  context.addMessage("msgs", new FacesMessage("Delete successfully",""));
+			 }
+		 }
+		 
+		
+		  
+	 
 	 }
 }

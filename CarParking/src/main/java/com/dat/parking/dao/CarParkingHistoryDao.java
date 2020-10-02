@@ -28,4 +28,8 @@ public interface CarParkingHistoryDao {
 
     void addExitTime(String buildingName,String floorName,String slot,Timestamp exitTime);
 
+    
+    //car history deleted
+    public CarParkingHistory getById(int id);
+    public void deleteParkingHistory(List<CarParkingHistory> carhistorys);
 }
