@@ -23,7 +23,7 @@
 
 <p:outputLabel for="building" value="Building Name :" />
 <p:selectOneMenu id="building" value="#{carParkingBean.buildingName}" style="width:80%" required="true">  
-<p:ajax listener="#{carParkingBean.onBuildingChange}"/> 
+<p:ajax listener="#{carParkingBean.onBuildingChange}" update="building"/> 
 <f:selectItem itemLabel="Select Building" itemValue="" noSelectionOption="true" />  
 <f:selectItems value="#{carParkingBean.buildingLists()}"/>  
 </p:selectOneMenu>
@@ -35,8 +35,8 @@
 </h:panelGrid>
 </p:panel>
 <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">  
-<p:commandButton value="Yes" actionListener="#{carParkingBean.deleteBuilding(buildingName)}" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
-<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" update="@form" icon="ui-icon-close" />  
+<p:commandButton value="Yes" actionListener="#{carParkingBean.deleteBuilding(buildingName)}"  update="@form" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />  
+<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />  
 </p:confirmDialog> 
 </h:form>
 <br></br>

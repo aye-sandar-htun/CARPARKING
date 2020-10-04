@@ -1,6 +1,6 @@
 package com.dat.parking;
 
-import java.io.Serializable;
+import java.io.Serializable; 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -182,17 +182,19 @@ public CarParkingService getCarParkingService() {
 		}
 		catch(NumberFormatException e){
 			FacesContext context = FacesContext.getCurrentInstance();
-			 context.addMessage("msgs", new FacesMessage(FacesMessage.SEVERITY_INFO,"Number of floor should be integer!","Number of floor should be integer!"));
+			 context.addMessage("msgs", new FacesMessage(FacesMessage.SEVERITY_INFO,"Number of floor should be integer!",""));
 		}
 		if(count>7) {
 			 FacesContext context = FacesContext.getCurrentInstance();
-			 context.addMessage("msgs", new FacesMessage(FacesMessage.SEVERITY_INFO,"More than 7floors are not allowed!","More than 7floors are not allowed!"));
+			 context.addMessage("msgs", new FacesMessage(FacesMessage.SEVERITY_INFO,"More than 7floors are not allowed!",""));
 		 
 			
 		}
 		else {
 			 FacesContext context = FacesContext.getCurrentInstance();
-			 context.addMessage(null, new FacesMessage(count+"floors are added for building "+carCtl.getBuildingName()));
+			 context.addMessage(null, new FacesMessage(count+"floors are added for building "+carCtl.getBuildingName(),""));
+			 
+			 
 		for(int i=1;i<=count;i++) {
 			floors.add("Floor"+i);}
 		}
@@ -218,13 +220,13 @@ public CarParkingService getCarParkingService() {
 		  int slotcount=Integer.parseInt(carCtl.getSlot());
 		  if(slotcount>100) {
 			  FacesContext context = FacesContext.getCurrentInstance();
-				 context.addMessage("msgs", new FacesMessage(FacesMessage.SEVERITY_INFO,"More than 100slots are not allowed!","More than 100slots are not allowed!"));
+				 context.addMessage("msgs", new FacesMessage("More than 100slots are not allowed!",""));
 		  }
 		  else {
 		  if(selectedFloor==null || selectedFloor.equals("")) {
 			
 			  FacesContext context = FacesContext.getCurrentInstance();
-				 context.addMessage("msgs", new FacesMessage(FacesMessage.SEVERITY_INFO,"Please select a floor.","Please select a floor."));
+				 context.addMessage("msgs", new FacesMessage("Please select a floor.",""));
 			  
 			  
 		  }
@@ -245,7 +247,7 @@ public CarParkingService getCarParkingService() {
 		      }
 		  
 		  FacesContext context = FacesContext.getCurrentInstance();
-			 context.addMessage(null, new FacesMessage("Successfully added for "+selectedFloor+"."));
+			 context.addMessage(null, new FacesMessage("Successfully added for "+selectedFloor+".",""));
 		  
 		  }
 		
@@ -404,7 +406,7 @@ public CarParkingService getCarParkingService() {
 	 public void disableSlot(String slot) {
 
 		 FacesContext context = FacesContext.getCurrentInstance();
-		 context.addMessage(null, new FacesMessage(selectedBuildingForDisable+">"+selectedFloorForDisable+">"+slot+" is temporarily out of service now!"));
+		 context.addMessage(null, new FacesMessage(selectedBuildingForDisable+">"+selectedFloorForDisable+">"+slot+" is temporarily out of service now!",""));
 		 carParkingService.disableSlot(selectedBuildingForDisable, selectedFloorForDisable, slot);
 	 }
 	 //enable selected slot
@@ -413,7 +415,7 @@ public CarParkingService getCarParkingService() {
 	 }
 	 public void enableSlot(String slot) {
 		 FacesContext context = FacesContext.getCurrentInstance();
-		 context.addMessage(null, new FacesMessage(selectedBuildingForDisable+">"+selectedFloorForDisable+">"+slot+" is availablen now!"));
+		 context.addMessage(null, new FacesMessage(selectedBuildingForDisable+">"+selectedFloorForDisable+">"+slot+" is availablen now!",""));
 		 carParkingService.updateStatusAvailable(selectedBuildingForDisable, selectedFloorForDisable, slot);
 	 }
 	 

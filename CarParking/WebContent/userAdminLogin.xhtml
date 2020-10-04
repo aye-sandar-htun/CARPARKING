@@ -43,7 +43,7 @@ body{
        <p:outputLabel value="Password:"/>
 
 
-       <p:password id="password" value="#{userAdminAccountBean.accountCtl.password}" required="true" label="password" />
+       <p:password id="password" value="#{userAdminAccountBean.accountCtl.password}" required="true" label="password" validatorMessage="Insert password."/>
      
 
       <p:outputLabel value="Rank"></p:outputLabel>
@@ -62,17 +62,23 @@ body{
         <br/>  <br/> 
      <div  margin="100px">
      
-  <p:commandButton style="margin-right:5px;margin-top:18px;height:30px; background:#209114 ;color:#000000;" value="Login" icon="ui-icon-check" oncomplete="" action="#{userAdminAccountBean.checkAccount()}" update="@form" styleClass="ui-priority-primary" />  
+      <h:panelGrid columns="2" style="margin-top:18px;">
+     
+  <p:commandButton style="margin-right:5px;margin-top:18px;height:40px; background:#209114 ;color:#000000;" value="Login"  oncomplete="" action="#{userAdminAccountBean.checkAccount()}" update="@form" styleClass="ui-priority-primary" />  
+   
+   <p:button href="index.xhtml" value="Cancle" style="margin-right:5px;margin-top:18px;height:40px; background:#ebebe0 ;color:#000000;"/>
       
+      </h:panelGrid>
     </div>
 
       
        </h:panelGrid>
        <br></br>
-       <br></br>
-                <a href="userAdminRegistration.xhtml" style="margin-top:20px;font-family:Arial;font-weight:bold;color:#0000AD; font-size:20px;">Register here!</a>
        
+                <a href="userAdminRegistration.xhtml" style="margin-top:20px;font-family:Arial;font-weight:bold;color:#0000AD; font-size:20px;">Register here!</a>
+     
        </p:panel>
+         
         
        </h:form> 
        

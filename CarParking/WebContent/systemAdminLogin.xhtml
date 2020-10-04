@@ -29,7 +29,7 @@
  		 <h:form>
 
  		 <p:growl id="msgs" showDetail="true" life="2000"/>
-    <p:panel id="panel" header="Welcome SystemAdmin Login" style="width:500px; height:250px; margin-top:28px;">
+    <p:panel id="panel" header="Welcome SystemAdmin Login" style="width:500px; height:300px; margin-top:28px;">
 	<p:messages for="loginMsg" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
     <h:panelGrid columns="2" style="margin-top:10px;">
       <p:outputLabel value="Admin Name:"/>
@@ -40,18 +40,29 @@
 
     <h:outputLabel for="password" value="Password:" />
             <p:password id="password" value="#{systemAdminAccountBean.accountCtl.password}" required="true" label="password" />
-
-     <div  margin="100px">
+           
+            
+            
+             <div  margin="100px">
+      <h:panelGrid columns="2" style="margin-top:18px;">
      
   <p:commandButton style="margin-right:5px;margin-top:18px;height:40px; background:#209114 ;color:#000000;" value="Login" oncomplete="" action="#{systemAdminAccountBean.checkAccount()}" update="@form"  styleClass="ui-priority-primary" />  
-
+	
+	<p:button href="index.xhtml" value="Cancle" style="margin-right:5px;margin-top:18px;height:40px; background:#ebebe0 ;color:#000000;"/>
+	
 <!-- 4CAF50 -->
-    
+    </h:panelGrid>
+    <br></br><br></br>
     </div>
+            
+              </h:panelGrid>
+
     
-       </h:panelGrid>
-       <br></br>
+    
+     
+       
 <a href="systemAdminRegistration.xhtml" style="font-family:Arial;font-weight:bold;color:#0000AD; font-size:20px;">Register here!</a>  
+<br></br>
        </p:panel>
       
        </h:form> 

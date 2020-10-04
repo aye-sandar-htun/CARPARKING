@@ -12,6 +12,7 @@
 
 
  <h:body > 	
+
 <h:form id="form">
 
 
@@ -30,18 +31,18 @@
 
   <!-- <h2 align="center">Add Building</h2> -->
 
-<p:messages for="msgs" autoUpdate="true" closable="true" /> 
-
+<!-- <p:messages for="msgs" autoUpdate="true" closable="true" />  -->
+  <p:growl id="msgs" showDetail="true" life="2000"/>
 
 <p:panel id="panel"> 
- <p:growl id="msgs" showDetail="true" life="2000"/>
+
 <!-- <p:messages for="msgs" autoUpdate="true" closable="true" showSummary="true" showDetail="false" severity="error"/>
  --> 
 
 <h:panelGrid columns="2" cellpadding="5"> 
     <h:outputText value="Building name: "/>  
     <p:inputText style="width:70%;" value="#{carParkingBean.carCtl.buildingName}" label="buildingName" required="true" validatorMessage="Insert only characters for building name.">
-     <f:validateRegex pattern="[a-zA-Z ]+"/>
+     <f:validateRegex pattern="[A-Za-z0-9 ]+"/>
      </p:inputText>
     <h:outputText value="Number of floor: "/>  
     <p:inputText style="width:70%;" value="#{carParkingBean.carCtl.floorName}" label="floorNumber" required="true" validatorMessage="Insert integer for number of floor.">
@@ -58,7 +59,7 @@
 </h:form>
 
 <h:form id="form1">
-
+ <p:growl id="msgs" showDetail="true" life="2000"/>
 
 <!-- drop down -->
 
@@ -81,7 +82,7 @@
 
 
 
-<p:inputText style="width:70%" value="#{carParkingBean.carCtl.slot}">
+<p:inputText style="width:70%" value="#{carParkingBean.carCtl.slot}" required="true" validatorMessage="Insert integer for number of slot.">
     <f:validateRegex pattern="[0-9]+" />
 </p:inputText>
 

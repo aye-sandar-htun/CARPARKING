@@ -26,20 +26,21 @@
 <table style="margin:40px;" id="table">
    <ui:repeat var="b" value="${carParkingBean.buildingLists()}">
     <tr>
-	  <td id="buildingname"><h:outputText style="font-size:25px;" value="#{b}"/></td> 
+	  <td id="buildingname"><h:outputText style="font-size:25px;font-weight:bold;font-family:Times New Roman;color:rgb(0, 0, 0);" value="#{b}"/></td> 
 	   <td><h:outputText/></td>
 	    
 	</tr>
 	
 	    	<ui:repeat var="f"  value="${carParkingBean.floorLists(b)}">
 	           <tr>
-    	       <td  style="text-align:center;padding:3px;" id="floorname"> <h:outputText  value="#{f}"/></td>	
+    	       <td  style="text-align:center;padding:3px;font-weight:bold;font-family:Times New Roman;color:rgb(0, 0, 0); font-size:20px;" id="floorname"> <h:outputText  value="#{f}"/></td>	
                <td><h:outputText/></td>
                </tr>
                <tr>
    		            <td><h:outputText/></td>
                  	<td><ui:repeat var="s" value="${carParkingBean.slotLists(f,b)}">
-                 	<p:commandButton  id="slot"  value="#{s}" style="margin:5px;background:#{carParkingBean.toggleStatus(b,f,s)}"/>	
+                 	<p:commandButton  id="slot"  value="#{s}" style="margin:5px;font-family:Times New Roman;color:#F9F8FB; font-size:18px;background:#{carParkingBean.toggleStatus(b,f,s)}" 
+                 	/>	
 
   
    	              </ui:repeat>

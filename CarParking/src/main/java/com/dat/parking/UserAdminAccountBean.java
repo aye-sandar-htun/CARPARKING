@@ -144,13 +144,13 @@ public class UserAdminAccountBean implements Serializable{
 			System.out.println("Password "+accountCtl.getPassword());					
 			userAdminAccountService.persistInformation(this.accountCtl);
 			 FacesContext context = FacesContext.getCurrentInstance();
-			 context.addMessage("registerMsg", new FacesMessage(FacesMessage.SEVERITY_INFO,"Successfully Registered.","Successfully Registered."));
+			 context.addMessage("registerMsg", new FacesMessage("Successfully Registered.",""));
 			 this.reset();
 			return "userAdminLogin";
 		}
 			else {
 				 FacesContext context = FacesContext.getCurrentInstance();
-				 context.addMessage("registerMsg", new FacesMessage(FacesMessage.SEVERITY_ERROR,"Exiting user.Try again!.","Exiting user.Try again!."));
+				 context.addMessage("registerMsg", new FacesMessage("Exiting user.Try again!.",""));
 				 this.reset();
 				return "userAdminRegistration";
 			}	
@@ -160,7 +160,7 @@ public class UserAdminAccountBean implements Serializable{
 			 List id=userAdminAccountService.checkAccount(accountCtl.getName(),accountCtl.getPassword());
 			if(id.isEmpty()) {
 				 FacesContext context = FacesContext.getCurrentInstance();
-				 context.addMessage("loginMsg", new FacesMessage(FacesMessage.SEVERITY_ERROR,"Wrong username or password.Try again!","Wrong username or password.Try again!"));
+				 context.addMessage("loginMsg", new FacesMessage("Wrong username or password.Try again!",""));
 				 this.reset();
 				 
 				 //return "userAdminLogin";
@@ -169,7 +169,7 @@ public class UserAdminAccountBean implements Serializable{
 			else {
 				
 				 FacesContext context = FacesContext.getCurrentInstance();
-				 context.addMessage("loginMsg", new FacesMessage(FacesMessage.SEVERITY_INFO,"Login Success","Login Success"));
+				 context.addMessage("loginMsg", new FacesMessage("Login Success",""));
 
 			 userAdminInformation= getUserProfileInformation(accountCtl.getName());
 			 if(rank.equals("Entry")) {

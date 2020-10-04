@@ -100,7 +100,7 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 	public List<CarParkingHistory> showCurrent(Date date) {
 		// TODO Auto-generated method stub
 		session=this.sessionFactory.getCurrentSession();
-		String hql="from CarParkingHistory where date=:date";
+		String hql="from CarParkingHistory where date=:date order by id";
 		Query query=session.createQuery(hql);
 		query.setParameter("date", date);
 		List todayList= query.list();	

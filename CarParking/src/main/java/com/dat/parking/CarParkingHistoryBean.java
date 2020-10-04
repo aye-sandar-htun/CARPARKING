@@ -378,6 +378,10 @@ return showCurrentList;
 		submittedUser=name;
 		selectedSlot=slot;
 		persistInformation();
+		
+		historyCtl.setCarNumber("");
+		
+		
 		   
 		  
 	}
@@ -481,17 +485,23 @@ else {
 		 String pattern = "yyyy-MM-dd";
 		 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		 int count=0;
-		 String date = simpleDateFormat.format(selectedCarHistorys.get(0).getDate());
+		
+		 
 		 String date1=LocalDate.now().toString();
 		 for(int i=0;i<selectedCarHistorys.size();i++) {
+			 String date = simpleDateFormat.format(selectedCarHistorys.get(i).getDate());
+			 System.out.println("Date is "+date);
+			 System.out.println(date.equals(date1));
 			 if(date.equals(date1)) {
+				 
 				 System.out.println(" if Date selected Car History "+LocalDate.now());
 				 count=1;
 			 }
-			 else {
+			 else  {
+				 count=2;
+				
 				 getCarParkingHistoryService().deleteParkingHistory(selectedCarHistorys);
-				 FacesContext context=FacesContext.getCurrentInstance();
-				  context.addMessage("msgs", new FacesMessage(FacesMessage.SEVERITY_INFO,"Delete successfully",""));
+				
 			 }
 			 
 		 }
@@ -499,7 +509,11 @@ else {
 			  
 			 FacesContext context=FacesContext.getCurrentInstance();
 			  context.addMessage("msgs", new FacesMessage(FacesMessage.SEVERITY_INFO,"History for today cannot be deleted!",""));
-	 } 
+	 }
+		 if(count==2) {
+			 FacesContext context=FacesContext.getCurrentInstance();
+			  context.addMessage("msgs", new FacesMessage(FacesMessage.SEVERITY_INFO,"Delete successfully",""));
+		 }
 		
 		  
 	 
