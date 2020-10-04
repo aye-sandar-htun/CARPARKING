@@ -21,8 +21,7 @@ public interface CarParkingHistoryDao {
 	 public List checkExitingCar(String carNumber,Timestamp exitTime);
 	 
 	
-	  CarParkingHistory findById(int id); 
-	  void deleteCarHistory(CarParkingHistory cars);
+	
 	 
 
 

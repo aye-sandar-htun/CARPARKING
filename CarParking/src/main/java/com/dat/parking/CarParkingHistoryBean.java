@@ -246,7 +246,6 @@ public void setStatus(String status) {
 	public String persistInformation(){
 		historyCtl.setFloor(selectedFloor);
 		historyCtl.setSlot(selectedSlot);
-		//List t=carParkingHistoryService.checkFreeSlot(historyCtl.getSlot(), historyCtl.getFloor(), historyCtl.getBuilding(),historyCtl.getExitTime());
 		List t=carParkingHistoryService.checkExitingCar(historyCtl.getCarNumber(), historyCtl.getExitTime());
 		
 		if(t.isEmpty()) {
@@ -301,9 +300,7 @@ public void setStatus(String status) {
         		 return historylist;
         	}
     	
-      //  historylist = carParkingHistoryService.carHistory(selectedDate);
-       // return historylist;
-    	//}
+     
 
     }
     @PostConstruct
@@ -326,14 +323,6 @@ return showCurrentList;
 	public void onFloorChange() {  
 
 		
-			/*
-			 * if(selectedFloor!=null && !selectedFloor.equals("")) {
-			 * selectedFloor=historyCtl.getFloor();
-			 * 
-			 * } else {
-			 * 
-			 * selectedFloor=null; }
-			 */
 	
 	}
 	
@@ -430,17 +419,6 @@ else {
 }
 }
 
-
-
-
-  //SystemAdmin deletecarHistory 
-	public void deleteCarHistory(int id) {
-  CarParkingHistory cars=carParkingHistoryService.findById(id);
-  getCarParkingHistoryService().deleteCarHistory(cars); 
-  FacesContext context=FacesContext.getCurrentInstance();
-  context.addMessage(null, new FacesMessage("Delete successfully"));
-  
-  }
  
 //date from calendar
 	public void dateChange(SelectEvent selectEvent) {
@@ -495,13 +473,12 @@ else {
 		 for(int i=0;i<selectedCarHistorys.size();i++) {
 			 String date = simpleDateFormat.format(selectedCarHistorys.get(i).getDate());
 
-			 System.out.println("Date is "+date);
-			 System.out.println(date.equals(date1));
+			
 
                   CarParkingHistory c=selectedCarHistorys.get(i);
 			 if(date.equals(date1)) {
 				 
-				 System.out.println(" if Date selected Car History "+LocalDate.now());
+				
 				 countofToday=1;
 			 }
 

@@ -73,21 +73,6 @@ public class CarParkingHistoryServiceImpl implements CarParkingHistoryService{
 	 public List checkExitingCar(String carNumber,Timestamp exitTime) {
 		return carParkingHistoryDao.checkExitingCar(carNumber, exitTime);
 	}
-
-	
-	
-	  @Transactional
-	   
-	  public CarParkingHistory findById(int id) {
-	   return carParkingHistoryDao.findById(id); 
-	   }
-	  
-	  @Transactional
-	   
-	  public void deleteCarHistory(CarParkingHistory cars) {
-	  
-	  carParkingHistoryDao.deleteCarHistory(cars); 
-	  }
 	 
 
 	@Transactional

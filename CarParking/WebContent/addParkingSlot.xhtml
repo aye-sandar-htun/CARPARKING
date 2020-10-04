@@ -41,8 +41,8 @@
 
 <h:panelGrid columns="2" cellpadding="5"> 
     <h:outputText value="Building name: "/>  
-    <p:inputText style="width:70%;" value="#{carParkingBean.carCtl.buildingName}" label="buildingName" required="true" validatorMessage="building name must start Character.">
-     <f:validateRegex pattern="[A-Za-z ]+[0-9]"/>
+    <p:inputText style="width:70%;" value="#{carParkingBean.carCtl.buildingName}" label="buildingName" required="true" validatorMessage="Insert only characters for building name.">
+     <f:validateRegex pattern="[A-Za-z0-9 ]+"/>
      </p:inputText>
     <h:outputText value="Number of floor: "/>  
     <p:inputText style="width:70%;" value="#{carParkingBean.carCtl.floorName}" label="floorNumber" required="true" validatorMessage="Insert integer for number of floor.">

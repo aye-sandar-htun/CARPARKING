@@ -23,11 +23,6 @@ public interface CarParkingHistoryService {
 
 	 public List checkExitingCar(String carNumber,Timestamp exitTime);
 
-	 
-	
-	  CarParkingHistory findById(int id);
-	   void deleteCarHistory(CarParkingHistory cars);
-	 
 
 	    void addExitTime(String building,String floor,String slot,Timestamp exitTime);
 

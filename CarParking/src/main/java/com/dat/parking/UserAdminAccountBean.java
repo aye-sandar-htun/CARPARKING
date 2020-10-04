@@ -38,7 +38,7 @@ public class UserAdminAccountBean implements Serializable{
 		public void init() {  
 			userRank.add("Entry");
 			userRank.add("Exit");
-			System.out.println("         Rank "+userRank);
+			
 		}
 	    
 	
@@ -141,7 +141,7 @@ public class UserAdminAccountBean implements Serializable{
 		
 			List l=userAdminAccountService.adminList(accountCtl.getName());
 			if(l.isEmpty()) {
-			System.out.println("Password "+accountCtl.getPassword());					
+								
 			userAdminAccountService.persistInformation(this.accountCtl);
 			 FacesContext context = FacesContext.getCurrentInstance();
 			 context.addMessage("registerMsg", new FacesMessage("Successfully Registered.",""));
@@ -163,7 +163,7 @@ public class UserAdminAccountBean implements Serializable{
 				 context.addMessage("loginMsg", new FacesMessage("Wrong username or password.Try again!",""));
 				 this.reset();
 				 
-				 //return "userAdminLogin";
+				
 				 return"";
 			}
 			else {
@@ -174,12 +174,12 @@ public class UserAdminAccountBean implements Serializable{
 			 userAdminInformation= getUserProfileInformation(accountCtl.getName());
 			 if(rank.equals("Entry")) {
 				 this.reset();
-				// return "entryUserAdminHomePage";
+				
 				 return "addCarParking.xhtml";
 			 }
 			 else {
 				 this.reset();
-				// return "exitUserAdminHomePage";
+				
 				 return "exitUserCurrent";
 			 }
 
@@ -201,7 +201,7 @@ public class UserAdminAccountBean implements Serializable{
 		
 		//reset
 		public void reset() {
-			//this.accountCtl.setName("");
+			
 			this.accountCtl.setEmail("");
 			this.accountCtl.setAddress("");
 			this.accountCtl.setContactNumber(0);

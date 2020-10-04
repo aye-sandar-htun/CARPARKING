@@ -118,7 +118,7 @@ public class SystemAdminAccountBean implements Serializable{
 		 context.addMessage("loginMsg", new FacesMessage("Login Success",""));
 		 adminInformation= getAdminProfileInformation(accountCtl.getName());
 		 this.reset();
-		//return "systemAdminHomePage";
+		
 		 return "addParkingSlot";
 		 
 		}

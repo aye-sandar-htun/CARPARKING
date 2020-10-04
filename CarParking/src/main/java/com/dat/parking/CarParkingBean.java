@@ -174,6 +174,14 @@ public CarParkingService getCarParkingService() {
 //add floorlist to dropdown
 	int count;
 	public String floorList() {
+		String arr=carCtl.getBuildingName();
+		boolean checkBname=arr.substring(0, 1).matches("\\d");
+		if(checkBname) {
+			FacesContext context = FacesContext.getCurrentInstance();
+			 context.addMessage("msgs", new FacesMessage(FacesMessage.SEVERITY_INFO,"First character of building name must be Character!",""));
+		
+		}
+		else {
 		List l=carParkingService.buildList(carCtl.getBuildingName());
 		if(l.isEmpty()) {
 		
@@ -205,7 +213,9 @@ public CarParkingService getCarParkingService() {
 		 FacesContext context = FacesContext.getCurrentInstance();
 		 context.addMessage("msgs", new FacesMessage("Exiting name of building."));
 	  return "addParkingSlot";
-	}
+	}  
+		}
+		return "";
 	}
 	
 
@@ -241,8 +251,7 @@ public CarParkingService getCarParkingService() {
 		     floors.remove(selectedFloor);
 
 		      this.reset();
-		      //TabView tabView = FacesContext.getCurrentInstance().getViewRoot().findComponent(view); 
-
+		     
 
 		      }
 		  
@@ -424,7 +433,6 @@ public CarParkingService getCarParkingService() {
 		 this.setSelectedBuildingForDisable("");
 		 this.setSelectedFloor("");
 		 this.setSelectedFloorForDisable("");
-		// this.setSelectedslot("");
 		
 		 
 	 }
