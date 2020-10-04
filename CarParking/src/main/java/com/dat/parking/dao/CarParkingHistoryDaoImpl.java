@@ -164,25 +164,11 @@ public class CarParkingHistoryDaoImpl implements CarParkingHistoryDao{
 		return (CarParkingHistory) list.get(0);
 	}
 	
-    public void deleteParkingHistory(List<CarParkingHistory> carhistorys) {
+    public void deleteParkingHistory(CarParkingHistory carhistorys) {
     	session=sessionFactory.openSession();
-    	Transaction tx=null;
-    	try {
-    		tx=session.beginTransaction();
-    		for(java.util.Iterator<CarParkingHistory> iterator= carhistorys.iterator();iterator.hasNext();) {
-    			CarParkingHistory carhistory=(CarParkingHistory) iterator.next();
-    			session.delete(carhistory);
-    		}
-    		tx.commit();
-    	}catch(HibernateException e) {
-    		if(tx!=null) {
-    			tx.rollback();
-    			e.printStackTrace();
-    		}
-    	}
-    	finally {
-			session.close();
-		}
+    	
+		sessionFactory.getCurrentSession().delete(carhistorys);
 
+    		
     }
 }

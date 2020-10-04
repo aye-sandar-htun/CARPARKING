@@ -484,37 +484,55 @@ else {
 	 public void deleteParkingHistory() {
 		 String pattern = "yyyy-MM-dd";
 		 SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+
 		 int count=0;
 		
-		 
+
+		 int countofToday=0;
+		 int countofprevious=0;
+
 		 String date1=LocalDate.now().toString();
 		 for(int i=0;i<selectedCarHistorys.size();i++) {
 			 String date = simpleDateFormat.format(selectedCarHistorys.get(i).getDate());
+
 			 System.out.println("Date is "+date);
 			 System.out.println(date.equals(date1));
+
+                  CarParkingHistory c=selectedCarHistorys.get(i);
 			 if(date.equals(date1)) {
 				 
 				 System.out.println(" if Date selected Car History "+LocalDate.now());
-				 count=1;
+				 countofToday=1;
 			 }
-			 else  {
-				 count=2;
-				
-				 getCarParkingHistoryService().deleteParkingHistory(selectedCarHistorys);
-				
+
+			
+			 else {
+				 countofprevious=1;
+				 getCarParkingHistoryService().deleteParkingHistory(c);
+
 			 }
 			 
 		 }
-		 if(count==1) {
+		 if(countofToday==1 && countofprevious==1) {
+			
+			  FacesContext context1=FacesContext.getCurrentInstance();
+			  context1.addMessage("msgs", new FacesMessage(FacesMessage.SEVERITY_INFO,"Data delete successfully(except Today)",""));
+		 }
+		 else if(countofToday==1 && countofprevious==0) {
 			  
 			 FacesContext context=FacesContext.getCurrentInstance();
 			  context.addMessage("msgs", new FacesMessage(FacesMessage.SEVERITY_INFO,"History for today cannot be deleted!",""));
+
 	 }
-		 if(count==2) {
+		 
+		
+
+	  
+		 else if(countofToday==0 && countofprevious==1 ) {
 			 FacesContext context=FacesContext.getCurrentInstance();
 			  context.addMessage("msgs", new FacesMessage(FacesMessage.SEVERITY_INFO,"Delete successfully",""));
-		 }
-		
+		}
+
 		  
 	 
 	 }

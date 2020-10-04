@@ -31,5 +31,5 @@ public interface CarParkingHistoryDao {
     
     //car history deleted
     public CarParkingHistory getById(int id);
-    public void deleteParkingHistory(List<CarParkingHistory> carhistorys);
+    public void deleteParkingHistory(CarParkingHistory carhistorys);
 }
