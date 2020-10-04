@@ -111,7 +111,7 @@ public class CarParkingHistoryServiceImpl implements CarParkingHistoryService{
 	  }
 	
 	@Transactional
-	public void deleteParkingHistory(List<CarParkingHistory> carhistorys) {
+	public void deleteParkingHistory(CarParkingHistory carhistorys) {
 		carParkingHistoryDao.deleteParkingHistory(carhistorys);
 	}
 

@@ -32,9 +32,8 @@ public interface CarParkingHistoryService {
 	    void addExitTime(String building,String floor,String slot,Timestamp exitTime);
 
 	    
-	    
 	    //car history deleted
 	    public CarParkingHistory getById(int id);
-	    public void deleteParkingHistory(List<CarParkingHistory> carhistorys);
+	    public void deleteParkingHistory(CarParkingHistory carhistorys);
 
 }
